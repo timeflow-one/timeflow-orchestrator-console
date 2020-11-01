@@ -1,17 +1,28 @@
 <template>
-  <v-form class="full-width" v-model="formValid" ref="form">
-    <v-card width="100%" color="grey" class="lighten-5 rounded-lg">
+  <v-form
+    class="full-width"
+    v-model="isFormValid"
+    ref="form"
+    @keyup.native.enter="isFormValid && submit()"
+  >
+    <v-card
+      width="100%"
+      color="grey lighten-5"
+      class="rounded-lg"
+    >
       <v-card-title>
         {{ $vuetify.lang.t('$vuetify.login.title') }}
       </v-card-title>
       <v-card-text>
         <v-text-field
+          color="primary lighten-1"
           v-model="login"
           :label="$vuetify.lang.t('$vuetify.login.login')"
           :rules="loginRules"
         />
         <v-text-field
           class="mt-4"
+          color="primary lighten-1"
           v-model="password"
           :rules="passwordRules"
           :label="$vuetify.lang.t('$vuetify.login.password')"
@@ -25,8 +36,8 @@
 
         <v-btn
           text
-          color="primary"
-          :disabled="!submitButtonHasAvailable"
+          color="primary lighten-1"
+          :disabled="!isFormValid"
           :loading="loadingState"
           @click="submit"
         >

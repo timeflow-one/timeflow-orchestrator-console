@@ -1,7 +1,54 @@
 <template>
   <v-app>
-    <NavigationDrawer isApp v-if="hasShowUi" />
-    <Appbar isApp v-if="hasShowUi" />
+    <v-navigation-drawer
+      v-if="hasShowUi"
+      v-model="isNavigationDrawerShow"
+      app
+      :temporary="$vuetify.breakpoint.mobile && isNavigationDrawerShow"
+      :permanent="!$vuetify.breakpoint.mobile && isNavigationDrawerShow"
+    >
+      <NavigationDrawerUserCard />
+
+      <v-divider />
+
+      <v-list>
+        <v-list-item
+          color="primary lighten-1"
+          v-for="(item, index) in menu"
+          :key="index"
+          :to="item.name"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ $vuetify.lang.t(`$vuetify.navigation.menu.${item.name}`) }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <!-- <template v-slot:append>
+        <span class="text-body-2 pa-2">ORBL {{ new Date().getFullYear() }}</span>
+      </template> -->
+    </v-navigation-drawer>
+
+    <v-app-bar
+      v-if="hasShowUi"
+      app
+    >
+      <v-app-bar-nav-icon @click.stop="isNavigationDrawerShow = !isNavigationDrawerShow" />
+
+      <v-toolbar-title>{{ $vuetify.lang.t(`$vuetify.navigation.menu.${$route.name}`) }}</v-toolbar-title>
+
+      <v-progress-linear
+        color="deep-purple lighten-3"
+        active
+        indeterminate
+        bottom
+        absolute
+      ></v-progress-linear>
+    </v-app-bar>
 
     <v-main>
       <v-container class="fill-height">
@@ -9,7 +56,12 @@
       </v-container>
     </v-main>
 
-    <Footer isApp v-if="hasShowUi" />
+    <v-footer
+      v-if="hasShowUi"
+      app
+    >
+
+    </v-footer>
   </v-app>
 </template>
 

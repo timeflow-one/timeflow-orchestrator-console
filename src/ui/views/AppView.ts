@@ -1,18 +1,39 @@
 import { Component, Vue } from 'vue-property-decorator'
-import Appbar from '@/ui/components/default/Appbar.vue'
-import NavigationDrawer from '@/ui/components/default/NavigationDrawer.vue'
-import Footer from '@/ui/components/default/Footer.vue'
-import { LoginRoute } from '@/router'
+import { BillsRoute, InstancesRoute, LicensesRoute, LoginRoute, PlansRoute, UsersRoute } from '@/router'
+import NavigationDrawerUserCard from '@/ui/components/NavigationDrawerUserCard.vue'
+import { MenuItem } from '@/utils/MenuItem'
 
 @Component({
   components: {
-    Appbar,
-    NavigationDrawer,
-    Footer
+    NavigationDrawerUserCard
   }
 })
 export default class AppView extends Vue {
-  get hasShowUi () {
+  protected isNavigationDrawerShow = false
+  protected menu: Array<MenuItem> = [
+    {
+      ...InstancesRoute,
+      icon: 'mdi-notebook-outline'
+    },
+    {
+      ...UsersRoute,
+      icon: 'mdi-account-multiple'
+    },
+    {
+      ...LicensesRoute,
+      icon: 'mdi-clipboard-text-outline'
+    },
+    {
+      ...BillsRoute,
+      icon: 'mdi-file-document-edit-outline'
+    },
+    {
+      ...PlansRoute,
+      icon: 'mdi-format-list-numbered'
+    }
+  ]
+
+  protected get hasShowUi () {
     switch (this.$route.name) {
       case LoginRoute.name:
         return false
