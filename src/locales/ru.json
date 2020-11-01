@@ -7,7 +7,9 @@
       "auth": "Войти"
     },
     "errors": {
-      "email_format_invalid": "Неверный формат email"
+      "email_format_invalid": "Неверный формат email",
+      "empty_field": "Поле не может быть пустым",
+      "no_spaces": "Поле не может содержать пробельные символы"
     }
   }
 }
