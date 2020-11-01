@@ -1,15 +1,15 @@
 <template>
   <v-app>
-    <NavigationDrawer isApp />
-    <Appbar isApp />
+    <NavigationDrawer isApp v-if="hasShowUi" />
+    <Appbar isApp v-if="hasShowUi" />
 
     <v-main>
-      <v-container>
+      <v-container class="fill-height">
         <router-view />
       </v-container>
     </v-main>
 
-    <Footer isApp />
+    <Footer isApp v-if="hasShowUi" />
   </v-app>
 </template>
 

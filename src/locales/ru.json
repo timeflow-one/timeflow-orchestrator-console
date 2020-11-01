@@ -1,3 +1,13 @@
 {
-  
+  "login": {
+    "title": "Авторизация",
+    "login": "Введите логин",
+    "password": "Введите пароль",
+    "actions": {
+      "auth": "Войти"
+    },
+    "errors": {
+      "email_format_invalid": "Неверный формат email"
+    }
+  }
 }
