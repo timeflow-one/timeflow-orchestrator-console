@@ -10,6 +10,10 @@ export default class LoginForm extends Vue {
     (value) => !!value.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX)) || this.$vuetify.lang.t('$vuetify.login.errors.email_format_invalid')
   ]
 
+  get submitButtonHasAvailable () {
+    return this.login.length > 0 && this.password.length > 0 && this.isValid
+  }
+
   protected submit () {
     // TODO (2020.11.01): Submit login
     throw new Error('Not implemented')

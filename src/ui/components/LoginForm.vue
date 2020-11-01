@@ -17,6 +17,7 @@
           :type="isShowPass ? 'text' : 'password'"
           :append-icon="password.length > 0 ? isShowPass ? 'mdi-eye-off' : 'mdi-eye' : ''"
           @click:append="() => isShowPass = !isShowPass"
+          hide-details
         />
       </v-card-text>
       <v-card-actions>
@@ -25,7 +26,7 @@
         <v-btn
           text
           color="primary"
-          :disabled="!isValid"
+          :disabled="!submitButtonHasAvailable"
           @click="submit"
         >
           {{ $vuetify.lang.t("$vuetify.login.actions.auth") }}
