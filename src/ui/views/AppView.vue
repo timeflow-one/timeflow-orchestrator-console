@@ -43,7 +43,7 @@
 
       <v-progress-linear
         color="deep-purple lighten-3"
-        active
+        :active="isAppbarProgress"
         indeterminate
         bottom
         absolute
@@ -51,9 +51,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container class="fill-height">
-        <router-view />
-      </v-container>
+      <router-view />
     </v-main>
 
     <v-footer

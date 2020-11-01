@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import LoginPage from '@/ui/views/LoginPage.vue'
 import BlankPage from '@/ui/views/BlankPage.vue'
+import InstancesPage from '@/ui/views/pages/InstancesPage.vue'
 
 Vue.use(VueRouter)
 
@@ -19,7 +20,8 @@ const BlankRoute: RouteConfig = {
 
 const InstancesRoute: RouteConfig = {
   name: 'instances',
-  path: '/instances'
+  path: '/instances',
+  component: InstancesPage
 }
 
 const UsersRoute: RouteConfig = {

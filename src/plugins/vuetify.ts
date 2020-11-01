@@ -2,7 +2,8 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import ru from '@/locales/ru.json'
+import _ru from '@/locales/ru.json'
+import __ru from 'vuetify/src/locale/ru'
 
 Vue.use(Vuetify)
 
@@ -25,7 +26,7 @@ export default new Vuetify({
     }
   },
   lang: {
-    locales: { ru },
+    locales: { ru: { ..._ru, ...__ru } },
     current: 'ru'
   }
 })

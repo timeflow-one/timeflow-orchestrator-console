@@ -33,6 +33,10 @@ export default class AppView extends Vue {
     }
   ]
 
+  protected get isAppbarProgress () {
+    return false
+  }
+
   protected get hasShowUi () {
     switch (this.$route.name) {
       case LoginRoute.name:
