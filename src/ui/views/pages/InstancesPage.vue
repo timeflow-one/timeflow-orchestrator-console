@@ -1,18 +1,5 @@
 <template>
   <v-container fluid>
-    <v-row>
-      <v-col>
-        <v-text-field
-          v-model="searchQuery"
-          solo
-          :label="$vuetify.lang.t('$vuetify.common.actions.input_query')"
-          prepend-inner-icon="mdi-magnify"
-          clearable
-          hide-details
-        />
-      </v-col>
-    </v-row>
-
     <v-data-table
       ref="table"
       :headers="tableHeaders"
@@ -25,34 +12,63 @@
       :loading-text="$vuetify.lang.t('$vuetify.common.table.loading')"
       :server-items-length="totalItemsCount"
       :search="searchQuery"
-      :custom-filter="customSearch"
     >
-      <template
-        slot="item.state"
-        slot-scope="{ item }"
-      >
-        <v-chip
-          v-if="item.state"
-          color="error lighten-1"
-        >{{ $vuetify.lang.t('$vuetify.pages.instances.table.need_update_lic') }}</v-chip>
+      <template slot="top">
+        <v-subheader class="overflow-x-auto overflow-y-hidden">
+          {{ $vuetify.lang.t(`$vuetify.navigation.menu.${$route.name}`) }}
+
+          <v-spacer class="mx-3" />
+
+          <SearchField
+            class="me-3"
+            :placeholder="$vuetify.lang.t('$vuetify.common.table.search_input')"
+          />
+
+          <v-btn text>
+            {{ $vuetify.lang.t(`$vuetify.common.actions.clear_filter`) }}
+          </v-btn>
+
+          <v-divider class="mx-3" vertical />
+
+          <v-btn text>
+            {{ $vuetify.lang.t(`$vuetify.pages.instances.actions.add`) }}
+          </v-btn>
+        </v-subheader>
       </template>
 
       <template
-        slot="item.created_at"
+        slot="item"
         slot-scope="{ item }"
       >
-        <v-chip color="deep-purple lighten-5">{{ item.created_at }}</v-chip>
-      </template>
-
-      <template
-        slot="item.expires_at"
-        slot-scope="{ item }"
-      >
-        <v-chip color="deep-purple lighten-5">{{ item.expires_at }}</v-chip>
+        <tr class="user-select-none cursor-pointer">
+          <td class="text-left">
+            <span>{{ item.id }}</span>
+          </td>
+          <td class="text-left">
+            <span>{{ item.name }}</span>
+          </td>
+          <td class="text-center">
+            <span>{{ item.limit }}</span>
+          </td>
+          <td class="text-center">
+            <span>{{ item.count }}</span>
+          </td>
+          <td class="text-left">
+            <v-chip color="deep-purple lighten-5">{{ item.created_at }}</v-chip>
+          </td>
+          <td class="text-left">
+            <v-chip color="deep-purple lighten-5">{{ item.expires_at }}</v-chip>
+          </td>
+          <td class="text-center">
+            <v-chip
+              v-if="item.state"
+              color="error lighten-1"
+            >{{ $vuetify.lang.t('$vuetify.pages.instances.table.need_update_lic') }}</v-chip>
+            <span v-else>—</span>
+          </td>
+        </tr>
       </template>
     </v-data-table>
-
-    <v-divider />
   </v-container>
 </template>
 

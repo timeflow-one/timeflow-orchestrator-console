@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height none-user-select">
+  <v-container class="fill-height user-select-none">
     <v-row
       justify="center"
       align="start"

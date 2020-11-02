@@ -1,7 +1,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { BillsRoute, InstancesRoute, LicensesRoute, LoginRoute, PlansRoute, UsersRoute } from '@/router'
 import NavigationDrawerUserCard from '@/ui/components/NavigationDrawerUserCard.vue'
-import { MenuItem } from '@/utils/MenuItem'
+import { MenuItem } from '@/models/MenuItem'
 
 @Component({
   components: {

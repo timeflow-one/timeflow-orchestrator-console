@@ -1,5 +1,9 @@
 <template>
   <v-app>
+    <!-- :temporary="$vuetify.breakpoint.mobile && isNavigationDrawerShow"
+      :permanent="!$vuetify.breakpoint.mobile && isNavigationDrawerShow" -->
+      <!-- expand-on-hover
+      permanent -->
     <v-navigation-drawer
       v-if="hasShowUi"
       v-model="isNavigationDrawerShow"
@@ -36,6 +40,7 @@
     <v-app-bar
       v-if="hasShowUi"
       app
+      hide-on-scroll
     >
       <v-app-bar-nav-icon @click.stop="isNavigationDrawerShow = !isNavigationDrawerShow" />
 
@@ -44,7 +49,7 @@
       <v-spacer />
 
       <!-- TODO добавить управляемую кнопку -->
-      <!-- <v-btn text color="deep-purple lighten-2">{{ $vuetify.lang.t(`$vuetify.common.actions.add`) }}</v-btn> -->
+      <!-- <v-btn text>{{ $vuetify.lang.t(`$vuetify.common.actions.add`) }}</v-btn> -->
 
       <v-progress-linear
         color="deep-purple lighten-3"
@@ -61,6 +66,7 @@
 
     <v-footer
       v-if="hasShowUi"
+      v-show="false"
       app
     >
 

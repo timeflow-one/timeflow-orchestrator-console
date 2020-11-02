@@ -1,22 +1,28 @@
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
-import { TableOptions } from '@/utils/TableOptions'
+import { TableHeader } from '@/models/TableHeader'
+import { TableOptions } from '@/models/TableOptions'
 import { Component, Vue, Watch } from 'vue-property-decorator'
+import SearchField from '@/ui/components/SearchField.vue'
 
-@Component
+@Component({
+  components: {
+    SearchField
+  }
+})
 export default class InstancesPage extends Vue {
   protected tableLoading = false
-  protected readonly tableHeaders = [
+  protected readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
       align: 'start',
-      sortable: true,
+      sortable: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[0]'),
       width: '6%'
     },
     {
       value: 'name',
       align: 'start',
-      sortable: true,
+      sortable: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[1]'),
       width: '22%'
     },
@@ -37,14 +43,14 @@ export default class InstancesPage extends Vue {
     {
       value: 'created_at',
       align: 'start',
-      sortable: true,
+      sortable: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[4]'),
       width: '15%'
     },
     {
       value: 'expires_at',
       align: 'start',
-      sortable: true,
+      sortable: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[5]'),
       width: '18%'
     },
@@ -62,10 +68,6 @@ export default class InstancesPage extends Vue {
   protected tableData: Array<InstanceTableItem> = []
   protected totalItemsCount = 0
   protected searchQuery = ''
-
-  async customSearch (value: any, search: string, item: any) {
-    console.log(value, search, item)
-  }
 
   async loadInstancesList (search: string, offset: number, limit: number) {
     const response = await TimeflowOrchestratorProvider
@@ -100,8 +102,10 @@ export default class InstancesPage extends Vue {
 
   @Watch('tableOptions', { deep: true })
   async onOptionsChanged (value: TableOptions) {
+    console.log(value)
+
     this.tableLoading = true
-    await this.loadInstancesList('', (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+    await this.loadInstancesList(this.searchQuery, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
     this.tableLoading = false
   }
 
