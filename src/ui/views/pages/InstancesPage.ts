@@ -64,7 +64,6 @@ export default class InstancesPage extends Vue {
   ]
 
   protected readonly tableOptions: Partial<TableOptions> = {}
-
   protected tableData: Array<InstanceTableItem> = []
   protected totalItemsCount = 0
   protected searchQuery = ''
@@ -102,8 +101,6 @@ export default class InstancesPage extends Vue {
 
   @Watch('tableOptions', { deep: true })
   async onOptionsChanged (value: TableOptions) {
-    console.log(value)
-
     this.tableLoading = true
     await this.loadInstancesList(this.searchQuery, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
     this.tableLoading = false

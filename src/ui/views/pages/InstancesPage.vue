@@ -20,6 +20,7 @@
           <v-spacer class="mx-3" />
 
           <SearchField
+            v-model="searchQuery"
             class="me-3"
             :placeholder="$vuetify.lang.t('$vuetify.common.table.search_input')"
           />
@@ -28,7 +29,10 @@
             {{ $vuetify.lang.t(`$vuetify.common.actions.clear_filter`) }}
           </v-btn>
 
-          <v-divider class="mx-3" vertical />
+          <v-divider
+            class="mx-3"
+            vertical
+          />
 
           <v-btn text>
             {{ $vuetify.lang.t(`$vuetify.pages.instances.actions.add`) }}
