@@ -9,6 +9,7 @@
           text
           color="deep-purple lighten-2"
           rounded
+          @click="logout"
         >{{ $vuetify.lang.t('$vuetify.navigation.actions.logout') }}</v-btn>
       </v-list-item-content>
     </v-list-item>

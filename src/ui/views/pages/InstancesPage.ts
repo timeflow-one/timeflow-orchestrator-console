@@ -25,14 +25,14 @@ export default class InstancesPage extends Vue {
       align: 'center',
       sortable: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[2]'),
-      width: '13%'
+      width: '15%'
     },
     {
       value: 'count',
       align: 'center',
       sortable: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[3]'),
-      width: '13%'
+      width: '15%'
     },
     {
       value: 'created_at',
@@ -46,7 +46,7 @@ export default class InstancesPage extends Vue {
       align: 'start',
       sortable: true,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[5]'),
-      width: '16%'
+      width: '18%'
     },
     {
       value: 'state',
@@ -61,11 +61,16 @@ export default class InstancesPage extends Vue {
 
   protected tableData: Array<InstanceTableItem> = []
   protected totalItemsCount = 0
+  protected searchQuery = ''
 
-  async loadInstancesList (offset: number, limit: number) {
+  async customSearch (value: any, search: string, item: any) {
+    console.log(value, search, item)
+  }
+
+  async loadInstancesList (search: string, offset: number, limit: number) {
     const response = await TimeflowOrchestratorProvider
       .getInstance()
-      .instances(offset, limit)
+      .instances(search, offset, limit)
 
     this.totalItemsCount = response.data.count
 
@@ -96,7 +101,15 @@ export default class InstancesPage extends Vue {
   @Watch('tableOptions', { deep: true })
   async onOptionsChanged (value: TableOptions) {
     this.tableLoading = true
-    await this.loadInstancesList((value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+    await this.loadInstancesList('', (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+    this.tableLoading = false
+  }
+
+  @Watch('searchQuery')
+  async onQueryChanged (value: string) {
+    this.tableLoading = true
+    // @ts-expect-error
+    await this.loadInstancesList(value, 0, this.tableOptions.itemsPerPage)
     this.tableLoading = false
   }
 }

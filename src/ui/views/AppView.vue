@@ -41,6 +41,11 @@
 
       <v-toolbar-title>{{ $vuetify.lang.t(`$vuetify.navigation.menu.${$route.name}`) }}</v-toolbar-title>
 
+      <v-spacer />
+
+      <!-- TODO добавить управляемую кнопку -->
+      <!-- <v-btn text color="deep-purple lighten-2">{{ $vuetify.lang.t(`$vuetify.common.actions.add`) }}</v-btn> -->
+
       <v-progress-linear
         color="deep-purple lighten-3"
         :active="isAppbarProgress"
