@@ -4,7 +4,6 @@
     class="ma-0 pa-0 search-view"
     prepend-inner-icon="mdi-magnify"
     :placeholder="placeholder"
-    clearable
     solo
     flat
     background-color="deep-purple lighten-5"

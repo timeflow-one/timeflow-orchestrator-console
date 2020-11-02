@@ -11,7 +11,7 @@
       :loading="tableLoading"
       :loading-text="$vuetify.lang.t('$vuetify.common.table.loading')"
       :server-items-length="totalItemsCount"
-      :search="searchQuery"
+      :search="filterQuery"
     >
       <template slot="top">
         <v-subheader class="overflow-x-auto overflow-y-hidden">
@@ -20,13 +20,20 @@
           <v-spacer class="mx-3" />
 
           <SearchField
-            v-model="searchQuery"
+            v-model="filterQuery"
             class="me-3"
             :placeholder="$vuetify.lang.t('$vuetify.common.table.search_input')"
           />
 
-          <v-btn text>
-            {{ $vuetify.lang.t(`$vuetify.common.actions.clear_filter`) }}
+          <v-btn
+            :text="$vuetify.breakpoint.mdAndUp"
+            :icon="!$vuetify.breakpoint.mdAndUp"
+            :disabled="!isClearFiltersButtonEnable"
+            :title="$vuetify.lang.t(`$vuetify.common.actions.clear_filter`)"
+            @click="clearFilters"
+          >
+            <span v-if="$vuetify.breakpoint.mdAndUp">{{ $vuetify.lang.t(`$vuetify.common.actions.clear_filter`) }}</span>
+            <v-icon v-else>mdi-filter-remove-outline</v-icon>
           </v-btn>
 
           <v-divider
@@ -34,8 +41,14 @@
             vertical
           />
 
-          <v-btn text>
-            {{ $vuetify.lang.t(`$vuetify.pages.instances.actions.add`) }}
+          <v-btn
+            :text="$vuetify.breakpoint.mdAndUp"
+            :icon="!$vuetify.breakpoint.mdAndUp"
+            :title="$vuetify.lang.t(`$vuetify.pages.instances.actions.add`)"
+            @click="clearFilters"
+          >
+            <span v-if="$vuetify.breakpoint.mdAndUp">{{ $vuetify.lang.t(`$vuetify.pages.instances.actions.add`) }}</span>
+            <v-icon v-else>mdi-database-plus</v-icon>
           </v-btn>
         </v-subheader>
       </template>

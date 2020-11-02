@@ -66,7 +66,9 @@ export default class InstancesPage extends Vue {
   protected readonly tableOptions: Partial<TableOptions> = {}
   protected tableData: Array<InstanceTableItem> = []
   protected totalItemsCount = 0
-  protected searchQuery = ''
+  /// --- FILTERS ---
+  protected filterQuery = ''
+  /// --- END FILTERS ---
 
   async loadInstancesList (search: string, offset: number, limit: number) {
     const response = await TimeflowOrchestratorProvider
@@ -99,14 +101,22 @@ export default class InstancesPage extends Vue {
     return this.$vuetify.lang.t('$vuetify.common.table.page', this.tableOptions.page, Math.ceil(this.totalItemsCount / this.tableOptions.itemsPerPage), this.totalItemsCount)
   }
 
+  get isClearFiltersButtonEnable () {
+    return this.filterQuery !== ''
+  }
+
+  clearFilters () {
+    this.filterQuery = ''
+  }
+
   @Watch('tableOptions', { deep: true })
   async onOptionsChanged (value: TableOptions) {
     this.tableLoading = true
-    await this.loadInstancesList(this.searchQuery, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+    await this.loadInstancesList(this.filterQuery, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
     this.tableLoading = false
   }
 
-  @Watch('searchQuery')
+  @Watch('filterQuery', { deep: true })
   async onQueryChanged (value: string) {
     this.tableLoading = true
     // @ts-expect-error

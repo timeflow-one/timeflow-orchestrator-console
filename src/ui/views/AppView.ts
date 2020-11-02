@@ -13,7 +13,7 @@ export default class AppView extends Vue {
   protected menu: Array<MenuItem> = [
     {
       ...InstancesRoute,
-      icon: 'mdi-notebook-outline'
+      icon: 'mdi-database'
     },
     {
       ...UsersRoute,
@@ -39,11 +39,15 @@ export default class AppView extends Vue {
 
   protected get hasShowUi () {
     switch (this.$route.name) {
-      case LoginRoute.name:
-        return false
+      case InstancesRoute.name:
+      case UsersRoute.name:
+      case LicensesRoute.name:
+      case BillsRoute.name:
+      case PlansRoute.name:
+        return true
 
       default:
-        return true
+        return false
     }
   }
 }
