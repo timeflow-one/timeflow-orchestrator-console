@@ -8,6 +8,9 @@ export default class SearchField extends Vue {
   @Prop({ required: false })
   placeholder!: string
 
+  @Prop({ default: false })
+  disabled!: boolean
+
   get search () {
     return this.value
   }

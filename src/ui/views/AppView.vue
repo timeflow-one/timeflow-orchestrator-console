@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="fill-height">
     <!-- :temporary="$vuetify.breakpoint.mobile && isNavigationDrawerShow"
       :permanent="!$vuetify.breakpoint.mobile && isNavigationDrawerShow" -->
       <!-- expand-on-hover
@@ -8,8 +8,8 @@
       v-if="hasShowUi"
       v-model="isNavigationDrawerShow"
       app
-      expand-on-hover
-      permanent
+      :temporary="$vuetify.breakpoint.mobile && isNavigationDrawerShow"
+      :permanent="!$vuetify.breakpoint.mobile && isNavigationDrawerShow"
     >
       <NavigationDrawerUserCard />
 
@@ -37,31 +37,23 @@
       </template> -->
     </v-navigation-drawer>
 
-    <!-- <v-app-bar
+    <v-app-bar
       v-if="hasShowUi"
       app
-      hide-on-scroll
+      color="white"
+      flat
     >
       <v-app-bar-nav-icon @click.stop="isNavigationDrawerShow = !isNavigationDrawerShow" />
-
       <v-toolbar-title>{{ $vuetify.lang.t(`$vuetify.navigation.menu.${$route.name}`) }}</v-toolbar-title>
 
-      <v-spacer /> -->
+      <v-spacer />
 
       <!-- TODO добавить управляемую кнопку -->
       <!-- <v-btn text>{{ $vuetify.lang.t(`$vuetify.common.actions.add`) }}</v-btn> -->
+    </v-app-bar>
 
-      <!-- <v-progress-linear
-        color="deep-purple lighten-3"
-        :active="isAppbarProgress"
-        indeterminate
-        bottom
-        absolute
-      ></v-progress-linear>
-    </v-app-bar> -->
-
-    <v-main>
-      <router-view />
+    <v-main class="fill-height">
+      <router-view class="fill-height" />
     </v-main>
 
     <v-footer

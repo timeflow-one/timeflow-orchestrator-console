@@ -3,10 +3,12 @@ import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import SearchField from '@/ui/components/SearchField.vue'
+import FiltersContainer from '@/ui/components/FiltersContainer.vue'
 
 @Component({
   components: {
-    SearchField
+    SearchField,
+    FiltersContainer
   }
 })
 export default class InstancesPage extends Vue {
@@ -28,14 +30,14 @@ export default class InstancesPage extends Vue {
     },
     {
       value: 'limit',
-      align: 'center',
+      align: 'start',
       sortable: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[2]'),
       width: '15%'
     },
     {
       value: 'count',
-      align: 'center',
+      align: 'start',
       sortable: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[3]'),
       width: '15%'

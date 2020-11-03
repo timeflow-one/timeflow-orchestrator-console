@@ -6,8 +6,8 @@
         <v-list-item-subtitle class="mt-1">{{ $vuetify.lang.t('$vuetify.common.owner') }}</v-list-item-subtitle>
         <v-btn
           class="mt-4"
+          color="accent"
           text
-          color="deep-purple lighten-2"
           rounded
           @click="logout"
         >{{ $vuetify.lang.t('$vuetify.navigation.actions.logout') }}</v-btn>
