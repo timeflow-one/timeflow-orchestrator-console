@@ -1,6 +1,9 @@
 {
   "common": {
     "owner": "ORBL",
+    "roles": {
+      "orchestrator": "Оркестратор"
+    },
     "table": {
       "list_empty": "Список пуст",
       "items_per_page": "Элементов на странице",

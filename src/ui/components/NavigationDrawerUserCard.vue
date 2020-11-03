@@ -2,8 +2,8 @@
   <div>
     <v-list-item>
       <v-list-item-content>
-        <v-list-item-title>Example Login</v-list-item-title>
-        <v-list-item-subtitle class="mt-1">{{ $vuetify.lang.t('$vuetify.common.owner') }}</v-list-item-subtitle>
+        <v-list-item-title>{{ profile ? profile.full_name : '—' }}</v-list-item-title>
+        <v-list-item-subtitle class="mt-1">{{ profile ? $vuetify.lang.t(`$vuetify.common.roles.${profile.role}`) : '—' }}</v-list-item-subtitle>
         <v-btn
           class="mt-4"
           color="accent"

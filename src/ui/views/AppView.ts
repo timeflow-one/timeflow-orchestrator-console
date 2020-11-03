@@ -1,8 +1,9 @@
-import { Component, Vue } from 'vue-property-decorator'
-import { BillsRoute, InstancesRoute, LicensesRoute, PlansRoute, UsersRoute } from '@/router'
+import { Component, Vue, Watch } from 'vue-property-decorator'
+import { BillsRoute, InstancesRoute, LicensesRoute, LoginRoute, PlansRoute, UsersRoute } from '@/router'
 import NavigationDrawerUserCard from '@/ui/components/NavigationDrawerUserCard.vue'
 import { MenuItem } from '@/models/MenuItem'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
+import AuthStore from '@/store/AuthStore'
 
 @Component({
   components: {
@@ -34,6 +35,18 @@ export default class AppView extends Vue {
     }
   ]
 
+  async created () {
+    try {
+      await AuthStore.load()
+
+      if (!AuthStore.isAuth && this.$route.name !== LoginRoute.name) {
+        this.$router.replace({ name: LoginRoute.name })
+      }
+    } catch (err) {
+      this.$router.replace({ name: LoginRoute.name })
+    }
+  }
+
   protected get isAppbarProgress () {
     return false
   }
@@ -58,5 +71,17 @@ export default class AppView extends Vue {
 
   protected get isAppbarMenuShow () {
     return AppbarMenuStore.isShow
+  }
+
+  protected get isAuth () {
+    return AuthStore.isAuth
+  }
+
+  @Watch('isAuth')
+  onLoginStateChanged (value: boolean) {
+    if (!value) {
+      this.isNavigationDrawerShow = false
+      this.$router.replace({ name: LoginRoute.name })
+    }
   }
 }

@@ -1,9 +1,9 @@
 export interface SignInResponse {
   success: boolean;
-  user: User;
+  user: Profile;
 }
 
-interface User {
+export interface Profile {
   id: number;
   access_token: string;
   token_id: number;

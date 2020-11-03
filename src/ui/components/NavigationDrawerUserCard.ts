@@ -1,9 +1,13 @@
-import { LoginRoute } from '@/router'
+import AuthStore from '@/store/AuthStore'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class NavigationDrawerUserCard extends Vue {
   protected logout () {
-    this.$router.replace({ name: LoginRoute.name })
+    AuthStore.logout()
+  }
+
+  protected get profile () {
+    return AuthStore.profile
   }
 }
