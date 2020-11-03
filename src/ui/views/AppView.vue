@@ -8,8 +8,7 @@
       v-if="hasShowUi"
       v-model="isNavigationDrawerShow"
       app
-      :temporary="$vuetify.breakpoint.mobile && isNavigationDrawerShow"
-      :permanent="!$vuetify.breakpoint.mobile && isNavigationDrawerShow"
+      temporary
     >
       <NavigationDrawerUserCard />
 
@@ -39,7 +38,7 @@
 
     <v-app-bar
       v-if="hasShowUi"
-      class="toolbar-border-bottom"
+      class="toolbar-border-bottom user-select-none"
       app
       color="grey lighten-5"
       flat
@@ -71,9 +70,6 @@
         </template>
       </template>
       <!-- END TOOLBAR MENU -->
-
-      <!-- TODO добавить управляемую кнопку -->
-      <!-- <v-btn text>{{ $vuetify.lang.t(`$vuetify.common.actions.add`) }}</v-btn> -->
     </v-app-bar>
 
     <v-main class="fill-height">

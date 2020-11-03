@@ -47,26 +47,26 @@
         slot="item"
         slot-scope="{ item }"
       >
-        <tr class="user-select-none cursor-pointer">
-          <td class="text-start">
+        <tr class="cursor-pointer">
+          <td class="text-start user-select-none">
             <span>{{ item.id }}</span>
           </td>
-          <td class="text-start">
+          <td class="text-start user-select-none">
             <span>{{ item.name }}</span>
           </td>
-          <td class="text-start">
+          <td class="text-start user-select-none">
             <span>{{ item.limit }}</span>
           </td>
-          <td class="text-start">
+          <td class="text-start user-select-none">
             <span>{{ item.count }}</span>
           </td>
-          <td class="text-start">
+          <td class="text-start user-select-none">
             <v-chip color="grey lighten-4">{{ item.created_at }}</v-chip>
           </td>
-          <td class="text-start">
+          <td class="text-start user-select-none">
             <v-chip color="grey lighten-4">{{ item.expires_at }}</v-chip>
           </td>
-          <td class="text-center">
+          <td class="text-center user-select-none">
             <v-chip
               v-if="item.state"
               color="error lighten-1"

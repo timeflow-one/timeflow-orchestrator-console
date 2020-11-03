@@ -1,5 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator'
-import { BillsRoute, InstancesRoute, LicensesRoute, LoginRoute, PlansRoute, UsersRoute } from '@/router'
+import { BillsRoute, InstancesRoute, LicensesRoute, PlansRoute, UsersRoute } from '@/router'
 import NavigationDrawerUserCard from '@/ui/components/NavigationDrawerUserCard.vue'
 import { MenuItem } from '@/models/MenuItem'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
