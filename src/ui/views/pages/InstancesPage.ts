@@ -20,7 +20,7 @@ export default class InstancesPage extends Vue {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[0]'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.0'),
       width: '6%'
     },
     {
@@ -28,7 +28,7 @@ export default class InstancesPage extends Vue {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[1]'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.1'),
       width: '22%'
     },
     {
@@ -36,7 +36,7 @@ export default class InstancesPage extends Vue {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[2]'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.2'),
       width: '15%'
     },
     {
@@ -44,7 +44,7 @@ export default class InstancesPage extends Vue {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[3]'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.3'),
       width: '15%'
     },
     {
@@ -52,7 +52,7 @@ export default class InstancesPage extends Vue {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[4]'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.4'),
       width: '15%'
     },
     {
@@ -60,7 +60,7 @@ export default class InstancesPage extends Vue {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[5]'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.5'),
       width: '18%'
     },
     {
@@ -68,7 +68,7 @@ export default class InstancesPage extends Vue {
       align: 'center',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers[6]'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.6'),
       width: '13%'
     }
   ]
