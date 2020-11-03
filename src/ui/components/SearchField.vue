@@ -16,7 +16,6 @@
 
 <style lang="scss">
 .search-view {
-  min-width: 150px;
   max-width: 350px;
 
   & .v-input__control {

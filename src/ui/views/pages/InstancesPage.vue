@@ -7,18 +7,18 @@
       fixed-header
       :mobile-breakpoint="0"
       :headers="tableHeaders"
-      :items="tableData"
+      :items="tableItems"
       :items-per-page="20"
       :options.sync="tableOptions"
       :no-data-text="$vuetify.lang.t('$vuetify.common.table.list_empty')"
       :loading="tableLoading"
       :loading-text="$vuetify.lang.t('$vuetify.common.table.loading')"
-      :server-items-length="totalItemsCount"
+      :server-items-length="totalItems"
       :search="filterQuery"
       :footer-props="{'items-per-page-options': [20, 50, 100, -1]}"
     >
       <template slot="top">
-        <FiltersContainer>
+        <FiltersContainer class="px-4">
           <SearchField
             v-model="filterQuery"
             class="me-3"
@@ -37,21 +37,6 @@
           >
             <span v-if="$vuetify.breakpoint.mdAndUp">{{ $vuetify.lang.t(`$vuetify.common.actions.clear_filter`) }}</span>
             <v-icon v-else>mdi-filter-remove-outline</v-icon>
-          </v-btn>
-
-          <v-divider
-            class="mx-3"
-            vertical
-          />
-
-          <v-btn
-            :text="$vuetify.breakpoint.mdAndUp"
-            :icon="!$vuetify.breakpoint.mdAndUp"
-            :title="$vuetify.lang.t(`$vuetify.pages.instances.actions.add`)"
-            @click="clearFilters"
-          >
-            <span v-if="$vuetify.breakpoint.mdAndUp">{{ $vuetify.lang.t(`$vuetify.pages.instances.actions.add`) }}</span>
-            <v-icon v-else>mdi-database-plus</v-icon>
           </v-btn>
         </FiltersContainer>
 

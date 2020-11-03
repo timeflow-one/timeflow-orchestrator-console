@@ -2,6 +2,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { BillsRoute, InstancesRoute, LicensesRoute, LoginRoute, PlansRoute, UsersRoute } from '@/router'
 import NavigationDrawerUserCard from '@/ui/components/NavigationDrawerUserCard.vue'
 import { MenuItem } from '@/models/MenuItem'
+import AppbarMenuStore from '@/store/AppbarMenuStore'
 
 @Component({
   components: {
@@ -49,5 +50,13 @@ export default class AppView extends Vue {
       default:
         return false
     }
+  }
+
+  protected get appbarMenu () {
+    return AppbarMenuStore.items
+  }
+
+  protected get isAppbarMenuShow () {
+    return AppbarMenuStore.isShow
   }
 }
