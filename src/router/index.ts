@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import LoginPage from '@/ui/views/LoginPage.vue'
 import InstancesPage from '@/ui/views/pages/InstancesPage.vue'
 import NotFoundPage from '@/ui/views/NotFoundPage.vue'
+import UsersPage from '@/ui/views/pages/UsersPage.vue'
 
 Vue.use(VueRouter)
 
@@ -15,13 +16,13 @@ const LoginRoute: RouteConfig = {
 const InstancesRoute: RouteConfig = {
   name: 'instances',
   path: '/instances',
-  alias: '/',
   component: InstancesPage
 }
 
 const UsersRoute: RouteConfig = {
   name: 'users',
-  path: '/users'
+  path: '/users',
+  component: UsersPage
 }
 
 const LicensesRoute: RouteConfig = {
@@ -60,7 +61,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name === InstancesRoute.name && to.path === InstancesRoute.alias) {
+  if (to.path === '/') {
     return next({ name: InstancesRoute.name })
   }
 
