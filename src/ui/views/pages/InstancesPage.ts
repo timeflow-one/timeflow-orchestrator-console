@@ -3,17 +3,19 @@ import { TableOptions } from '@/models/TableOptions'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import SearchField from '@/ui/components/SearchField.vue'
 import FiltersContainer from '@/ui/components/FiltersContainer.vue'
+import DataTable from '@/ui/components/DataTable.vue'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import InstancesPageStore from '@/store/InstancesPageStore'
 
 @Component({
   components: {
     SearchField,
-    FiltersContainer
+    FiltersContainer,
+    DataTable
   }
 })
 export default class InstancesPage extends Vue {
-  protected tableLoading = false
+  /// --- TABLE ---
   protected readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
@@ -73,7 +75,9 @@ export default class InstancesPage extends Vue {
     }
   ]
 
-  protected readonly tableOptions: Partial<TableOptions> = {}
+  protected tableLoading = false
+  protected tableOptions!: TableOptions
+  /// --- END TABLE ---
   /// --- FILTERS ---
   protected filterQuery = ''
   /// --- END FILTERS ---
@@ -100,11 +104,6 @@ export default class InstancesPage extends Vue {
     return InstancesPageStore.totalInstances
   }
 
-  get pageText () {
-    // @ts-expect-error
-    return this.$vuetify.lang.t('$vuetify.common.table.page', this.tableOptions.page, Math.ceil(this.totalItemsCount / this.tableOptions.itemsPerPage), this.totalItemsCount)
-  }
-
   get isClearFiltersButtonEnable () {
     return this.filterQuery !== ''
   }
@@ -113,11 +112,12 @@ export default class InstancesPage extends Vue {
     this.filterQuery = ''
   }
 
-  @Watch('tableOptions', { deep: true })
   async onOptionsChanged (value: TableOptions) {
     try {
+      this.tableOptions = value
+
       this.tableLoading = true
-      await InstancesPageStore.loadInstances(this.filterQuery, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+      await InstancesPageStore.loadInstances({ search: this.filterQuery, offset: (value.page - 1) * value.itemsPerPage, limit: value.itemsPerPage })
     } catch (err) {
       console.error(err)
     } finally {
@@ -129,8 +129,7 @@ export default class InstancesPage extends Vue {
   async onQueryChanged (value: string) {
     try {
       this.tableLoading = true
-      // @ts-expect-error
-      await InstancesPageStore.loadInstances(value, 0, this.tableOptions.itemsPerPage)
+      await InstancesPageStore.loadInstances({ search: value, offset: 0, limit: this.tableOptions.itemsPerPage })
     } catch (err) {
       console.error(err)
     } finally {

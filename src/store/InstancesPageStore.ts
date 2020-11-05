@@ -13,7 +13,7 @@ class InstancesPageStore extends VuexModule {
   public _totalInstances = 0
 
   @MutationAction({ mutate: ['_instances', '_totalInstances'], rawError: true })
-  public async loadInstances (search: string, offset: number, limit: number) {
+  public async loadInstances ({ search, offset, limit }: { search: string; offset: number; limit: number }) {
     const response = await TimeflowOrchestratorProvider
       .getInstance()
       .instances(search, offset, limit)
