@@ -12,7 +12,7 @@
       <template slot="top">
         <FiltersContainer class="px-4">
           <SearchField
-            v-model="filterQuery"
+            v-model="filters.query"
             max-width="450px"
             :placeholder="$vuetify.lang.t('$vuetify.common.table.search_input')"
           />
@@ -22,9 +22,9 @@
           <v-btn
             :text="$vuetify.breakpoint.mdAndUp"
             :icon="!$vuetify.breakpoint.mdAndUp"
-            :disabled="!isClearFiltersButtonEnable"
+            :disabled="!isFilteresDefault"
             :title="$vuetify.lang.t(`$vuetify.common.actions.clear_filter`)"
-            @click="clearFilters"
+            @click="clearFitlers"
           >
             <span v-if="$vuetify.breakpoint.mdAndUp">{{ $vuetify.lang.t(`$vuetify.common.actions.clear_filter`) }}</span>
             <v-icon v-else>mdi-filter-remove-outline</v-icon>

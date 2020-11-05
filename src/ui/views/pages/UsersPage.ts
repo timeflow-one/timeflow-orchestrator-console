@@ -1,9 +1,10 @@
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import SearchField from '@/ui/components/SearchField.vue'
 import FiltersContainer from '@/ui/components/FiltersContainer.vue'
 import DataTable from '@/ui/components/DataTable.vue'
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
+import { Filtrable } from './interfaces/Filtrable'
 
 @Component({
   components: {
@@ -12,7 +13,7 @@ import { TableOptions } from '@/models/TableOptions'
     DataTable
   }
 })
-export default class UsersPage extends Vue {
+export default class UsersPage extends Vue implements Filtrable<Filter> {
   /// --- TABLE ---
   protected readonly tableHeaders: Array<TableHeader> = [
     {
@@ -69,7 +70,29 @@ export default class UsersPage extends Vue {
   protected tableOptions!: TableOptions
   /// --- END TABLE ---
   /// --- FILTERS ---
-  protected filterActive = 1
-  protected filterQuery = ''
+  filters: Filter = {
+    query: '',
+    active: 1
+  }
+
+  get isFilteresDefault () {
+    return this.filters.query === '' &&
+      this.filters.active === 1
+  }
+
+  clearFitlers () {
+    this.filters.query = ''
+    this.filters.active = 1
+  }
+
+  @Watch('filters', { deep: true })
+  onFiltersChanged (value: Filter): Promise<void> {
+    throw new Error('Method not implemented.')
+  }
   /// --- END FILTERS ---
+}
+
+interface Filter {
+  active: 0 | 1 | 2;
+  query: string;
 }
