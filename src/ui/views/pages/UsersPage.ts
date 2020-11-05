@@ -5,6 +5,7 @@ import DataTable from '@/ui/components/DataTable.vue'
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
 import { Filtrable } from './interfaces/Filtrable'
+import UsersPageStore from '@/store/UsersPageStore'
 
 @Component({
   components: {
@@ -30,7 +31,7 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.1'),
-      width: '22%'
+      width: '25%'
     },
     {
       value: 'instance',
@@ -46,19 +47,19 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.3'),
-      width: '15%'
+      width: '25%'
     },
     {
       value: 'status',
-      align: 'start',
+      align: 'center',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.4'),
-      width: '15%'
+      width: '5%'
     },
     {
       value: 'actions',
-      align: 'start',
+      align: 'center',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.5'),
@@ -70,29 +71,68 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
   protected tableOptions!: TableOptions
   /// --- END TABLE ---
   /// --- FILTERS ---
+  protected isDeletedSelect: Array<{ title: string; value: boolean | null }> = [{
+    title: this.$vuetify.lang.t('$vuetify.pages.users.filters.active.all'),
+    value: null
+  }, {
+    title: this.$vuetify.lang.t('$vuetify.pages.users.filters.active.enabled'),
+    value: false
+  }, {
+    title: this.$vuetify.lang.t('$vuetify.pages.users.filters.active.disabled'),
+    value: true
+  }]
+
   filters: Filter = {
     query: '',
-    active: 1
+    isDeleted: false
   }
 
   get isFilteresDefault () {
     return this.filters.query === '' &&
-      this.filters.active === 1
+      this.filters.isDeleted === false
   }
 
   clearFitlers () {
     this.filters.query = ''
-    this.filters.active = 1
+    this.filters.isDeleted = false
   }
 
   @Watch('filters', { deep: true })
-  onFiltersChanged (value: Filter): Promise<void> {
-    throw new Error('Method not implemented.')
+  async onFiltersChanged (value: Filter): Promise<void> {
+    try {
+      this.tableLoading = true
+      await UsersPageStore.loadUsers({ search: value.query, isDeleted: value.isDeleted, offset: 0, limit: this.tableOptions.itemsPerPage })
+    } catch (err) {
+      console.error(err)
+    } finally {
+      this.tableLoading = false
+    }
   }
   /// --- END FILTERS ---
+
+  get tableItems () {
+    return UsersPageStore.users
+  }
+
+  get totalItems () {
+    return UsersPageStore.totalUsers
+  }
+
+  async onOptionsChanged (value: TableOptions) {
+    try {
+      this.tableOptions = value
+
+      this.tableLoading = true
+      await UsersPageStore.loadUsers({ search: this.filters.query, isDeleted: this.filters.isDeleted, offset: (value.page - 1) * value.itemsPerPage, limit: value.itemsPerPage })
+    } catch (err) {
+      console.error(err)
+    } finally {
+      this.tableLoading = false
+    }
+  }
 }
 
 interface Filter {
-  active: 0 | 1 | 2;
+  isDeleted: boolean | null;
   query: string;
 }

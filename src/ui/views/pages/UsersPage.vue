@@ -5,7 +5,7 @@
       :headers="tableHeaders"
       :items="tableItems"
       :server-items-length="totalItems"
-      :search="filterQuery"
+      :search="filters.query"
       :loading="tableLoading"
       @options="onOptionsChanged"
     >
@@ -13,8 +13,21 @@
         <FiltersContainer class="px-4">
           <SearchField
             v-model="filters.query"
+            class="mr-4"
             max-width="450px"
             :placeholder="$vuetify.lang.t('$vuetify.common.table.search_input')"
+          />
+
+          <v-select
+            v-model="filters.isDeleted"
+            :items="isDeletedSelect"
+            item-text="title"
+            item-value="value"
+            solo
+            hide-details
+            flat
+            prepend-inner-icon="mdi-selection-multiple"
+            background-color="grey lighten-4"
           />
 
           <v-spacer class="mx-2" />
@@ -22,7 +35,7 @@
           <v-btn
             :text="$vuetify.breakpoint.mdAndUp"
             :icon="!$vuetify.breakpoint.mdAndUp"
-            :disabled="!isFilteresDefault"
+            :disabled="isFilteresDefault"
             :title="$vuetify.lang.t(`$vuetify.common.actions.clear_filter`)"
             @click="clearFitlers"
           >
@@ -46,23 +59,29 @@
             <span>{{ item.name }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.limit }}</span>
+            <span>{{ item.instance_name ? item.instance_name : '—' }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.count }}</span>
-          </td>
-          <td class="text-start user-select-none">
-            <v-chip color="grey lighten-4">{{ item.created_at }}</v-chip>
-          </td>
-          <td class="text-start user-select-none">
-            <v-chip color="grey lighten-4">{{ item.expires_at }}</v-chip>
+            <v-chip
+              v-for="(role, index) in item.role.split(',')"
+              :key="index"
+              class="ma-1"
+            >
+              {{ $vuetify.lang.t(`$vuetify.pages.users.table.roles.${role}`) }}
+            </v-chip>
           </td>
           <td class="text-center user-select-none">
-            <v-chip
-              v-if="item.state"
-              color="error lighten-1"
-            >{{ $vuetify.lang.t('$vuetify.pages.instances.table.need_update_lic') }}</v-chip>
-            <span v-else>—</span>
+            <v-simple-checkbox
+              v-model="item.status"
+              disabled
+            />
+          </td>
+          <td class="text-center user-select-none">
+            <v-btn
+              color="primary"
+              text
+              disabled
+            >{{ $vuetify.lang.t('$vuetify.pages.users.actions.enter_as', item.name) }}</v-btn>
           </td>
         </tr>
       </template>

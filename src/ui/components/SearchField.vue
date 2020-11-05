@@ -19,8 +19,8 @@
 .search-view {
   width: 100%;
 
-  & .v-input__control {
-  min-height: auto !important;
-}
+  // & .v-input__control {
+  //   min-height: auto !important;
+  // }
 }
 </style>

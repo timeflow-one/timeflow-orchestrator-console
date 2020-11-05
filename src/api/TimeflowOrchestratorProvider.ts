@@ -1,6 +1,7 @@
 import Axios, { AxiosResponse } from 'axios'
 import { InstancesResponse } from './responses/InstancesResponse'
 import { SignInResponse } from './responses/SignInResponse'
+import { UsersResponse } from './responses/UsersResponse'
 
 export class TimeflowOrchestratorProvider {
   private static _instance: TimeflowOrchestratorProvider
@@ -29,6 +30,18 @@ export class TimeflowOrchestratorProvider {
       access_token: process.env.VUE_APP_TEMPORARY_TOKEN,
       filters: {
         query: search
+      },
+      offset,
+      limit
+    })
+  }
+
+  public users (search: string | null = null, isDeleted: boolean | null = false, offset = 0, limit = 20): Promise<AxiosResponse<UsersResponse>> {
+    return this.api.post('/app/users/list', {
+      access_token: process.env.VUE_APP_TEMPORARY_TOKEN,
+      filters: {
+        query: search,
+        deleted: isDeleted
       },
       offset,
       limit
