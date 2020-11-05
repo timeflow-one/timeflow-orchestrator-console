@@ -2,6 +2,7 @@
   <v-text-field
     v-model="search"
     class="ma-0 pa-0 search-view"
+    :style="{ 'max-width': maxWidth }"
     background-color="grey lighten-4"
     prepend-inner-icon="mdi-magnify"
     :placeholder="placeholder"
@@ -16,7 +17,7 @@
 
 <style lang="scss">
 .search-view {
-  max-width: 350px;
+  width: 100%;
 
   & .v-input__control {
   min-height: auto !important;

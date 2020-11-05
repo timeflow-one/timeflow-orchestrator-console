@@ -1,4 +1,14 @@
 {
+  "head": {
+    "title": {
+      "404": "Оркестратор Timeflow",
+      "instances": "Инстансы • Оркестратор Timeflow",
+      "users": "Пользователи • Оркестратор Timeflow",
+      "licenses": "Лицензии • Оркестратор Timeflow",
+      "bills": "Счета • Оркестратор Timeflow",
+      "plans": "Планы • Оркестратор Timeflow"
+    }
+  },
   "common": {
     "owner": "ORBL",
     "roles": {

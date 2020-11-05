@@ -11,6 +11,9 @@ export default class SearchField extends Vue {
   @Prop({ default: false })
   disabled!: boolean
 
+  @Prop({ default: '350px' })
+  maxWidth!: string
+
   get search () {
     return this.value
   }

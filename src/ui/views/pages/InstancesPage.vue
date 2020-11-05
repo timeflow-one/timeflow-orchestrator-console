@@ -21,12 +21,11 @@
         <FiltersContainer class="px-4">
           <SearchField
             v-model="filterQuery"
-            class="me-3"
+            max-width="450px"
             :placeholder="$vuetify.lang.t('$vuetify.common.table.search_input')"
-            disabled
           />
 
-          <v-spacer />
+          <v-spacer class="mx-2" />
 
           <v-btn
             :text="$vuetify.breakpoint.mdAndUp"

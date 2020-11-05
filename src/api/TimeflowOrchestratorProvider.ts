@@ -27,7 +27,7 @@ export class TimeflowOrchestratorProvider {
   public instances (search: string | null = null, offset = 0, limit = 15): Promise<AxiosResponse<InstancesResponse>> {
     return this.api.post('/app/instances/list', {
       access_token: process.env.VUE_APP_TEMPORARY_TOKEN,
-      filter: {
+      filters: {
         query: search
       },
       offset,
