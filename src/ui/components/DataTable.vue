@@ -11,11 +11,15 @@
     :loading-text="$vuetify.lang.t('$vuetify.common.table.loading')"
     :footer-props="{'items-per-page-options': [20, 50, 100, -1]}"
   >
-    <slot
-      v-for="(_, name) in $slots"
-      :name="name"
-      :slot="name"
-    />
+    <template
+      v-for="(_, slot) of $scopedSlots"
+      v-slot:[slot]="scope"
+    >
+      <slot
+        :name="slot"
+        v-bind="scope"
+      />
+    </template>
   </v-data-table>
 </template>
 
