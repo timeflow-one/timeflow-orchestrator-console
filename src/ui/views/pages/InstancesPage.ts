@@ -6,6 +6,7 @@ import FiltersContainer from '@/ui/components/FiltersContainer.vue'
 import DataTable from '@/ui/components/DataTable.vue'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import InstancesPageStore from '@/store/InstancesPageStore'
+import { Filtrable } from './interfaces/Filtrable'
 
 @Component({
   components: {
@@ -14,7 +15,7 @@ import InstancesPageStore from '@/store/InstancesPageStore'
     DataTable
   }
 })
-export default class InstancesPage extends Vue {
+export default class InstancesPage extends Vue implements Filtrable<Filter> {
   /// --- TABLE ---
   protected readonly tableHeaders: Array<TableHeader> = [
     {
@@ -79,7 +80,9 @@ export default class InstancesPage extends Vue {
   protected tableOptions!: TableOptions
   /// --- END TABLE ---
   /// --- FILTERS ---
-  protected filterQuery = ''
+  filters = {
+    query: ''
+  }
   /// --- END FILTERS ---
 
   protected mounted () {
@@ -104,12 +107,12 @@ export default class InstancesPage extends Vue {
     return InstancesPageStore.totalInstances
   }
 
-  get isClearFiltersButtonEnable () {
-    return this.filterQuery !== ''
+  get isFilteresDefault () {
+    return this.filters.query !== ''
   }
 
-  clearFilters () {
-    this.filterQuery = ''
+  clearFitlers () {
+    this.filters.query = ''
   }
 
   async onOptionsChanged (value: TableOptions) {
@@ -117,7 +120,7 @@ export default class InstancesPage extends Vue {
       this.tableOptions = value
 
       this.tableLoading = true
-      await InstancesPageStore.loadInstances({ search: this.filterQuery, offset: (value.page - 1) * value.itemsPerPage, limit: value.itemsPerPage })
+      await InstancesPageStore.loadInstances({ search: this.filters.query, offset: (value.page - 1) * value.itemsPerPage, limit: value.itemsPerPage })
     } catch (err) {
       console.error(err)
     } finally {
@@ -125,15 +128,19 @@ export default class InstancesPage extends Vue {
     }
   }
 
-  @Watch('filterQuery', { deep: true })
-  async onQueryChanged (value: string) {
+  @Watch('filters', { deep: true })
+  async onFiltersChanged (value: Filter) {
     try {
       this.tableLoading = true
-      await InstancesPageStore.loadInstances({ search: value, offset: 0, limit: this.tableOptions.itemsPerPage })
+      await InstancesPageStore.loadInstances({ search: value.query, offset: 0, limit: this.tableOptions.itemsPerPage })
     } catch (err) {
       console.error(err)
     } finally {
       this.tableLoading = false
     }
   }
+}
+
+interface Filter {
+  query: string;
 }
