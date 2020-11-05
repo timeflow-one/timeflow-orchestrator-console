@@ -8,12 +8,12 @@
     </div>
     <div class="flex-grow-0 d-flex flex-column text-center">
       <span class="text-h3 text-sm-h1 font-weight-light">404</span>
-      <span class="text-body-1 mt-2">Страница не найдена</span>
+      <span class="text-body-1 mt-2">{{ $vuetify.lang.t('$vuetify.common.labels.page_not_found') }}</span>
     </div>
     <div class="flex-grow-0">
       <v-btn color="primary" to="/">
         <v-icon class="mr-2">mdi-arrow-left</v-icon>
-        <span>Вернуться</span>
+        <span>{{ $vuetify.lang.t('$vuetify.common.actions.return') }}</span>
       </v-btn>
     </div>
   </div>

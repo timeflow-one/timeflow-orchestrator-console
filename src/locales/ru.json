@@ -14,6 +14,9 @@
     "roles": {
       "orchestrator": "Оркестратор"
     },
+    "labels": {
+      "page_not_found": "Страница не найдена"
+    },
     "table": {
       "list_empty": "Список пуст",
       "items_per_page": "Элементов на странице",
@@ -25,7 +28,8 @@
     "actions": {
       "add": "Добавить",
       "input_query": "Введите поисковой запрос",
-      "clear_filter": "Сбросить фильтры"
+      "clear_filter": "Сбросить фильтры",
+      "return": "Вернуться"
     }
   },
   "login": {
