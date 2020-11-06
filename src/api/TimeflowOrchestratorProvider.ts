@@ -1,4 +1,6 @@
 import Axios, { AxiosResponse } from 'axios'
+import { AddInstanceRequest } from './requests/AddInstanceRequest'
+import { AddInstanceResponse } from './responses/AddInstanceResponse'
 import { InstancesResponse } from './responses/InstancesResponse'
 import { PlansResponse } from './responses/PlansResponse'
 import { SignInResponse } from './responses/SignInResponse'
@@ -52,6 +54,13 @@ export class TimeflowOrchestratorProvider {
   public plans (): Promise<AxiosResponse<PlansResponse>> {
     return this.api.post('/app/plans/list', {
       access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY)
+    })
+  }
+
+  public addInstance (request: AddInstanceRequest): Promise<AxiosResponse<AddInstanceResponse>> {
+    return this.api.post('/app/instances/create', {
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
+      ...request
     })
   }
 }

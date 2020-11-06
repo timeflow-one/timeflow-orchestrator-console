@@ -2,6 +2,7 @@ import { InstancesRoute } from '@/router'
 import PlansStore from '@/store/PlansStore'
 import { Component, Vue } from 'vue-property-decorator'
 import PasswordComponent from '@/ui/components/PasswordComponent.vue'
+import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 
 @Component({
   components: {
@@ -163,7 +164,8 @@ export default class AddInstancePage extends Vue {
 
   commitSelectedExpiredAtDate () {
     // @ts-expect-error
-    this.$refs.expiredDateDialog.save(this.formatDate(this.form.expired_at))
+    this.$refs.expiredDateDialog.save(this.form.expired_at)
+    // this.$refs.expiredDateDialog.save(this.formatDate(this.form.expired_at))
   }
 
   formatDate (date: string | null) {
@@ -187,10 +189,41 @@ export default class AddInstancePage extends Vue {
     try {
       this.stepper.step = 5
       this.loading = true
-      // TODO (2020.11.06): Add instance
-      // this.$router.replace(InstancesRoute)
+      await TimeflowOrchestratorProvider.getInstance().addInstance({
+        instance: {
+          name: this.form.instance_name,
+          db_host: this.form.db_host,
+          db_name: this.form.db_name,
+          db_password: this.form.db_pass,
+          db_username: this.form.db_user,
+          dadata_api_key: this.form.geo_key,
+          vi_api_key: this.form.vi_key,
+          licenses: {
+            plan_id: this.form.plan,
+            valid_until: this.form.expired_at
+          }
+        },
+        user: {
+          full_name: this.form.username,
+          email: this.form.user_email,
+          password: this.form.user_pass
+        }
+      })
+      this.$router.replace(InstancesRoute)
     } catch (err) {
       // TODO (2020.11.06): Catching errors
+
+      switch (err.response?.data?.exception?.message) {
+        case 'Неверный ключ подключения к системе видеоидентификации': {
+          alert(this.$vuetify.lang.t('$vuetify.pages.add_instance.errors.invalid_vi_key'))
+          this.stepper.step = 3
+          break
+        }
+
+        default: {
+          alert(err.response?.data?.exception?.message || err.message)
+        }
+      }
     } finally {
       this.loading = false
     }
