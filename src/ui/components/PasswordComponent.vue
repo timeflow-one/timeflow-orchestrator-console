@@ -1,6 +1,5 @@
 <template>
   <v-text-field
-    class="mt-4"
     color="primary lighten-1"
     v-model="password"
     :rules="rules"
@@ -38,7 +37,7 @@ export default class PasswordComponent extends Vue {
   @Prop({ default: '350px' })
   maxWidth!: string
 
-  isShowPassword = false
+  isShowPass = false
 
   get password () {
     return this.value

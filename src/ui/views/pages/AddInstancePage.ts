@@ -1,8 +1,13 @@
 import { InstancesRoute } from '@/router'
 import PlansStore from '@/store/PlansStore'
 import { Component, Vue } from 'vue-property-decorator'
+import PasswordComponent from '@/ui/components/PasswordComponent.vue'
 
-@Component
+@Component({
+  components: {
+    PasswordComponent
+  }
+})
 export default class AddInstancePage extends Vue {
   expiredDatePickerDialog = false
   loading = false

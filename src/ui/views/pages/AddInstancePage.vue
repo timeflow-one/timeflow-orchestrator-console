@@ -81,11 +81,16 @@
               sm="6"
               xl="3"
             >
-              <v-text-field
+            <PasswordComponent
                 v-model="form.db_pass"
                 :rules="rulesMessages[1][3]"
                 :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.4')"
               />
+              <!-- <v-text-field
+                v-model="form.db_pass"
+                :rules="rulesMessages[1][3]"
+                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.4')"
+              /> -->
             </v-col>
           </v-row>
           <div>
@@ -253,11 +258,16 @@
               sm="6"
               xl="4"
             >
-              <v-text-field
+              <PasswordComponent
                 v-model="form.user_pass"
                 :rules="rulesMessages[3][2]"
                 :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.11')"
               />
+              <!-- <v-text-field
+                v-model="form.user_pass"
+                :rules="rulesMessages[3][2]"
+                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.11')"
+              /> -->
             </v-col>
           </v-row>
           <div class="mt-2">
