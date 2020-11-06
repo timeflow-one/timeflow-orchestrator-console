@@ -163,7 +163,16 @@ export default class AddInstancePage extends Vue {
 
   commitSelectedExpiredAtDate () {
     // @ts-expect-error
-    this.$refs.expiredDateDialog.save(this.form.expired_at)
+    this.$refs.expiredDateDialog.save(this.formatDate(this.form.expired_at))
+  }
+
+  formatDate (date: string | null) {
+    if (!date) {
+      return null
+    }
+
+    const [year, month, day] = date.split('-')
+    return `${day}.${month}.${year}`
   }
 
   get isConfirmButtonEnabled () {
