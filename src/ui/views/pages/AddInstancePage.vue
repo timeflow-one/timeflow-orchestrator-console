@@ -118,22 +118,65 @@
               sm="6"
               xl="3"
             >
-              <v-text-field
+              <v-select
+                v-model="form.plan"
+                item-text="title"
+                item-value="id"
+                :items="plans"
+                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.5')"
+              />
+              <!-- <v-text-field
                 v-model="form.plan"
                 :rules="rulesMessages[2][0]"
                 :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.5')"
-              />
+              /> -->
             </v-col>
             <v-col
               cols="12"
               sm="6"
               xl="3"
             >
-              <v-text-field
+              <v-dialog
+                ref="expiredDateDialog"
+                v-model="expiredDatePickerDialog"
+                :return-value.sync="form.expired_at"
+                persistent
+                width="290px"
+              >
+                <template
+                  slot="activator"
+                  slot-scope="{ on, attrs }"
+                >
+                  <v-text-field
+                    v-model="form.expired_at"
+                    :rules="rulesMessages[2][1]"
+                    :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.6')"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  />
+                </template>
+
+                <v-date-picker
+                  v-model="form.expired_at"
+                  scrollable
+                >
+                  <v-spacer />
+                  <v-btn
+                    text
+                    @click="expiredDatePickerDialog = false"
+                  >{{ $vuetify.lang.t('$vuetify.common.actions.cancel') }}</v-btn>
+                  <v-btn
+                    text
+                    @click="commitSelectedExpiredAtDate"
+                  >{{ $vuetify.lang.t('$vuetify.common.actions.ok') }}</v-btn>
+                </v-date-picker>
+              </v-dialog>
+              <!-- <v-text-field
                 v-model="form.expired_at"
                 :rules="rulesMessages[2][1]"
                 :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.6')"
-              />
+              /> -->
             </v-col>
             <v-col
               cols="12"
@@ -236,6 +279,7 @@
       <v-btn
         color="primary"
         text
+        :loading="loading"
         :disabled="!isConfirmButtonEnabled"
         @click="confirm"
       >{{ $vuetify.lang.t('$vuetify.pages.add_instance.actions.create') }}</v-btn>

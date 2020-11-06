@@ -9,26 +9,24 @@ import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider
   name: 'AuthStore'
 })
 class AuthStore extends VuexModule {
-  private static readonly TOKEN_KEY = 'token'
-  private static readonly PROFILE_KEY = 'profile'
   public _profile: Profile | null = null
   public _token: string | null = null
 
   @MutationAction({ mutate: ['_profile', '_token'], rawError: true })
   public async load () {
-    const profile = localStorage.getItem(AuthStore.PROFILE_KEY)
-    const token = localStorage.getItem(AuthStore.TOKEN_KEY)
+    const profile = localStorage.getItem(process.env.VUE_APP_PROFILE_KEY)
+    const token = localStorage.getItem(process.env.VUE_APP_TOKEN_KEY)
 
     return {
       _profile: profile ? JSON.parse(profile) : null,
-      _token: token ? JSON.parse(token) : null
+      _token: token
     }
   }
 
   @MutationAction({ mutate: ['_profile', '_token'], rawError: true })
   public async logout () {
-    localStorage.removeItem(AuthStore.PROFILE_KEY)
-    localStorage.removeItem(AuthStore.TOKEN_KEY)
+    localStorage.removeItem(process.env.VUE_APP_PROFILE_KEY)
+    localStorage.removeItem(process.env.VUE_APP_TOKEN_KEY)
 
     return {
       _profile: null,
@@ -42,8 +40,8 @@ class AuthStore extends VuexModule {
       .getInstance()
       .signIn(login, password)
 
-    localStorage.setItem(AuthStore.TOKEN_KEY, JSON.stringify(response.data.user.access_token))
-    localStorage.setItem(AuthStore.PROFILE_KEY, JSON.stringify(response.data.user))
+    localStorage.setItem(process.env.VUE_APP_TOKEN_KEY, response.data.user.access_token)
+    localStorage.setItem(process.env.VUE_APP_PROFILE_KEY, JSON.stringify(response.data.user))
 
     return {
       _profile: response.data.user,

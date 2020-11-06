@@ -1,8 +1,11 @@
 import { InstancesRoute } from '@/router'
+import PlansStore from '@/store/PlansStore'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class AddInstancePage extends Vue {
+  expiredDatePickerDialog = false
+  loading = false
   stepper = {
     step: 1
   }
@@ -13,7 +16,7 @@ export default class AddInstancePage extends Vue {
     db_name: '',
     db_user: '',
     db_pass: '',
-    plan: '', // TODO (2020.11.06): change to select
+    plan: -1,
     expired_at: '',
     vi_key: '',
     geo_key: '',
@@ -51,7 +54,7 @@ export default class AddInstancePage extends Vue {
     [
       // plan
       [
-        () => this.form.plan !== ''
+        () => this.form.plan !== -1
       ],
       // expired at
       [
@@ -141,6 +144,10 @@ export default class AddInstancePage extends Vue {
     ]
   ]
 
+  mounted () {
+    PlansStore.loadPlans()
+  }
+
   isStepButtonDisabled (step: number) {
     return !this.rules[step].every(it => it.some(rule => rule()))
   }
@@ -149,12 +156,22 @@ export default class AddInstancePage extends Vue {
     return ([] as Array<() => boolean>).concat(...this.rules[step])
   }
 
+  commitSelectedExpiredAtDate () {
+    // @ts-expect-error
+    this.$refs.expiredDateDialog.save(this.form.expired_at)
+  }
+
   get isConfirmButtonEnabled () {
     return this.rules.every(step => step.every(field => field.every(rule => rule())))
   }
 
+  get plans () {
+    return PlansStore.plans
+  }
+
   confirm () {
     this.stepper.step = 5
+    this.loading = true
     // this.$router.replace(InstancesRoute)
   }
 

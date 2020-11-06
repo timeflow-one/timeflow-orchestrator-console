@@ -1,5 +1,6 @@
 import Axios, { AxiosResponse } from 'axios'
 import { InstancesResponse } from './responses/InstancesResponse'
+import { PlansResponse } from './responses/PlansResponse'
 import { SignInResponse } from './responses/SignInResponse'
 import { UsersResponse } from './responses/UsersResponse'
 
@@ -27,7 +28,7 @@ export class TimeflowOrchestratorProvider {
 
   public instances (search: string | null = null, offset = 0, limit = 15): Promise<AxiosResponse<InstancesResponse>> {
     return this.api.post('/app/instances/list', {
-      access_token: process.env.VUE_APP_TEMPORARY_TOKEN,
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
       filters: {
         query: search
       },
@@ -38,13 +39,19 @@ export class TimeflowOrchestratorProvider {
 
   public users (search: string | null = null, isDeleted: boolean | null = false, offset = 0, limit = 20): Promise<AxiosResponse<UsersResponse>> {
     return this.api.post('/app/users/list', {
-      access_token: process.env.VUE_APP_TEMPORARY_TOKEN,
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
       filters: {
         query: search,
         deleted: isDeleted
       },
       offset,
       limit
+    })
+  }
+
+  public plans (): Promise<AxiosResponse<PlansResponse>> {
+    return this.api.post('/app/plans/list', {
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY)
     })
   }
 }
