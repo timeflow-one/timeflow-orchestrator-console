@@ -4,7 +4,7 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component
 export default class AddInstancePage extends Vue {
   stepper = {
-    step: 0
+    step: 1
   }
 
   form = {
@@ -16,7 +16,10 @@ export default class AddInstancePage extends Vue {
     plan: '', // TODO (2020.11.06): change to select
     expired_at: '',
     vi_key: '',
-    geo_key: ''
+    geo_key: '',
+    username: '',
+    user_email: '',
+    user_pass: ''
   }
 
   // step = [ field = [ rules = [] ] ]
@@ -62,6 +65,20 @@ export default class AddInstancePage extends Vue {
       [
         () => this.form.geo_key !== ''
       ]
+    ],
+    [
+      // username
+      [
+        () => this.form.username !== ''
+      ],
+      // user email
+      [
+        () => this.form.user_email !== ''
+      ],
+      // user pass
+      [
+        () => this.form.user_pass !== ''
+      ]
     ]
   ]
 
@@ -83,11 +100,11 @@ export default class AddInstancePage extends Vue {
       ],
       // db user
       [
-        () => this.rules[1][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+        () => this.rules[1][2][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
       ],
       // db pass
       [
-        () => this.rules[1][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+        () => this.rules[1][3][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
       ]
     ],
     [
@@ -101,11 +118,25 @@ export default class AddInstancePage extends Vue {
       ],
       // vi key
       [
-        () => this.rules[2][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+        () => this.rules[2][2][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
       ],
       // geo key
       [
-        () => this.rules[2][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+        () => this.rules[2][3][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+      ]
+    ],
+    [
+      // username
+      [
+        () => this.rules[3][0][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+      ],
+      // user email
+      [
+        () => this.rules[3][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+      ],
+      // user pass
+      [
+        () => this.rules[3][2][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
       ]
     ]
   ]
@@ -119,11 +150,12 @@ export default class AddInstancePage extends Vue {
   }
 
   get isConfirmButtonEnabled () {
-    return false
+    return this.rules.every(step => step.every(field => field.every(rule => rule())))
   }
 
   confirm () {
-    this.$router.replace(InstancesRoute)
+    this.stepper.step = 5
+    // this.$router.replace(InstancesRoute)
   }
 
   cancel () {

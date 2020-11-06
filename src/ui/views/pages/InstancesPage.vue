@@ -71,6 +71,7 @@
     <v-dialog
       v-model="isSubpage"
       persistent
+      max-width="1100px"
     >
       <router-view />
     </v-dialog>
