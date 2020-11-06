@@ -46,7 +46,7 @@
             <v-col
               cols="12"
               sm="6"
-              md="3"
+              xl="3"
             >
               <v-text-field
                 v-model="form.db_host"
@@ -57,7 +57,7 @@
             <v-col
               cols="12"
               sm="6"
-              md="3"
+              xl="3"
             >
               <v-text-field
                 v-model="form.db_name"
@@ -68,7 +68,7 @@
             <v-col
               cols="12"
               sm="6"
-              md="3"
+              xl="3"
             >
               <v-text-field
                 v-model="form.db_user"
@@ -79,7 +79,7 @@
             <v-col
               cols="12"
               sm="6"
-              md="3"
+              xl="3"
             >
               <v-text-field
                 v-model="form.db_pass"
@@ -116,7 +116,7 @@
             <v-col
               cols="12"
               sm="6"
-              md="3"
+              xl="3"
             >
               <v-text-field
                 v-model="form.plan"
@@ -127,7 +127,7 @@
             <v-col
               cols="12"
               sm="6"
-              md="3"
+              xl="3"
             >
               <v-text-field
                 v-model="form.expired_at"
@@ -138,7 +138,7 @@
             <v-col
               cols="12"
               sm="6"
-              md="3"
+              xl="3"
             >
               <v-text-field
                 v-model="form.vi_key"
@@ -149,7 +149,7 @@
             <v-col
               cols="12"
               sm="6"
-              md="3"
+              xl="3"
             >
               <v-text-field
                 v-model="form.geo_key"
@@ -183,25 +183,37 @@
 
         <v-stepper-content step="4">
           <v-row>
-            <v-col>
+            <v-col
+              cols="12"
+              sm="6"
+              xl="4"
+            >
               <v-text-field
                 v-model="form.username"
                 :rules="rulesMessages[3][0]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.8')"
+                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.9')"
               />
             </v-col>
-            <v-col>
+            <v-col
+              cols="12"
+              sm="6"
+              xl="4"
+            >
               <v-text-field
                 v-model="form.user_email"
                 :rules="rulesMessages[3][1]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.8')"
+                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.10')"
               />
             </v-col>
-            <v-col>
+            <v-col
+              cols="12"
+              sm="6"
+              xl="4"
+            >
               <v-text-field
                 v-model="form.user_pass"
                 :rules="rulesMessages[3][2]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.8')"
+                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.11')"
               />
             </v-col>
           </v-row>
