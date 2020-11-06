@@ -67,6 +67,15 @@
         </tr>
       </template>
     </DataTable>
+
+    <v-dialog
+      v-model="isSubpage"
+      persistent
+      scrollable
+      max-width="1100px"
+    >
+      <router-view />
+    </v-dialog>
   </v-container>
 </template>
 
