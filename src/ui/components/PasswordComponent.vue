@@ -1,0 +1,51 @@
+<template>
+  <v-text-field
+    class="mt-4"
+    color="primary lighten-1"
+    v-model="password"
+    :rules="rules"
+    :label="label"
+    :type="isShowPass ? 'text' : 'password'"
+    :append-icon="password.length > 0 ? isShowPass ? 'mdi-eye-off' : 'mdi-eye' : ''"
+    @click:append="() => isShowPass = !isShowPass"
+  >
+    <template
+      v-for="(_, slot) of $scopedSlots"
+      v-slot:[slot]="scope"
+    >
+      <slot
+        :name="slot"
+        v-bind="scope"
+      />
+    </template>
+  </v-text-field>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+
+@Component
+export default class PasswordComponent extends Vue {
+  @Prop({ required: false })
+  value!: string
+
+  @Prop({ required: false })
+  rules!: Array<() => boolean>
+
+  @Prop({ default: false })
+  label!: string
+
+  @Prop({ default: '350px' })
+  maxWidth!: string
+
+  isShowPassword = false
+
+  get password () {
+    return this.value
+  }
+
+  set password (value: string) {
+    this.$emit('input', value)
+  }
+}
+</script>
