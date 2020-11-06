@@ -128,6 +128,8 @@
                 item-text="title"
                 item-value="id"
                 :items="plans"
+                :loading="plans.length <= 0"
+                :disabled="plans.length <= 0"
                 :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.5')"
               />
               <!-- <v-text-field
