@@ -34,11 +34,19 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
       width: '25%'
     },
     {
-      value: 'instance',
+      value: 'email',
       align: 'start',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.2'),
+      width: '25%'
+    },
+    {
+      value: 'instance',
+      align: 'start',
+      sortable: false,
+      divider: false,
+      text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.3'),
       width: '15%'
     },
     {
@@ -46,7 +54,7 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.3'),
+      text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.4'),
       width: '25%'
     },
     {
@@ -54,7 +62,7 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
       align: 'center',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.4'),
+      text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.5'),
       width: '5%'
     },
     {
@@ -62,7 +70,7 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
       align: 'center',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.5'),
+      text: this.$vuetify.lang.t('$vuetify.pages.users.table.headers.6'),
       width: '18%'
     }
   ]

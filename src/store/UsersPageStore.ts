@@ -23,6 +23,7 @@ class UsersPageStore extends VuexModule {
       _users: response.data.users.map((item) => ({
         id: item.id,
         name: item.full_name,
+        email: item.email,
         instance_name: item.instance?.name,
         role: item.role,
         status: item.is_deleted === 0
@@ -42,6 +43,7 @@ class UsersPageStore extends VuexModule {
 interface User {
   id: number;
   name: string;
+  email: string;
   instance_name: string;
   role: string;
   status: boolean;

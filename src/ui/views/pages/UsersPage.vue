@@ -59,6 +59,9 @@
             <span>{{ item.name }}</span>
           </td>
           <td class="text-start user-select-none">
+            <span>{{ item.email }}</span>
+          </td>
+          <td class="text-start user-select-none">
             <span>{{ item.instance_name ? item.instance_name : '—' }}</span>
           </td>
           <td class="text-start user-select-none">
@@ -81,7 +84,7 @@
               color="primary"
               text
               disabled
-            >{{ $vuetify.lang.t('$vuetify.pages.users.actions.enter_as', item.name) }}</v-btn>
+            >{{ $vuetify.lang.t('$vuetify.pages.users.actions.enter') }}</v-btn>
           </td>
         </tr>
       </template>
