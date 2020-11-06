@@ -7,6 +7,7 @@ import DataTable from '@/ui/components/DataTable.vue'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import InstancesPageStore from '@/store/InstancesPageStore'
 import { Filtrable } from './interfaces/Filtrable'
+import { AddInstanceRoute, InstancesRoute } from '@/router'
 
 @Component({
   components: {
@@ -83,16 +84,37 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
   filters = {
     query: ''
   }
+
+  get isFilteresDefault () {
+    return this.filters.query !== ''
+  }
+
+  clearFitlers () {
+    this.filters.query = ''
+  }
+
+  @Watch('filters', { deep: true })
+  async onFiltersChanged (value: Filter) {
+    this.loadData(value.query, 0, this.tableOptions.itemsPerPage)
+  }
   /// --- END FILTERS ---
 
   protected mounted () {
+    // добавляет кнопку меню в toolbar
     AppbarMenuStore.setItems([{
       title: this.$vuetify.lang.t('$vuetify.pages.instances.actions.add'),
       icon: 'mdi-database-plus',
       action: () => {
-        throw new Error('Not implemented')
+        this.$router.replace(AddInstanceRoute)
       }
     }])
+
+    // обновляем данные после возвращения на страницу
+    this.$router.afterEach((to) => {
+      if (to.name === InstancesRoute.name) {
+        this.loadData(this.filters.query, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
+      }
+    })
   }
 
   protected beforeDestroy () {
@@ -107,20 +129,10 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
     return InstancesPageStore.totalInstances
   }
 
-  get isFilteresDefault () {
-    return this.filters.query !== ''
-  }
-
-  clearFitlers () {
-    this.filters.query = ''
-  }
-
-  async onOptionsChanged (value: TableOptions) {
+  async loadData (search: string, offset: number, limit: number) {
     try {
-      this.tableOptions = value
-
       this.tableLoading = true
-      await InstancesPageStore.loadInstances({ search: this.filters.query, offset: (value.page - 1) * value.itemsPerPage, limit: value.itemsPerPage })
+      await InstancesPageStore.loadInstances({ search, offset, limit })
     } catch (err) {
       console.error(err)
     } finally {
@@ -128,16 +140,17 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
     }
   }
 
-  @Watch('filters', { deep: true })
-  async onFiltersChanged (value: Filter) {
-    try {
-      this.tableLoading = true
-      await InstancesPageStore.loadInstances({ search: value.query, offset: 0, limit: this.tableOptions.itemsPerPage })
-    } catch (err) {
-      console.error(err)
-    } finally {
-      this.tableLoading = false
-    }
+  onOptionsChanged (value: TableOptions) {
+    this.tableOptions = value
+    this.loadData(this.filters.query, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+  }
+
+  get isSubpage () {
+    return InstancesRoute.children?.some(it => it.name === this.$route.name)
+  }
+
+  onSubpageClosed () {
+    this.$router.replace(InstancesRoute)
   }
 }
 

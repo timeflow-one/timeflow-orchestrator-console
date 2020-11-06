@@ -67,6 +67,13 @@
         </tr>
       </template>
     </DataTable>
+
+    <v-dialog
+      v-model="isSubpage"
+      persistent
+    >
+      <router-view />
+    </v-dialog>
   </v-container>
 </template>
 

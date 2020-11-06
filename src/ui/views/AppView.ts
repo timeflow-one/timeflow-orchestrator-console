@@ -1,5 +1,5 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { BillsRoute, InstancesRoute, LicensesRoute, LoginRoute, PlansRoute, UsersRoute } from '@/router'
+import { BillsRoute, InstancesRoute, LicensesRoute, LoginRoute, NotFoundRoute, PlansRoute, UsersRoute } from '@/router'
 import NavigationDrawerUserCard from '@/ui/components/NavigationDrawerUserCard.vue'
 import { MenuItem } from '@/models/MenuItem'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
@@ -61,17 +61,7 @@ export default class AppView extends Vue {
   }
 
   protected get hasShowUi () {
-    switch (this.$route.name) {
-      case InstancesRoute.name:
-      case UsersRoute.name:
-      case LicensesRoute.name:
-      case BillsRoute.name:
-      case PlansRoute.name:
-        return true
-
-      default:
-        return false
-    }
+    return this.$route.name !== NotFoundRoute.name
   }
 
   protected get appbarMenu () {
