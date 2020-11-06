@@ -69,6 +69,7 @@
               v-for="(role, index) in item.role.split(',')"
               :key="index"
               class="ma-1"
+              color="grey lighten-4"
             >
               {{ $vuetify.lang.t(`$vuetify.pages.users.table.roles.${role}`) }}
             </v-chip>
