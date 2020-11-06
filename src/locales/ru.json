@@ -2,6 +2,7 @@
   "head": {
     "title": {
       "404": "Оркестратор Timeflow",
+      "login": "Авторизация • Оркестратор Timeflow",
       "instances": "Инстансы • Оркестратор Timeflow",
       "users": "Пользователи • Оркестратор Timeflow",
       "licenses": "Лицензии • Оркестратор Timeflow",
