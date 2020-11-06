@@ -183,10 +183,17 @@ export default class AddInstancePage extends Vue {
     return PlansStore.plans
   }
 
-  confirm () {
-    this.stepper.step = 5
-    this.loading = true
-    // this.$router.replace(InstancesRoute)
+  async confirm () {
+    try {
+      this.stepper.step = 5
+      this.loading = true
+      // TODO (2020.11.06): Add instance
+      // this.$router.replace(InstancesRoute)
+    } catch (err) {
+      // TODO (2020.11.06): Catching errors
+    } finally {
+      this.loading = false
+    }
   }
 
   cancel () {
