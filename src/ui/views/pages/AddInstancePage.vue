@@ -156,6 +156,7 @@
                     v-model="form.expired_at"
                     :rules="rulesMessages[2][1]"
                     :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.6')"
+                    prepend-icon="mdi-calendar"
                     readonly
                     v-bind="attrs"
                     v-on="on"
