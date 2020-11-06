@@ -76,5 +76,6 @@ export {
   UsersRoute,
   LicensesRoute,
   BillsRoute,
-  PlansRoute
+  PlansRoute,
+  NotFoundRoute
 }
