@@ -36,57 +36,59 @@ export default class AddInstancePage extends Vue {
     [
       // instance name
       [
-        () => this.form.instance_name !== ''
+        () => this.form.instance_name.length > 0
       ]
     ],
     [
       // db host
       [
-        () => this.form.db_host !== ''
+        () => this.form.db_host.length > 0
       ],
       // db name
       [
-        () => this.form.db_name !== ''
+        () => this.form.db_name.length > 0
       ],
       // db user
       [
-        () => this.form.db_user !== ''
+        () => this.form.db_user.length > 0
       ],
       // db pass
       [
-        () => this.form.db_pass !== ''
+        () => this.form.db_pass.length > 0
       ]
     ],
     [
       // plan
       [
-        () => this.form.plan !== -1
+        () => this.form.plan > -1
       ],
       // expired at
       [
-        () => this.form.expired_at !== ''
+        () => this.form.expired_at.length > 0
       ],
       // vi key
       [
-        () => this.form.vi_key !== ''
+        () => this.form.vi_key.length > 0
       ],
       // geo key
       [
-        () => this.form.geo_key !== ''
+        () => this.form.geo_key.length > 0
       ]
     ],
     [
       // username
       [
-        () => this.form.username !== ''
+        () => this.form.username.length > 0
       ],
       // user email
       [
-        () => this.form.user_email !== ''
+        () => this.form.user_email.length > 0,
+        () => !this.form.user_email.match(/\s/),
+        () => !!this.form.user_email.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX))
       ],
       // user pass
       [
-        () => this.form.user_pass !== ''
+        () => this.form.user_pass.length > 0
       ]
     ]
   ]
@@ -141,7 +143,9 @@ export default class AddInstancePage extends Vue {
       ],
       // user email
       [
-        () => this.rules[3][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+        () => this.rules[3][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.rules[3][1][1]() || this.$vuetify.lang.t('$vuetify.login.errors.no_spaces'),
+        () => this.rules[3][1][2]() || this.$vuetify.lang.t('$vuetify.login.errors.email_format_invalid')
       ],
       // user pass
       [
