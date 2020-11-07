@@ -20,7 +20,7 @@
               <v-col>
                 <v-text-field
                   v-model="form.instance_name.value"
-                  :rules="form.instance_name.rulesMessage"
+                  :rules="form.instance_name.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.0')"
                 />
               </v-col>
@@ -53,7 +53,7 @@
               >
                 <v-text-field
                   v-model="form.db_host.value"
-                  :rules="form.db_host.rulesMessage"
+                  :rules="form.db_host.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.1')"
                 />
               </v-col>
@@ -64,7 +64,7 @@
               >
                 <v-text-field
                   v-model="form.db_name.value"
-                  :rules="form.db_name.rulesMessage"
+                  :rules="form.db_name.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.2')"
                 />
               </v-col>
@@ -75,7 +75,7 @@
               >
                 <v-text-field
                   v-model="form.db_user.value"
-                  :rules="form.db_user.rulesMessage"
+                  :rules="form.db_user.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.3')"
                 />
               </v-col>
@@ -86,7 +86,7 @@
               >
                 <PasswordComponent
                   v-model="form.db_pass.value"
-                  :rules="form.db_pass.rulesMessage"
+                  :rules="form.db_pass.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.4')"
                 />
               </v-col>
@@ -151,7 +151,7 @@
                   >
                     <v-text-field
                       v-model="form.expired_at.value"
-                      :rules="form.expired_at.rulesMessage"
+                      :rules="form.expired_at.rules"
                       :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.6')"
                       prepend-icon="mdi-calendar"
                       readonly
@@ -183,7 +183,7 @@
               >
                 <v-text-field
                   v-model="form.vi_key.value"
-                  :rules="form.vi_key.rulesMessage"
+                  :rules="form.vi_key.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.7')"
                 />
               </v-col>
@@ -194,7 +194,7 @@
               >
                 <v-text-field
                   v-model="form.geo_key.value"
-                  :rules="form.geo_key.rulesMessage"
+                  :rules="form.geo_key.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.8')"
                 />
               </v-col>
@@ -233,7 +233,7 @@
               >
                 <v-text-field
                   v-model="form.username.value"
-                  :rules="form.username.rulesMessage"
+                  :rules="form.username.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.9')"
                 />
               </v-col>
@@ -244,7 +244,7 @@
               >
                 <v-text-field
                   v-model="form.user_email.value"
-                  :rules="form.user_email.rulesMessage"
+                  :rules="form.user_email.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.10')"
                 />
               </v-col>
@@ -255,7 +255,7 @@
               >
                 <PasswordComponent
                   v-model="form.user_pass.value"
-                  :rules="form.user_pass.rulesMessage"
+                  :rules="form.user_pass.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.11')"
                 />
               </v-col>
