@@ -106,10 +106,9 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
   }
 
   @Watch('filters', { deep: true })
-  async onFiltersChanged (value: Filter): Promise<void> {
+  async onFiltersChanged () {
     // @ts-expect-error
     this.$refs.table.setPage(1)
-    this.loadData(value.query, value.isDeleted, 0, this.tableOptions.itemsPerPage)
   }
   /// --- END FILTERS ---
 

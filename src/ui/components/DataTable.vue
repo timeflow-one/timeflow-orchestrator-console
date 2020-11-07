@@ -31,7 +31,7 @@ import { TableOptions } from '@/models/TableOptions'
 @Component
 export default class DataTable extends Vue {
   private readonly options: Partial<TableOptions> = {}
-  private page = 0
+  private page = 1
 
   @Prop({ required: true })
   headers: any
@@ -55,6 +55,9 @@ export default class DataTable extends Vue {
 
   setPage (page: number) {
     this.page = page
+    // если page === this.page, обновление this.page не сообщит об
+    // изменении опций. Сообщаем об обновлении опций вручную
+    this.$emit('options', this.options)
   }
 }
 </script>

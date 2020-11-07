@@ -94,10 +94,9 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
   }
 
   @Watch('filters', { deep: true })
-  async onFiltersChanged (value: Filter) {
+  async onFiltersChanged () {
     // @ts-expect-error
     this.$refs.table.setPage(1)
-    this.loadData(value.query, 0, this.tableOptions.itemsPerPage)
   }
   /// --- END FILTERS ---
 
