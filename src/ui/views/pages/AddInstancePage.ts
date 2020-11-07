@@ -17,7 +17,7 @@ export default class AddInstancePage extends Vue {
     step: 1
   }
 
-  form: AddInstanceForm = {
+  form: FormItem = {
     instance_name: {
       value: '',
       rules: [
@@ -244,11 +244,4 @@ export default class AddInstancePage extends Vue {
   cancel () {
     this.$router.replace(InstancesRoute)
   }
-}
-
-interface AddInstanceForm {
-  [name: string]: {
-    value: any;
-    rules: Array<() => boolean | string>;
-  };
 }
