@@ -38,7 +38,9 @@
       "back": "Назад"
     },
     "errors": {
-      "required_field": "Обязательное поле"
+      "required_field": "Обязательное поле",
+      "no_spaces": "Поле не может содержать пробельные символы",
+      "email_format_invalid": "Неверный формат email"
     }
   },
   "login": {

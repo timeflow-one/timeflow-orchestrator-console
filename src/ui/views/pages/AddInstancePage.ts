@@ -16,154 +16,202 @@ export default class AddInstancePage extends Vue {
     step: 1
   }
 
-  form = {
-    instance_name: '',
-    db_host: '',
-    db_name: '',
-    db_user: '',
-    db_pass: '',
-    plan: -1,
-    expired_at: '',
-    vi_key: '',
-    geo_key: '',
-    username: '',
-    user_email: '',
-    user_pass: ''
+  form: AddInstanceForm = {
+    instance_name: {
+      value: '',
+      rules: [
+        () => this.form.instance_name.value.length > 0,
+        () => !this.form.instance_name.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.instance_name.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.instance_name.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    },
+    db_host: {
+      value: '',
+      rules: [
+        () => this.form.db_host.value.length > 0,
+        () => !this.form.db_host.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.db_host.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.db_host.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    },
+    db_name: {
+      value: '',
+      rules: [
+        () => this.form.db_name.value.length > 0,
+        () => !this.form.db_name.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.db_name.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.db_name.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    },
+    db_user: {
+      value: '',
+      rules: [
+        () => this.form.db_user.value.length > 0,
+        () => !this.form.db_user.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.db_user.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.db_user.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    },
+    db_pass: {
+      value: '',
+      rules: [
+        () => this.form.db_pass.value.length > 0,
+        () => !this.form.db_pass.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.db_pass.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.db_pass.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    },
+    plan: {
+      value: -1,
+      rules: [
+        () => this.form.plan.value > -1
+      ],
+      rulesMessage: [
+        () => this.form.plan.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+      ]
+    },
+    expired_at: {
+      value: '',
+      rules: [
+        () => this.form.expired_at.value.length > 0,
+        () => !this.form.expired_at.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.expired_at.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.expired_at.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    },
+    vi_key: {
+      value: '',
+      rules: [
+        () => this.form.vi_key.value.length > 0,
+        () => !this.form.vi_key.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.vi_key.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.vi_key.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    },
+    geo_key: {
+      value: '',
+      rules: [
+        () => this.form.geo_key.value.length > 0,
+        () => !this.form.geo_key.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.geo_key.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.geo_key.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    },
+    username: {
+      value: '',
+      rules: [
+        () => this.form.username.value.length > 0,
+        () => !this.form.username.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.username.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.username.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    },
+    user_email: {
+      value: '',
+      rules: [
+        () => this.form.user_email.value.length > 0,
+        () => !this.form.user_email.value.match(/\s/),
+        () => !!this.form.user_email.value.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX))
+      ],
+      rulesMessage: [
+        () => this.form.user_email.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.user_email.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces'),
+        () => this.form.user_email.rules[2]() || this.$vuetify.lang.t('$vuetify.common.errors.email_format_invalid')
+      ]
+    },
+    user_pass: {
+      value: '',
+      rules: [
+        () => this.form.user_pass.value.length > 0,
+        () => !this.form.user_pass.value.match(/\s/)
+      ],
+      rulesMessage: [
+        () => this.form.user_pass.rules[0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
+        () => this.form.user_pass.rules[1]() || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+      ]
+    }
   }
-
-  // step = [ field = [ rules = [] ] ]
-  rules = [
-    [
-      // instance name
-      [
-        () => this.form.instance_name.length > 0
-      ]
-    ],
-    [
-      // db host
-      [
-        () => this.form.db_host.length > 0
-      ],
-      // db name
-      [
-        () => this.form.db_name.length > 0
-      ],
-      // db user
-      [
-        () => this.form.db_user.length > 0
-      ],
-      // db pass
-      [
-        () => this.form.db_pass.length > 0
-      ]
-    ],
-    [
-      // plan
-      [
-        () => this.form.plan > -1
-      ],
-      // expired at
-      [
-        () => this.form.expired_at.length > 0
-      ],
-      // vi key
-      [
-        () => this.form.vi_key.length > 0
-      ],
-      // geo key
-      [
-        () => this.form.geo_key.length > 0
-      ]
-    ],
-    [
-      // username
-      [
-        () => this.form.username.length > 0
-      ],
-      // user email
-      [
-        () => this.form.user_email.length > 0,
-        () => !this.form.user_email.match(/\s/),
-        () => !!this.form.user_email.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX))
-      ],
-      // user pass
-      [
-        () => this.form.user_pass.length > 0
-      ]
-    ]
-  ]
-
-  rulesMessages = [
-    [
-      // instance name
-      [
-        () => this.rules[0][0][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ]
-    ],
-    [
-      // db host
-      [
-        () => this.rules[1][0][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ],
-      // db name
-      [
-        () => this.rules[1][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ],
-      // db user
-      [
-        () => this.rules[1][2][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ],
-      // db pass
-      [
-        () => this.rules[1][3][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ]
-    ],
-    [
-      // plan
-      [
-        () => this.rules[2][0][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ],
-      // expired at
-      [
-        () => this.rules[2][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ],
-      // vi key
-      [
-        () => this.rules[2][2][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ],
-      // geo key
-      [
-        () => this.rules[2][3][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ]
-    ],
-    [
-      // username
-      [
-        () => this.rules[3][0][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ],
-      // user email
-      [
-        () => this.rules[3][1][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => this.rules[3][1][1]() || this.$vuetify.lang.t('$vuetify.login.errors.no_spaces'),
-        () => this.rules[3][1][2]() || this.$vuetify.lang.t('$vuetify.login.errors.email_format_invalid')
-      ],
-      // user pass
-      [
-        () => this.rules[3][2][0]() || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
-      ]
-    ]
-  ]
 
   mounted () {
     PlansStore.loadPlans()
   }
 
-  isStepButtonDisabled (step: number) {
-    return !this.rules[step].every(it => it.some(rule => rule()))
+  isStepButtonEnabled (step: number) {
+    switch (step) {
+      case 1:
+        return this.form.instance_name.rules.every(it => it())
+
+      case 2:
+        return this.form.db_host.rules.every(it => it()) &&
+          this.form.db_name.rules.every(it => it()) &&
+          this.form.db_user.rules.every(it => it()) &&
+          this.form.db_pass.rules.every(it => it())
+
+      case 3:
+        console.log(this.form.plan.rules.every(it => it()),
+          this.form.expired_at.rules.every(it => it()),
+          this.form.vi_key.rules.every(it => it()),
+          this.form.geo_key.rules.every(it => it()))
+
+        return this.form.plan.rules.every(it => it()) &&
+          this.form.expired_at.rules.every(it => it()) &&
+          this.form.vi_key.rules.every(it => it()) &&
+          this.form.geo_key.rules.every(it => it())
+
+      case 4:
+        return this.form.username.rules.every(it => it()) &&
+          this.form.user_email.rules.every(it => it()) &&
+          this.form.user_pass.rules.every(it => it())
+    }
   }
 
   stepRules (step: number) {
-    return ([] as Array<() => boolean>).concat(...this.rules[step])
+    switch (step) {
+      case 1:
+        return this.form.instance_name.rules
+
+      case 2:
+        return ([] as Array<() => boolean>).concat(
+          ...this.form.db_host.rules,
+          ...this.form.db_name.rules,
+          ...this.form.db_user.rules,
+          ...this.form.db_pass.rules
+        )
+
+      case 3:
+        return ([] as Array<() => boolean>).concat(
+          ...this.form.plan.rules,
+          ...this.form.expired_at.rules,
+          ...this.form.vi_key.rules,
+          ...this.form.geo_key.rules
+        )
+
+      case 4:
+        return ([] as Array<() => boolean>).concat(
+          ...this.form.username.rules,
+          ...this.form.user_email.rules,
+          ...this.form.user_pass.rules
+        )
+    }
   }
 
   commitSelectedExpiredAtDate () {
@@ -182,7 +230,11 @@ export default class AddInstancePage extends Vue {
   }
 
   get isConfirmButtonEnabled () {
-    return this.rules.every(step => step.every(field => field.every(rule => rule())))
+    return ([] as Array<() => boolean>)
+      .concat(...Object
+        .keys(this.form)
+        .map(it => this.form[it].rules)
+      )
   }
 
   get plans () {
@@ -195,22 +247,22 @@ export default class AddInstancePage extends Vue {
       this.loading = true
       await TimeflowOrchestratorProvider.getInstance().addInstance({
         instance: {
-          name: this.form.instance_name,
-          db_host: this.form.db_host,
-          db_name: this.form.db_name,
-          db_password: this.form.db_pass,
-          db_username: this.form.db_user,
-          dadata_api_key: this.form.geo_key,
-          vi_api_key: this.form.vi_key,
+          name: this.form.instance_name.value,
+          db_host: this.form.db_host.value,
+          db_name: this.form.db_name.value,
+          db_password: this.form.db_pass.value,
+          db_username: this.form.db_user.value,
+          dadata_api_key: this.form.geo_key.value,
+          vi_api_key: this.form.vi_key.value,
           licenses: {
-            plan_id: this.form.plan,
-            valid_until: this.form.expired_at
+            plan_id: this.form.plan.value,
+            valid_until: this.form.expired_at.value
           }
         },
         user: {
-          full_name: this.form.username,
-          email: this.form.user_email,
-          password: this.form.user_pass
+          full_name: this.form.username.value,
+          email: this.form.user_email.value,
+          password: this.form.user_pass.value
         }
       })
       this.$router.replace(InstancesRoute)
@@ -236,4 +288,12 @@ export default class AddInstancePage extends Vue {
   cancel () {
     this.$router.replace(InstancesRoute)
   }
+}
+
+interface AddInstanceForm {
+  [name: string]: {
+    value: any;
+    rules: Array<() => boolean>;
+    rulesMessage: Array<() => boolean | string>;
+  };
 }

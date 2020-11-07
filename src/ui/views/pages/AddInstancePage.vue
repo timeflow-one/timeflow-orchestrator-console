@@ -9,7 +9,7 @@
         <v-stepper-step
           step="1"
           :complete="stepper.step > 1"
-          :rules="stepRules(0)"
+          :rules="stepRules(1)"
         >
           {{ $vuetify.lang.t('$vuetify.pages.add_instance.steps.0') }}
         </v-stepper-step>
@@ -19,8 +19,8 @@
             <v-row>
               <v-col>
                 <v-text-field
-                  v-model="form.instance_name"
-                  :rules="rulesMessages[0][0]"
+                  v-model="form.instance_name.value"
+                  :rules="form.instance_name.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.0')"
                 />
               </v-col>
@@ -29,7 +29,7 @@
           <div>
             <v-btn
               color="primary"
-              :disabled="isStepButtonDisabled(0)"
+              :disabled="!isStepButtonEnabled(1)"
               @click="stepper.step = 2"
             >{{ $vuetify.lang.t('$vuetify.common.actions.next') }}</v-btn>
           </div>
@@ -38,7 +38,7 @@
         <v-stepper-step
           step="2"
           :complete="stepper.step > 2"
-          :rules="stepRules(1)"
+          :rules="stepRules(2)"
         >
           {{ $vuetify.lang.t('$vuetify.pages.add_instance.steps.1') }}
         </v-stepper-step>
@@ -52,8 +52,8 @@
                 xl="3"
               >
                 <v-text-field
-                  v-model="form.db_host"
-                  :rules="rulesMessages[1][0]"
+                  v-model="form.db_host.value"
+                  :rules="form.db_host.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.1')"
                 />
               </v-col>
@@ -63,8 +63,8 @@
                 xl="3"
               >
                 <v-text-field
-                  v-model="form.db_name"
-                  :rules="rulesMessages[1][1]"
+                  v-model="form.db_name.value"
+                  :rules="form.db_name.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.2')"
                 />
               </v-col>
@@ -74,8 +74,8 @@
                 xl="3"
               >
                 <v-text-field
-                  v-model="form.db_user"
-                  :rules="rulesMessages[1][2]"
+                  v-model="form.db_user.value"
+                  :rules="form.db_user.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.3')"
                 />
               </v-col>
@@ -85,15 +85,10 @@
                 xl="3"
               >
                 <PasswordComponent
-                  v-model="form.db_pass"
-                  :rules="rulesMessages[1][3]"
+                  v-model="form.db_pass.value"
+                  :rules="form.db_pass.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.4')"
                 />
-                <!-- <v-text-field
-                v-model="form.db_pass"
-                :rules="rulesMessages[1][3]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.4')"
-              /> -->
               </v-col>
             </v-row>
           </v-form>
@@ -101,7 +96,7 @@
             <v-btn
               color="primary"
               class="mr-2"
-              :disabled="isStepButtonDisabled(1)"
+              :disabled="!isStepButtonEnabled(2)"
               @click="stepper.step = 3"
             >{{ $vuetify.lang.t('$vuetify.common.actions.next') }}</v-btn>
             <v-btn
@@ -115,7 +110,7 @@
         <v-stepper-step
           step="3"
           :complete="stepper.step > 3"
-          :rules="stepRules(2)"
+          :rules="stepRules(3)"
         >
           {{ $vuetify.lang.t('$vuetify.pages.add_instance.steps.2') }}
         </v-stepper-step>
@@ -129,7 +124,7 @@
                 xl="3"
               >
                 <v-select
-                  v-model="form.plan"
+                  v-model="form.plan.value"
                   item-text="title"
                   item-value="id"
                   :items="plans"
@@ -137,11 +132,6 @@
                   :disabled="plans.length <= 0"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.5')"
                 />
-                <!-- <v-text-field
-                v-model="form.plan"
-                :rules="rulesMessages[2][0]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.5')"
-              /> -->
               </v-col>
               <v-col
                 cols="12"
@@ -160,8 +150,8 @@
                     slot-scope="{ on, attrs }"
                   >
                     <v-text-field
-                      v-model="form.expired_at"
-                      :rules="rulesMessages[2][1]"
+                      v-model="form.expired_at.value"
+                      :rules="form.expired_at.rulesMessage"
                       :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.6')"
                       prepend-icon="mdi-calendar"
                       readonly
@@ -171,7 +161,7 @@
                   </template>
 
                   <v-date-picker
-                    v-model="form.expired_at"
+                    v-model="form.expired_at.value"
                     scrollable
                   >
                     <v-spacer />
@@ -185,11 +175,6 @@
                     >{{ $vuetify.lang.t('$vuetify.common.actions.ok') }}</v-btn>
                   </v-date-picker>
                 </v-dialog>
-                <!-- <v-text-field
-                v-model="form.expired_at"
-                :rules="rulesMessages[2][1]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.6')"
-              /> -->
               </v-col>
               <v-col
                 cols="12"
@@ -197,8 +182,8 @@
                 xl="3"
               >
                 <v-text-field
-                  v-model="form.vi_key"
-                  :rules="rulesMessages[2][2]"
+                  v-model="form.vi_key.value"
+                  :rules="form.vi_key.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.7')"
                 />
               </v-col>
@@ -208,8 +193,8 @@
                 xl="3"
               >
                 <v-text-field
-                  v-model="form.geo_key"
-                  :rules="rulesMessages[2][3]"
+                  v-model="form.geo_key.value"
+                  :rules="form.geo_key.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.8')"
                 />
               </v-col>
@@ -219,7 +204,7 @@
             <v-btn
               color="primary"
               class="mr-2"
-              :disabled="isStepButtonDisabled(2)"
+              :disabled="!isStepButtonEnabled(3)"
               @click="stepper.step = 4"
             >{{ $vuetify.lang.t('$vuetify.common.actions.next') }}</v-btn>
             <v-btn
@@ -233,7 +218,7 @@
         <v-stepper-step
           step="4"
           :complete="stepper.step > 4"
-          :rules="stepRules(3)"
+          :rules="stepRules(4)"
         >
           {{ $vuetify.lang.t('$vuetify.pages.add_instance.steps.3') }}
         </v-stepper-step>
@@ -247,8 +232,8 @@
                 xl="4"
               >
                 <v-text-field
-                  v-model="form.username"
-                  :rules="rulesMessages[3][0]"
+                  v-model="form.username.value"
+                  :rules="form.username.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.9')"
                 />
               </v-col>
@@ -258,8 +243,8 @@
                 xl="4"
               >
                 <v-text-field
-                  v-model="form.user_email"
-                  :rules="rulesMessages[3][1]"
+                  v-model="form.user_email.value"
+                  :rules="form.user_email.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.10')"
                 />
               </v-col>
@@ -269,15 +254,10 @@
                 xl="4"
               >
                 <PasswordComponent
-                  v-model="form.user_pass"
-                  :rules="rulesMessages[3][2]"
+                  v-model="form.user_pass.value"
+                  :rules="form.user_pass.rulesMessage"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.11')"
                 />
-                <!-- <v-text-field
-                v-model="form.user_pass"
-                :rules="rulesMessages[3][2]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.11')"
-              /> -->
               </v-col>
             </v-row>
           </v-form>
