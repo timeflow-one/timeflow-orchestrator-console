@@ -2,6 +2,7 @@
   <v-text-field
     color="primary lighten-1"
     v-model="password"
+    :disabled="disabled"
     :rules="rules"
     :label="label"
     :type="isShowPass ? 'text' : 'password'"
@@ -33,6 +34,9 @@ export default class PasswordComponent extends Vue {
 
   @Prop({ default: false })
   label!: string
+
+  @Prop({ default: false })
+  disabled!: string
 
   @Prop({ default: '350px' })
   maxWidth!: string

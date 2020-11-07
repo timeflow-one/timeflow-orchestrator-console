@@ -15,15 +15,17 @@
         </v-stepper-step>
 
         <v-stepper-content step="1">
-          <v-row>
-            <v-col>
-              <v-text-field
-                v-model="form.instance_name"
-                :rules="rulesMessages[0][0]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.0')"
-              />
-            </v-col>
-          </v-row>
+          <v-form :disabled="stepper.step != 1">
+            <v-row>
+              <v-col>
+                <v-text-field
+                  v-model="form.instance_name"
+                  :rules="rulesMessages[0][0]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.0')"
+                />
+              </v-col>
+            </v-row>
+          </v-form>
           <div>
             <v-btn
               color="primary"
@@ -42,57 +44,59 @@
         </v-stepper-step>
 
         <v-stepper-content step="2">
-          <v-row>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="3"
-            >
-              <v-text-field
-                v-model="form.db_host"
-                :rules="rulesMessages[1][0]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.1')"
-              />
-            </v-col>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="3"
-            >
-              <v-text-field
-                v-model="form.db_name"
-                :rules="rulesMessages[1][1]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.2')"
-              />
-            </v-col>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="3"
-            >
-              <v-text-field
-                v-model="form.db_user"
-                :rules="rulesMessages[1][2]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.3')"
-              />
-            </v-col>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="3"
-            >
-            <PasswordComponent
-                v-model="form.db_pass"
-                :rules="rulesMessages[1][3]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.4')"
-              />
-              <!-- <v-text-field
+          <v-form :disabled="stepper.step != 2">
+            <v-row>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="3"
+              >
+                <v-text-field
+                  v-model="form.db_host"
+                  :rules="rulesMessages[1][0]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.1')"
+                />
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="3"
+              >
+                <v-text-field
+                  v-model="form.db_name"
+                  :rules="rulesMessages[1][1]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.2')"
+                />
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="3"
+              >
+                <v-text-field
+                  v-model="form.db_user"
+                  :rules="rulesMessages[1][2]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.3')"
+                />
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="3"
+              >
+                <PasswordComponent
+                  v-model="form.db_pass"
+                  :rules="rulesMessages[1][3]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.4')"
+                />
+                <!-- <v-text-field
                 v-model="form.db_pass"
                 :rules="rulesMessages[1][3]"
                 :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.4')"
               /> -->
-            </v-col>
-          </v-row>
+              </v-col>
+            </v-row>
+          </v-form>
           <div>
             <v-btn
               color="primary"
@@ -117,99 +121,101 @@
         </v-stepper-step>
 
         <v-stepper-content step="3">
-          <v-row>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="3"
-            >
-              <v-select
-                v-model="form.plan"
-                item-text="title"
-                item-value="id"
-                :items="plans"
-                :loading="plans.length <= 0"
-                :disabled="plans.length <= 0"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.5')"
-              />
-              <!-- <v-text-field
+          <v-form :disabled="stepper.step != 3">
+            <v-row>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="3"
+              >
+                <v-select
+                  v-model="form.plan"
+                  item-text="title"
+                  item-value="id"
+                  :items="plans"
+                  :loading="plans.length <= 0"
+                  :disabled="plans.length <= 0"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.5')"
+                />
+                <!-- <v-text-field
                 v-model="form.plan"
                 :rules="rulesMessages[2][0]"
                 :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.5')"
               /> -->
-            </v-col>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="3"
-            >
-              <v-dialog
-                ref="expiredDateDialog"
-                v-model="expiredDatePickerDialog"
-                :return-value.sync="form.expired_at"
-                persistent
-                width="290px"
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="3"
               >
-                <template
-                  slot="activator"
-                  slot-scope="{ on, attrs }"
+                <v-dialog
+                  ref="expiredDateDialog"
+                  v-model="expiredDatePickerDialog"
+                  :return-value.sync="form.expired_at"
+                  persistent
+                  width="290px"
                 >
-                  <v-text-field
-                    v-model="form.expired_at"
-                    :rules="rulesMessages[2][1]"
-                    :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.6')"
-                    prepend-icon="mdi-calendar"
-                    readonly
-                    v-bind="attrs"
-                    v-on="on"
-                  />
-                </template>
+                  <template
+                    slot="activator"
+                    slot-scope="{ on, attrs }"
+                  >
+                    <v-text-field
+                      v-model="form.expired_at"
+                      :rules="rulesMessages[2][1]"
+                      :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.6')"
+                      prepend-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                    />
+                  </template>
 
-                <v-date-picker
-                  v-model="form.expired_at"
-                  scrollable
-                >
-                  <v-spacer />
-                  <v-btn
-                    text
-                    @click="expiredDatePickerDialog = false"
-                  >{{ $vuetify.lang.t('$vuetify.common.actions.cancel') }}</v-btn>
-                  <v-btn
-                    text
-                    @click="commitSelectedExpiredAtDate"
-                  >{{ $vuetify.lang.t('$vuetify.common.actions.ok') }}</v-btn>
-                </v-date-picker>
-              </v-dialog>
-              <!-- <v-text-field
+                  <v-date-picker
+                    v-model="form.expired_at"
+                    scrollable
+                  >
+                    <v-spacer />
+                    <v-btn
+                      text
+                      @click="expiredDatePickerDialog = false"
+                    >{{ $vuetify.lang.t('$vuetify.common.actions.cancel') }}</v-btn>
+                    <v-btn
+                      text
+                      @click="commitSelectedExpiredAtDate"
+                    >{{ $vuetify.lang.t('$vuetify.common.actions.ok') }}</v-btn>
+                  </v-date-picker>
+                </v-dialog>
+                <!-- <v-text-field
                 v-model="form.expired_at"
                 :rules="rulesMessages[2][1]"
                 :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.6')"
               /> -->
-            </v-col>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="3"
-            >
-              <v-text-field
-                v-model="form.vi_key"
-                :rules="rulesMessages[2][2]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.7')"
-              />
-            </v-col>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="3"
-            >
-              <v-text-field
-                v-model="form.geo_key"
-                :rules="rulesMessages[2][3]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.8')"
-              />
-            </v-col>
-          </v-row>
-          <div class="mt-2">
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="3"
+              >
+                <v-text-field
+                  v-model="form.vi_key"
+                  :rules="rulesMessages[2][2]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.7')"
+                />
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="3"
+              >
+                <v-text-field
+                  v-model="form.geo_key"
+                  :rules="rulesMessages[2][3]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.8')"
+                />
+              </v-col>
+            </v-row>
+          </v-form>
+          <div>
             <v-btn
               color="primary"
               class="mr-2"
@@ -233,47 +239,49 @@
         </v-stepper-step>
 
         <v-stepper-content step="4">
-          <v-row>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="4"
-            >
-              <v-text-field
-                v-model="form.username"
-                :rules="rulesMessages[3][0]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.9')"
-              />
-            </v-col>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="4"
-            >
-              <v-text-field
-                v-model="form.user_email"
-                :rules="rulesMessages[3][1]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.10')"
-              />
-            </v-col>
-            <v-col
-              cols="12"
-              sm="6"
-              xl="4"
-            >
-              <PasswordComponent
-                v-model="form.user_pass"
-                :rules="rulesMessages[3][2]"
-                :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.11')"
-              />
-              <!-- <v-text-field
+          <v-form :disabled="stepper.step != 4">
+            <v-row>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="4"
+              >
+                <v-text-field
+                  v-model="form.username"
+                  :rules="rulesMessages[3][0]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.9')"
+                />
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="4"
+              >
+                <v-text-field
+                  v-model="form.user_email"
+                  :rules="rulesMessages[3][1]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.10')"
+                />
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+                xl="4"
+              >
+                <PasswordComponent
+                  v-model="form.user_pass"
+                  :rules="rulesMessages[3][2]"
+                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.11')"
+                />
+                <!-- <v-text-field
                 v-model="form.user_pass"
                 :rules="rulesMessages[3][2]"
                 :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.labels.11')"
               /> -->
-            </v-col>
-          </v-row>
-          <div class="mt-2">
+              </v-col>
+            </v-row>
+          </v-form>
+          <div>
             <v-btn
               color="primary"
               text
