@@ -4,6 +4,7 @@
     class="flex column fill-height"
     height="100%"
     fixed-header
+    :page.sync="page"
     :options.sync="options"
     :mobile-breakpoint="0"
     :items-per-page="20"
@@ -30,6 +31,7 @@ import { TableOptions } from '@/models/TableOptions'
 @Component
 export default class DataTable extends Vue {
   private readonly options: Partial<TableOptions> = {}
+  private page = 0
 
   @Prop({ required: true })
   headers: any
@@ -49,6 +51,10 @@ export default class DataTable extends Vue {
   @Watch('options', { deep: true })
   onOptionsChanged (value: TableOptions) {
     this.$emit('options', value)
+  }
+
+  setPage (page: number) {
+    this.page = page
   }
 }
 </script>

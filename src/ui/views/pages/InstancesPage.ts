@@ -7,7 +7,7 @@ import DataTable from '@/ui/components/DataTable.vue'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import InstancesPageStore from '@/store/InstancesPageStore'
 import { Filtrable } from './interfaces/Filtrable'
-import { AddInstanceRoute, InstancesRoute } from '@/router'
+import { AddInstanceRoute, InstanceRoute, InstancesRoute } from '@/router'
 
 @Component({
   components: {
@@ -95,6 +95,8 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
 
   @Watch('filters', { deep: true })
   async onFiltersChanged (value: Filter) {
+    // @ts-expect-error
+    this.$refs.table.setPage(1)
     this.loadData(value.query, 0, this.tableOptions.itemsPerPage)
   }
   /// --- END FILTERS ---
@@ -105,7 +107,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
       title: this.$vuetify.lang.t('$vuetify.pages.instances.actions.add'),
       icon: 'mdi-database-plus',
       action: () => {
-        this.$router.replace(AddInstanceRoute)
+        this.$router.push(AddInstanceRoute)
       }
     }])
 
@@ -152,6 +154,24 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
   onSubpageClosed () {
     this.$router.replace(InstancesRoute)
   }
+
+  clickOnRow (value: InstanceItem) {
+    this.$router.push({
+      ...InstanceRoute,
+      params: { id: value.id.toString() },
+      query: { name: value.name }
+    })
+  }
+}
+
+interface InstanceItem {
+  id: number;
+  name: string;
+  limit: number;
+  count: number;
+  created_at: string;
+  expires_at: string;
+  state: boolean;
 }
 
 interface Filter {

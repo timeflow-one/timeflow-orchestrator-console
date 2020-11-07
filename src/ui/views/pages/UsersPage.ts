@@ -107,14 +107,9 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
 
   @Watch('filters', { deep: true })
   async onFiltersChanged (value: Filter): Promise<void> {
-    try {
-      this.tableLoading = true
-      await UsersPageStore.loadUsers({ search: value.query, isDeleted: value.isDeleted, offset: 0, limit: this.tableOptions.itemsPerPage })
-    } catch (err) {
-      console.error(err)
-    } finally {
-      this.tableLoading = false
-    }
+    // @ts-expect-error
+    this.$refs.table.setPage(1)
+    this.loadData(value.query, value.isDeleted, 0, this.tableOptions.itemsPerPage)
   }
   /// --- END FILTERS ---
 
@@ -126,12 +121,15 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
     return UsersPageStore.totalUsers
   }
 
-  async onOptionsChanged (value: TableOptions) {
-    try {
-      this.tableOptions = value
+  onOptionsChanged (value: TableOptions) {
+    this.tableOptions = value
+    this.loadData(this.filters.query, this.filters.isDeleted, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+  }
 
+  async loadData (search: string, isDeleted: boolean | null, offset: number, limit: number) {
+    try {
       this.tableLoading = true
-      await UsersPageStore.loadUsers({ search: this.filters.query, isDeleted: this.filters.isDeleted, offset: (value.page - 1) * value.itemsPerPage, limit: value.itemsPerPage })
+      await UsersPageStore.loadUsers({ search, isDeleted, offset, limit })
     } catch (err) {
       console.error(err)
     } finally {

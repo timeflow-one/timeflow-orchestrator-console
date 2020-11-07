@@ -38,7 +38,7 @@
         slot="item"
         slot-scope="{ item }"
       >
-        <tr class="cursor-pointer">
+        <tr class="cursor-pointer" @click="clickOnRow(item)">
           <td class="text-start user-select-none">
             <span>{{ item.id }}</span>
           </td>
