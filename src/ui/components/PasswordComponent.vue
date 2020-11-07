@@ -3,6 +3,7 @@
     color="primary lighten-1"
     v-model="password"
     :disabled="disabled"
+    :readonly="readonly"
     :rules="rules"
     :label="label"
     :type="isShowPass ? 'text' : 'password'"
@@ -33,10 +34,13 @@ export default class PasswordComponent extends Vue {
   rules!: Array<() => boolean>
 
   @Prop({ default: false })
-  label!: string
+  label!: boolean
 
   @Prop({ default: false })
-  disabled!: string
+  disabled!: boolean
+
+  @Prop({ default: false })
+  readonly!: boolean
 
   @Prop({ default: '350px' })
   maxWidth!: string

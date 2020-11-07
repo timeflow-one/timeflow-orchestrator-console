@@ -4,6 +4,7 @@
       "404": "Оркестратор Timeflow",
       "login": "Авторизация • Оркестратор Timeflow",
       "instances": "Инстансы • Оркестратор Timeflow",
+      "instance": "Инстансы • Оркестратор Timeflow",
       "add-instance": "Добавление инстанса • Оркестратор Timeflow",
       "users": "Пользователи • Оркестратор Timeflow",
       "licenses": "Лицензии • Оркестратор Timeflow",
@@ -35,7 +36,10 @@
       "ok": "OK",
       "cancel": "Отмена",
       "next": "Далее",
-      "back": "Назад"
+      "back": "Назад",
+      "remove": "Удалить",
+      "save": "Сохранить",
+      "edit": "Изменить"
     },
     "errors": {
       "required_field": "Обязательное поле",
@@ -59,6 +63,7 @@
   "navigation": {
     "menu": {
       "instances": "Инстансы",
+      "instance": "Инстансы",
       "add-instance": "Инстансы",
       "users": "Пользователи",
       "licenses": "Лицензии",
@@ -86,6 +91,8 @@
       "actions": {
         "add": "Добавить инстанс"
       }
+    },
+    "instance": {
     },
     "add_instance": {
       "titles": {

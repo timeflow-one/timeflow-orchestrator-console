@@ -5,6 +5,7 @@ import InstancesPage from '@/ui/views/pages/InstancesPage.vue'
 import AddInstancePage from '@/ui/views/pages/AddInstancePage.vue'
 import NotFoundPage from '@/ui/views/NotFoundPage.vue'
 import UsersPage from '@/ui/views/pages/UsersPage.vue'
+import InstancePage from '@/ui/views/pages/InstancePage.vue'
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,12 @@ const LoginRoute: RouteConfig = {
   name: 'login',
   path: '/login',
   component: LoginPage
+}
+
+const InstanceRoute: RouteConfig = {
+  name: 'instance',
+  path: ':id',
+  component: InstancePage
 }
 
 const AddInstanceRoute: RouteConfig = {
@@ -25,6 +32,7 @@ const InstancesRoute: RouteConfig = {
   path: '/instances',
   component: InstancesPage,
   children: [
+    InstanceRoute,
     AddInstanceRoute
   ]
 }
@@ -82,6 +90,7 @@ export default router
 
 export {
   LoginRoute,
+  InstanceRoute,
   AddInstanceRoute,
   InstancesRoute,
   UsersRoute,

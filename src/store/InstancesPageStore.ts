@@ -32,7 +32,15 @@ class InstancesPageStore extends VuexModule {
           count: item.stats.employees.active,
           created_at: createdAt.toLocaleDateString(),
           expires_at: expiresAt.toLocaleDateString(),
-          state: item.requires_upgrade
+          state: item.requires_upgrade,
+          db: {
+            db_host: item.db_host,
+            db_name: item.db_name,
+            db_user: item.db_username,
+            db_pass: item.db_password
+          },
+          vi_key: item.vi_api_key,
+          geo_key: item.dadata_api_key
         }
       })
     }
@@ -55,6 +63,14 @@ interface InstanceItem {
   created_at: string;
   expires_at: string;
   state: boolean;
+  db: {
+    db_host: string;
+    db_name: string;
+    db_user: string;
+    db_pass: string;
+  };
+  vi_key: string;
+  geo_key: string;
 }
 
 export default getModule(InstancesPageStore)
