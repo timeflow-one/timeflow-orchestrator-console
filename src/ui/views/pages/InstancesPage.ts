@@ -5,7 +5,7 @@ import SearchField from '@/ui/components/SearchField.vue'
 import FiltersContainer from '@/ui/components/FiltersContainer.vue'
 import DataTable from '@/ui/components/DataTable.vue'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
-import InstancesPageStore from '@/store/InstancesPageStore'
+import InstancesPageStore, { InstanceModel } from '@/store/InstancesPageStore'
 import { Filtrable } from './interfaces/Filtrable'
 import { AddInstanceRoute, InstanceRoute, InstancesRoute } from '@/router'
 
@@ -154,22 +154,12 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
     this.$router.replace(InstancesRoute)
   }
 
-  clickOnRow (value: InstanceItem) {
+  clickOnRow (value: InstanceModel) {
     this.$router.push({
       ...InstanceRoute,
       params: { id: value.id.toString() }
     })
   }
-}
-
-interface InstanceItem {
-  id: number;
-  name: string;
-  limit: number;
-  count: number;
-  created_at: string;
-  expires_at: string;
-  state: boolean;
 }
 
 interface Filter {

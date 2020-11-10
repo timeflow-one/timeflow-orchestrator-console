@@ -8,7 +8,7 @@ import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider
   name: 'UsersPageStore'
 })
 class UsersPageStore extends VuexModule {
-  public _users: Array<User> = []
+  public _users: Array<UserModel> = []
   // общее количество элементов на сервере, для пагинации
   public _totalUsers = 0
 
@@ -40,7 +40,7 @@ class UsersPageStore extends VuexModule {
   }
 }
 
-interface User {
+export interface UserModel {
   id: number;
   name: string;
   email: string;

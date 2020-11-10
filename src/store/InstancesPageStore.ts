@@ -8,7 +8,7 @@ import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider
   name: 'InstancesPageStore'
 })
 class InstancesPageStore extends VuexModule {
-  public _instances: Array<InstanceItem> = []
+  public _instances: Array<InstanceModel> = []
   // общее количество элементов на сервере, для пагинации
   public _totalInstances = 0
 
@@ -55,7 +55,7 @@ class InstancesPageStore extends VuexModule {
   }
 }
 
-interface InstanceItem {
+export interface InstanceModel {
   id: number;
   name: string;
   limit: number;

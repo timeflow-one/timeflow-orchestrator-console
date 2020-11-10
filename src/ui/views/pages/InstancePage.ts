@@ -4,7 +4,6 @@ import PasswordComponent from '@/ui/components/PasswordComponent.vue'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { InstanceResponse } from '@/api/responses/InstanceResponse'
-import vuetify from '@/plugins/vuetify'
 
 @Component({
   components: {
