@@ -6,6 +6,7 @@ import AddInstancePage from '@/ui/views/pages/AddInstancePage.vue'
 import NotFoundPage from '@/ui/views/NotFoundPage.vue'
 import UsersPage from '@/ui/views/pages/UsersPage.vue'
 import InstancePage from '@/ui/views/pages/InstancePage.vue'
+import UserPage from '@/ui/views/pages/UserPage.vue'
 
 Vue.use(VueRouter)
 
@@ -18,10 +19,7 @@ const LoginRoute: RouteConfig = {
 const InstanceRoute: RouteConfig = {
   name: 'instance',
   path: ':id',
-  component: InstancePage,
-  props: (route) => ({
-    test: route.query.q
-  })
+  component: InstancePage
 }
 
 const AddInstanceRoute: RouteConfig = {
@@ -40,10 +38,19 @@ const InstancesRoute: RouteConfig = {
   ]
 }
 
+const UserRoute: RouteConfig = {
+  name: 'user',
+  path: ':id',
+  component: UserPage
+}
+
 const UsersRoute: RouteConfig = {
   name: 'users',
   path: '/users',
-  component: UsersPage
+  component: UsersPage,
+  children: [
+    UserRoute
+  ]
 }
 
 const LicensesRoute: RouteConfig = {
