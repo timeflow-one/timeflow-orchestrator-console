@@ -1,10 +1,10 @@
 export interface UsersResponse {
   success: boolean;
   count: number;
-  users: Array<Users>;
+  users: Array<User>;
 }
 
-interface Users {
+interface User {
   id: number;
   access_token: string;
   token_id: number;
