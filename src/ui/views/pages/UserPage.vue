@@ -53,8 +53,8 @@
         >
           <v-select
             v-model="form.roles.value"
-            item-text="label"
             :items="roles"
+            :disabled="isRolesEnabled"
             multiple
             chips
             :label="$vuetify.lang.t('$vuetify.pages.user.form.labels.3')"

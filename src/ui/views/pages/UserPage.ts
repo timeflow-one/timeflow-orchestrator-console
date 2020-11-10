@@ -1,6 +1,6 @@
 import { UserResponse } from '@/api/responses/UserResponse'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
-import { Roles } from '@/models/Roles'
+import { Role } from '@/models/Roles'
 import { UsersRoute } from '@/router'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
 import { Component, Vue } from 'vue-property-decorator'
@@ -118,10 +118,42 @@ export default class UserPage extends Vue {
   }
 
   get roles () {
-    return Roles.map(it => ({
-      value: it,
-      label: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${it}`)
-    }))
+    return [
+      {
+        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.OWNER}`),
+        value: Role.OWNER,
+        disabled: false
+      },
+      {
+        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.ADMIN}`),
+        value: Role.ADMIN,
+        disabled: false
+      },
+      {
+        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.MANAGER}`),
+        value: Role.MANAGER,
+        disabled: false
+      },
+      {
+        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.HR}`),
+        value: Role.HR,
+        disabled: false
+      },
+      {
+        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.ANALYST}`),
+        value: Role.ANALYST,
+        disabled: false
+      },
+      {
+        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.ORCHESTRATOR}`),
+        value: Role.ORCHESTRATOR,
+        disabled: true
+      }
+    ]
+  }
+
+  get isRolesEnabled () {
+    return this.form.roles.value.includes(Role.ORCHESTRATOR)
   }
 
   get title () {
