@@ -65,7 +65,7 @@ export default class InstancePage extends Vue {
 
   loading = {
     card: false,
-    confirm: false,
+    submit: false,
     remove: false
   }
 
@@ -107,9 +107,9 @@ export default class InstancePage extends Vue {
     this.$router.replace(InstancesRoute)
   }
 
-  async confirm () {
+  async submit () {
     try {
-      this.loading.confirm = true
+      this.loading.submit = true
 
       await TimeflowOrchestratorProvider
         .getInstance()
@@ -130,7 +130,7 @@ export default class InstancePage extends Vue {
     } catch (err) {
       // TODO (2020.11.10): Handling error
     } finally {
-      this.loading.confirm = false
+      this.loading.submit = false
     }
   }
 
@@ -163,7 +163,7 @@ export default class InstancePage extends Vue {
       this.form.geo_key.value !== this.instance.instance.dadata_api_key
   }
 
-  get isConfirmButtonEnabled () {
+  get isSubmitButtonEnabled () {
     return Object.keys(this.form)
       .map(it => this.form[it].rules)
       .reduce((prev, current) => prev.concat(current), [])

@@ -107,9 +107,9 @@
       <v-btn
         color="primary"
         text
-        :loading="loading.confirm"
-        :disabled="!isConfirmButtonEnabled"
-        @click="confirm"
+        :loading="loading.submit"
+        :disabled="!isSubmitButtonEnabled"
+        @click="submit"
       >{{ $vuetify.lang.t('$vuetify.common.actions.edit') }}</v-btn>
     </v-card-actions>
   </v-card>

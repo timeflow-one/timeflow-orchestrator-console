@@ -185,7 +185,7 @@ export default class AddInstancePage extends Vue {
     return `${day}.${month}.${year}`
   }
 
-  get isConfirmButtonEnabled () {
+  get isSubmitButtonEnabled () {
     return Object.keys(this.form)
       .map(it => this.form[it].rules)
       .reduce((prev, current) => prev.concat(current), [])
@@ -197,7 +197,7 @@ export default class AddInstancePage extends Vue {
     return PlansStore.plans
   }
 
-  async confirm () {
+  async submit () {
     try {
       this.stepper.step = 5
       this.loading = true

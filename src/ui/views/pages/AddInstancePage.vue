@@ -281,8 +281,8 @@
         color="primary"
         text
         :loading="loading"
-        :disabled="!isConfirmButtonEnabled"
-        @click="confirm"
+        :disabled="!isSubmitButtonEnabled"
+        @click="submit"
       >{{ $vuetify.lang.t('$vuetify.pages.add_instance.actions.create') }}</v-btn>
     </v-card-actions>
   </v-card>
