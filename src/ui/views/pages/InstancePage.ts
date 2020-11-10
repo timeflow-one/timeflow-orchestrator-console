@@ -1,9 +1,10 @@
 import { InstancesRoute } from '@/router'
-import InstancesPageStore from '@/store/InstancesPageStore'
 import { Component, Vue } from 'vue-property-decorator'
 import PasswordComponent from '@/ui/components/PasswordComponent.vue'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
+import { InstanceResponse } from '@/api/responses/InstanceResponse'
+import vuetify from '@/plugins/vuetify'
 
 @Component({
   components: {
@@ -64,26 +65,43 @@ export default class InstancePage extends Vue {
   }
 
   loading = {
+    card: false,
     confirm: false,
     remove: false
   }
 
-  get currentInstance () {
-    return InstancesPageStore.instances.find(it => it.id === Number(this.$route.params.id))!!
-  }
+  instance!: InstanceResponse
 
-  mounted () {
-    if (!this.currentInstance) {
-      this.$router.replace(InstancesRoute)
+  async created () {
+    try {
+      this.loading.card = true
+
+      const response = await TimeflowOrchestratorProvider
+        .getInstance()
+        .getInstance(Number(this.$route.params.id))
+
+      this.instance = response.data
+
+      this.form.instance_name.value = response.data.instance.name
+      this.form.db_host.value = response.data.instance.db_host
+      this.form.db_name.value = response.data.instance.db_name
+      this.form.db_user.value = response.data.instance.db_username
+      this.form.db_pass.value = response.data.instance.db_password
+      this.form.vi_key.value = response.data.instance.vi_api_key
+      this.form.geo_key.value = response.data.instance.dadata_api_key
+    } catch (err) {
+      if (err.isAxiosError) {
+        // TODO (2020.11.10): Error handling
+        switch (err.response.status) {
+          case 400: {
+            alert(this.$vuetify.lang.t('$vuetify.pages.instance.errors.400'))
+            this.$router.replace(InstancesRoute)
+          }
+        }
+      }
+    } finally {
+      this.loading.card = false
     }
-
-    this.form.instance_name.value = this.currentInstance.name || ''
-    this.form.db_host.value = this.currentInstance.db.db_host || ''
-    this.form.db_name.value = this.currentInstance.db.db_name || ''
-    this.form.db_user.value = this.currentInstance.db.db_user || ''
-    this.form.db_pass.value = this.currentInstance.db.db_pass || ''
-    this.form.vi_key.value = this.currentInstance.vi_key || ''
-    this.form.geo_key.value = this.currentInstance.geo_key || ''
   }
 
   cancel () {
@@ -91,7 +109,30 @@ export default class InstancePage extends Vue {
   }
 
   async confirm () {
-    // TODO (2020.11.10): Updated
+    try {
+      this.loading.confirm = true
+
+      await TimeflowOrchestratorProvider
+        .getInstance()
+        .updateInstance({
+          id: this.instance.instance.id,
+          instance: {
+            name: this.form.instance_name.value,
+            db_host: this.form.db_host.value,
+            db_name: this.form.db_name.value,
+            db_username: this.form.db_user.value,
+            db_password: this.form.db_pass.value,
+            vi_api_key: this.form.vi_key.value,
+            dadata_api_key: this.form.geo_key.value
+          }
+        })
+
+      this.$router.replace(InstancesRoute)
+    } catch (err) {
+      // TODO (2020.11.10): Handling error
+    } finally {
+      this.loading.confirm = false
+    }
   }
 
   async remove () {
@@ -102,7 +143,8 @@ export default class InstancePage extends Vue {
       if (isMustBeRemoved) {
         await TimeflowOrchestratorProvider
           .getInstance()
-          .removeInstance(this.currentInstance.id)
+          .removeInstance(this.instance.instance.id)
+
         this.$router.replace(InstancesRoute)
       }
     } catch (err) {
@@ -113,13 +155,13 @@ export default class InstancePage extends Vue {
   }
 
   get isValueUpdated () {
-    return this.form.instance_name.value !== this.currentInstance.name ||
-      this.form.db_host.value !== this.currentInstance.db.db_host ||
-      this.form.db_name.value !== this.currentInstance.db.db_name ||
-      this.form.db_user.value !== this.currentInstance.db.db_user ||
-      this.form.db_pass.value !== this.currentInstance.db.db_pass ||
-      this.form.vi_key.value !== this.currentInstance.vi_key ||
-      this.form.geo_key.value !== this.currentInstance.geo_key
+    return this.form.instance_name.value !== this.instance.instance.name ||
+      this.form.db_host.value !== this.instance.instance.db_host ||
+      this.form.db_name.value !== this.instance.instance.db_name ||
+      this.form.db_user.value !== this.instance.instance.db_username ||
+      this.form.db_pass.value !== this.instance.instance.db_password ||
+      this.form.vi_key.value !== this.instance.instance.vi_api_key ||
+      this.form.geo_key.value !== this.instance.instance.dadata_api_key
   }
 
   get isConfirmButtonEnabled () {
@@ -131,6 +173,6 @@ export default class InstancePage extends Vue {
   }
 
   get title () {
-    return this.currentInstance.name
+    return this.instance.instance.name
   }
 }

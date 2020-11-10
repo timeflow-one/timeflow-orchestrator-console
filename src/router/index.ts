@@ -18,7 +18,10 @@ const LoginRoute: RouteConfig = {
 const InstanceRoute: RouteConfig = {
   name: 'instance',
   path: ':id',
-  component: InstancePage
+  component: InstancePage,
+  props: (route) => ({
+    test: route.query.q
+  })
 }
 
 const AddInstanceRoute: RouteConfig = {

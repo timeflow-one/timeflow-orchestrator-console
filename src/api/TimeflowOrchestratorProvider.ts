@@ -1,6 +1,8 @@
 import Axios, { AxiosResponse } from 'axios'
 import { AddInstanceRequest } from './requests/AddInstanceRequest'
+import { UpdateInstanceRequest } from './requests/UpdateInstanceRequest'
 import { AddInstanceResponse } from './responses/AddInstanceResponse'
+import { InstanceResponse } from './responses/InstanceResponse'
 import { InstancesResponse } from './responses/InstancesResponse'
 import { PlansResponse } from './responses/PlansResponse'
 import { SignInResponse } from './responses/SignInResponse'
@@ -64,8 +66,22 @@ export class TimeflowOrchestratorProvider {
     })
   }
 
-  public removeInstance (id: number) {
+  public updateInstance (request: UpdateInstanceRequest): Promise<AxiosResponse<AddInstanceRequest>> {
+    return this.api.post('/app/instances/update', {
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
+      ...request
+    })
+  }
+
+  public removeInstance (id: number): Promise<AxiosResponse<void>> {
     return this.api.post('/app/instances/delete', {
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
+      id
+    })
+  }
+
+  public getInstance (id: number): Promise<AxiosResponse<InstanceResponse>> {
+    return this.api.post('/app/instances/get', {
       access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
       id
     })

@@ -1,9 +1,18 @@
 <template>
   <v-card>
-    <v-card-title>
+    <v-card-title v-if="!loading.card">
       {{ $vuetify.lang.t('$vuetify.pages.instance.title', title) }}
     </v-card-title>
-    <v-card-text>
+    <v-card-title
+      v-if="loading.card"
+      class="justify-center"
+    >
+      <v-progress-circular
+        color="primary"
+        indeterminate
+      />
+    </v-card-title>
+    <v-card-text v-if="!loading.card">
       <v-row>
         <v-col
           cols="12"
@@ -89,7 +98,7 @@
         </v-col>
       </v-row>
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions v-if="!loading.card">
       <v-btn
         text
         @click="cancel"

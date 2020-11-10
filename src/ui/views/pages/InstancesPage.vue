@@ -74,7 +74,7 @@
       scrollable
       max-width="1100px"
     >
-      <router-view />
+      <router-view :key="$route.path" />
     </v-dialog>
   </v-container>
 </template>
