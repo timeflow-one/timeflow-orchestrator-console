@@ -5,7 +5,8 @@ import DataTable from '@/ui/components/DataTable.vue'
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
 import { Filtrable } from './interfaces/Filtrable'
-import UsersPageStore from '@/store/UsersPageStore'
+import UsersPageStore, { UserModel } from '@/store/UsersPageStore'
+import { UserRoute, UsersRoute } from '@/router'
 
 @Component({
   components: {
@@ -112,6 +113,15 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
   }
   /// --- END FILTERS ---
 
+  mounted () {
+    // обновляем данные после возвращения на страницу
+    this.$router.afterEach((to) => {
+      if (to.name === UsersRoute.name) {
+        this.loadData(this.filters.query, this.filters.isDeleted, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
+      }
+    })
+  }
+
   get tableItems () {
     return UsersPageStore.users
   }
@@ -134,6 +144,21 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
     } finally {
       this.tableLoading = false
     }
+  }
+
+  get isSubpage () {
+    return UsersRoute.children?.some(it => it.name === this.$route.name)
+  }
+
+  onSubpageClosed () {
+    this.$router.replace(UsersRoute)
+  }
+
+  clickOnRow (value: UserModel) {
+    this.$router.push({
+      ...UserRoute,
+      params: { id: value.id.toString() }
+    })
   }
 }
 

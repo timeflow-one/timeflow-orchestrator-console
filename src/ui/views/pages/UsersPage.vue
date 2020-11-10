@@ -51,7 +51,7 @@
         slot="item"
         slot-scope="{ item }"
       >
-        <tr class="cursor-pointer">
+        <tr class="cursor-pointer" @click="clickOnRow(item)">
           <td class="text-start user-select-none">
             <span>{{ item.id }}</span>
           </td>
@@ -90,6 +90,15 @@
         </tr>
       </template>
     </DataTable>
+
+    <v-dialog
+      v-model="isSubpage"
+      persistent
+      scrollable
+      max-width="1100px"
+    >
+      <router-view :key="$route.path" />
+    </v-dialog>
   </v-container>
 </template>
 

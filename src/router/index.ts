@@ -103,6 +103,7 @@ export {
   InstanceRoute,
   AddInstanceRoute,
   InstancesRoute,
+  UserRoute,
   UsersRoute,
   LicensesRoute,
   BillsRoute,
