@@ -1,11 +1,13 @@
 import Axios, { AxiosResponse } from 'axios'
 import { AddInstanceRequest } from './requests/AddInstanceRequest'
 import { UpdateInstanceRequest } from './requests/UpdateInstanceRequest'
+import { UpdateUserRequest } from './requests/UpdateUserRequest'
 import { AddInstanceResponse } from './responses/AddInstanceResponse'
 import { InstanceResponse } from './responses/InstanceResponse'
 import { InstancesResponse } from './responses/InstancesResponse'
 import { PlansResponse } from './responses/PlansResponse'
 import { SignInResponse } from './responses/SignInResponse'
+import { UserResponse } from './responses/UserResponse'
 import { UsersResponse } from './responses/UsersResponse'
 
 export class TimeflowOrchestratorProvider {
@@ -30,17 +32,6 @@ export class TimeflowOrchestratorProvider {
     })
   }
 
-  public instances (search: string | null = null, offset = 0, limit = 15): Promise<AxiosResponse<InstancesResponse>> {
-    return this.api.post('/app/instances/list', {
-      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
-      filters: {
-        query: search
-      },
-      offset,
-      limit
-    })
-  }
-
   public users (search: string | null = null, isDeleted: boolean | null = false, offset = 0, limit = 20): Promise<AxiosResponse<UsersResponse>> {
     return this.api.post('/app/users/list', {
       access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
@@ -53,9 +44,34 @@ export class TimeflowOrchestratorProvider {
     })
   }
 
+  public getUser (id: number): Promise<AxiosResponse<UserResponse>> {
+    return this.api.post('/app/users/get', {
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
+      id
+    })
+  }
+
+  public updateUser (request: UpdateUserRequest): Promise<AxiosResponse<any>> {
+    return this.api.post('/app/users/update', {
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
+      ...request
+    })
+  }
+
   public plans (): Promise<AxiosResponse<PlansResponse>> {
     return this.api.post('/app/plans/list', {
       access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY)
+    })
+  }
+
+  public instances (search: string | null = null, offset = 0, limit = 15): Promise<AxiosResponse<InstancesResponse>> {
+    return this.api.post('/app/instances/list', {
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
+      filters: {
+        query: search
+      },
+      offset,
+      limit
     })
   }
 
