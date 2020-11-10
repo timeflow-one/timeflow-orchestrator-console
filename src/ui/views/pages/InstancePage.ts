@@ -118,10 +118,10 @@ export default class InstancePage extends Vue {
           id: this.instance.instance.id,
           instance: {
             name: this.form.instance_name.value,
-            db_host: this.form.db_host.value,
-            db_name: this.form.db_name.value,
-            db_username: this.form.db_user.value,
-            db_password: this.form.db_pass.value,
+            // db_host: this.form.db_host.value,
+            // db_name: this.form.db_name.value,
+            // db_username: this.form.db_user.value,
+            // db_password: this.form.db_pass.value,
             vi_api_key: this.form.vi_key.value,
             dadata_api_key: this.form.geo_key.value
           }
