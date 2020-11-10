@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      {{ form.instance_name.value }}
+      {{ $vuetify.lang.t('$vuetify.pages.instance.title', title) }}
     </v-card-title>
     <v-card-text>
       <v-row>
@@ -9,7 +9,11 @@
           cols="12"
           sm="6"
         >
-          <v-text-field v-model="form.instance_name.value" />
+          <v-text-field
+            v-model="form.instance_name.value"
+            :rules="form.instance_name.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.labels.0')"
+          />
         </v-col>
       </v-row>
       <v-row>
@@ -20,7 +24,9 @@
         >
           <v-text-field
             v-model="form.db_host.value"
+            :rules="form.db_host.rules"
             readonly
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.labels.1')"
           />
         </v-col>
         <v-col
@@ -30,7 +36,9 @@
         >
           <v-text-field
             v-model="form.db_name.value"
+            :rules="form.db_name.rules"
             readonly
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.labels.2')"
           />
         </v-col>
         <v-col
@@ -40,7 +48,9 @@
         >
           <v-text-field
             v-model="form.db_user.value"
+            :rules="form.db_user.rules"
             readonly
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.labels.3')"
           />
         </v-col>
         <v-col
@@ -50,7 +60,9 @@
         >
           <PasswordComponent
             v-model="form.db_pass.value"
+            :rules="form.db_pass.rules"
             readonly
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.labels.4')"
           />
         </v-col>
       </v-row>
@@ -59,13 +71,21 @@
           cols="12"
           sm="6"
         >
-          <v-text-field v-model="form.vi_key.value" />
+          <v-text-field
+            v-model="form.vi_key.value"
+            :rules="form.vi_key.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.labels.5')"
+          />
         </v-col>
         <v-col
           cols="12"
           sm="6"
         >
-          <v-text-field v-model="form.geo_key.value" />
+          <v-text-field
+            v-model="form.geo_key.value"
+            :rules="form.geo_key.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.labels.6')"
+          />
         </v-col>
       </v-row>
     </v-card-text>
@@ -78,11 +98,15 @@
       <v-btn
         color="error"
         text
+        :loading="loading.remove"
+        @click="remove"
       >{{ $vuetify.lang.t('$vuetify.common.actions.remove') }}</v-btn>
       <v-btn
         color="primary"
         text
-        readonly
+        :loading="loading.confirm"
+        :disabled="!isConfirmButtonEnabled"
+        @click="confirm"
       >{{ $vuetify.lang.t('$vuetify.common.actions.edit') }}</v-btn>
     </v-card-actions>
   </v-card>

@@ -63,4 +63,11 @@ export class TimeflowOrchestratorProvider {
       ...request
     })
   }
+
+  public removeInstance (id: number) {
+    return this.api.post('/app/instances/delete', {
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
+      id
+    })
+  }
 }

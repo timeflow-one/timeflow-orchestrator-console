@@ -32,8 +32,8 @@ const InstancesRoute: RouteConfig = {
   path: '/instances',
   component: InstancesPage,
   children: [
-    InstanceRoute,
-    AddInstanceRoute
+    AddInstanceRoute,
+    InstanceRoute
   ]
 }
 
