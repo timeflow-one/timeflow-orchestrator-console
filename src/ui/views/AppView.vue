@@ -4,11 +4,14 @@
       :permanent="!$vuetify.breakpoint.mobile && isNavigationDrawerShow" -->
     <!-- expand-on-hover
       permanent -->
+    <!-- temporary -->
     <v-navigation-drawer
       v-if="hasShowUi"
       v-model="isNavigationDrawerShow"
       app
-      temporary
+      :expand-on-hover="!$vuetify.breakpoint.mobile"
+      :permanent="!$vuetify.breakpoint.mobile"
+      :temporary="$vuetify.breakpoint.mobile"
     >
       <NavigationDrawerUserCard />
 
@@ -43,7 +46,10 @@
       color="grey lighten-5"
       flat
     >
-      <v-app-bar-nav-icon @click.stop="isNavigationDrawerShow = !isNavigationDrawerShow" />
+      <v-app-bar-nav-icon
+        v-if="$vuetify.breakpoint.mobile"
+        @click.stop="isNavigationDrawerShow = !isNavigationDrawerShow"
+      />
       <v-toolbar-title>{{ $vuetify.lang.t(`$vuetify.navigation.menu.${$route.name}`) }}</v-toolbar-title>
 
       <v-spacer />
