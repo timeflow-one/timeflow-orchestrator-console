@@ -58,9 +58,11 @@ export class TimeflowOrchestratorProvider {
     })
   }
 
-  public plans (): Promise<AxiosResponse<PlansResponse>> {
+  public plans (offset = 0, limit = 15): Promise<AxiosResponse<PlansResponse>> {
     return this.api.post('/app/plans/list', {
-      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY)
+      access_token: localStorage.getItem(process.env.VUE_APP_TOKEN_KEY),
+      offset,
+      limit
     })
   }
 

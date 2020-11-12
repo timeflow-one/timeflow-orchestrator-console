@@ -1,5 +1,55 @@
 <template>
-  <div>plans</div>
+  <v-container fluid>
+    <DataTable
+      ref="table"
+      :headers="tableHeaders"
+      :items="tableItems"
+      :server-items-length="totalItems"
+      :loading="tableLoading"
+      @options="onOptionsChanged"
+    >
+      <template
+        slot="item"
+        slot-scope="{ item }"
+      >
+        <tr
+          class="cursor-pointer"
+          @click="clickOnRow(item)"
+        >
+          <td class="text-start user-select-none">
+            <span>{{ item.id }}</span>
+          </td>
+          <td class="text-start user-select-none">
+            <span>{{ item.title }}</span>
+          </td>
+          <td class="text-start user-select-none">
+            <span><code>{{ item.code }}</code></span>
+          </td>
+          <td class="text-start user-select-none">
+            <span>{{ item.employees_limit }}</span>
+          </td>
+          <td class="text-start user-select-none">
+            <span :title="item.monthly_fee_text">{{ item.monthly_fee_text }}</span>
+          </td>
+          <td class="text-center user-select-none">
+            <v-simple-checkbox
+              v-model="item.status"
+              disabled
+            />
+          </td>
+        </tr>
+      </template>
+    </DataTable>
+
+    <v-dialog
+      v-model="isSubpage"
+      persistent
+      scrollable
+      max-width="1100px"
+    >
+      <router-view :key="$route.path" />
+    </v-dialog>
+  </v-container>
 </template>
 
 <script src="./PlansPage" lang="ts" />

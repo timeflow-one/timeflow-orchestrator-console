@@ -31,7 +31,7 @@ export default class AppView extends Vue {
     },
     {
       ...PlansRoute,
-      icon: 'mdi-format-list-numbered'
+      icon: 'mdi-text-box-outline'
     }
   ]
 

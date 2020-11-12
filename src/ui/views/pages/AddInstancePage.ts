@@ -1,9 +1,9 @@
 import { InstancesRoute } from '@/router'
-import PlansStore from '@/store/PlansStore'
 import { Component, Vue } from 'vue-property-decorator'
 import PasswordComponent from '@/ui/components/PasswordComponent.vue'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { ruleMessageToResult, ruleMessageToRule } from '@/utils/ruleMessageToRule'
+import PlansPageStore from '@/store/PlansPageStore'
 
 @Component({
   components: {
@@ -105,7 +105,7 @@ export default class AddInstancePage extends Vue {
   }
 
   mounted () {
-    PlansStore.loadPlans()
+    PlansPageStore.loadPlans({ limit: -1, offset: 0 })
   }
 
   isStepButtonEnabled (step: number) {
@@ -194,7 +194,7 @@ export default class AddInstancePage extends Vue {
   }
 
   get plans () {
-    return PlansStore.plans
+    return PlansPageStore.plans.filter(it => it.status)
   }
 
   async submit () {

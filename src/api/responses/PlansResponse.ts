@@ -1,4 +1,5 @@
 export interface PlansResponse {
+  success: boolean;
   count: number;
   plans: Array<Plan>;
 }
