@@ -6,6 +6,7 @@
     :readonly="readonly"
     :rules="rules"
     :label="label"
+    :tabindex="tabindex"
     :type="isShowPass ? 'text' : 'password'"
     :append-icon="password.length > 0 ? isShowPass ? 'mdi-eye-off' : 'mdi-eye' : ''"
     @click:append="() => isShowPass = !isShowPass"
@@ -44,6 +45,9 @@ export default class PasswordComponent extends Vue {
 
   @Prop({ default: '350px' })
   maxWidth!: string
+
+  @Prop({ default: -1 })
+  tabindex!: number
 
   isShowPass = false
 

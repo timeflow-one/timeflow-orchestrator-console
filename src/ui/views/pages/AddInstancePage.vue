@@ -15,10 +15,14 @@
         </v-stepper-step>
 
         <v-stepper-content step="1">
-          <v-form :disabled="stepper.step != 1">
+          <v-form
+            :disabled="stepper.step != 1"
+            @submit.prevent="null"
+          >
             <v-row>
               <v-col>
                 <v-text-field
+                  tabindex="1"
                   v-model="form.instance_name.value"
                   :rules="form.instance_name.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.0')"
@@ -28,6 +32,7 @@
           </v-form>
           <div>
             <v-btn
+              tabindex="2"
               color="primary"
               :disabled="!isStepButtonEnabled(1)"
               @click="stepper.step = 2"
@@ -52,6 +57,7 @@
                 xl="3"
               >
                 <v-text-field
+                  tabindex="3"
                   v-model="form.db_host.value"
                   :rules="form.db_host.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.1')"
@@ -63,6 +69,7 @@
                 xl="3"
               >
                 <v-text-field
+                  tabindex="4"
                   v-model="form.db_name.value"
                   :rules="form.db_name.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.2')"
@@ -74,6 +81,7 @@
                 xl="3"
               >
                 <v-text-field
+                  tabindex="5"
                   v-model="form.db_user.value"
                   :rules="form.db_user.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.3')"
@@ -85,6 +93,7 @@
                 xl="3"
               >
                 <PasswordComponent
+                  tabindex="6"
                   v-model="form.db_pass.value"
                   :rules="form.db_pass.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.4')"
@@ -94,12 +103,14 @@
           </v-form>
           <div>
             <v-btn
+              tabindex="7"
               color="primary"
               class="mr-2"
               :disabled="!isStepButtonEnabled(2)"
               @click="stepper.step = 3"
             >{{ $vuetify.lang.t('$vuetify.common.action.next') }}</v-btn>
             <v-btn
+              tabindex="19"
               color="primary"
               text
               @click="stepper.step = 1"
@@ -124,6 +135,7 @@
                 xl="3"
               >
                 <v-select
+                  tabindex="8"
                   v-model="form.plan.value"
                   item-text="title"
                   item-value="id"
@@ -150,6 +162,7 @@
                     slot-scope="{ on, attrs }"
                   >
                     <v-text-field
+                      tabindex="9"
                       v-model="form.expired_at.value"
                       :rules="form.expired_at.rules"
                       :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.6')"
@@ -182,6 +195,7 @@
                 xl="3"
               >
                 <v-text-field
+                  tabindex="10"
                   v-model="form.vi_key.value"
                   :rules="form.vi_key.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.7')"
@@ -193,6 +207,7 @@
                 xl="3"
               >
                 <v-text-field
+                  tabindex="11"
                   v-model="form.geo_key.value"
                   :rules="form.geo_key.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.8')"
@@ -202,12 +217,14 @@
           </v-form>
           <div>
             <v-btn
+              tabindex="12"
               color="primary"
               class="mr-2"
               :disabled="!isStepButtonEnabled(3)"
               @click="stepper.step = 4"
             >{{ $vuetify.lang.t('$vuetify.common.action.next') }}</v-btn>
             <v-btn
+              tabindex="18"
               color="primary"
               text
               @click="stepper.step = 2"
@@ -232,6 +249,7 @@
                 xl="4"
               >
                 <v-text-field
+                  tabindex="13"
                   v-model="form.username.value"
                   :rules="form.username.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.9')"
@@ -243,6 +261,7 @@
                 xl="4"
               >
                 <v-text-field
+                  tabindex="14"
                   v-model="form.user_email.value"
                   :rules="form.user_email.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.10')"
@@ -254,6 +273,7 @@
                 xl="4"
               >
                 <PasswordComponent
+                  tabindex="15"
                   v-model="form.user_pass.value"
                   :rules="form.user_pass.rules"
                   :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.11')"
@@ -263,6 +283,7 @@
           </v-form>
           <div>
             <v-btn
+              tabindex="17"
               color="primary"
               text
               @click="stepper.step = 3"
@@ -279,6 +300,7 @@
       <v-spacer />
       <v-btn
         color="primary"
+        tabindex="16"
         text
         :loading="loading"
         :disabled="!isSubmitButtonEnabled"
