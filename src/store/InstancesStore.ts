@@ -5,9 +5,9 @@ import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider
 @Module({
   dynamic: true,
   store,
-  name: 'InstancesPageStore'
+  name: 'InstancesStore'
 })
-class InstancesPageStore extends VuexModule {
+class InstancesStore extends VuexModule {
   public _instances: Array<InstanceModel> = []
   // общее количество элементов на сервере, для пагинации
   public _totalInstances = 0
@@ -73,4 +73,4 @@ export interface InstanceModel {
   geo_key: string;
 }
 
-export default getModule(InstancesPageStore)
+export default getModule(InstancesStore)

@@ -5,9 +5,9 @@ import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider
 @Module({
   dynamic: true,
   store,
-  name: 'PlansPageStore'
+  name: 'PlansStore'
 })
-class PlansPageStore extends VuexModule {
+class PlansStore extends VuexModule {
   public _plans: Array<PlanModel> = []
   // общее количество элементов на сервере, для пагинации
   public _totalPlans = 0
@@ -49,4 +49,4 @@ export interface PlanModel {
   status: boolean;
 }
 
-export default getModule(PlansPageStore)
+export default getModule(PlansStore)

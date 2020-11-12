@@ -5,7 +5,7 @@ import SearchField from '@/ui/components/SearchField.vue'
 import FiltersContainer from '@/ui/components/FiltersContainer.vue'
 import DataTable from '@/ui/components/DataTable.vue'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
-import InstancesPageStore, { InstanceModel } from '@/store/InstancesPageStore'
+import InstancesStore, { InstanceModel } from '@/store/InstancesStore'
 import { Filtrable } from './interfaces/Filtrable'
 import { CreateInstanceRoute, InstanceRoute, InstancesRoute } from '@/router'
 
@@ -123,17 +123,17 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
   }
 
   get tableItems () {
-    return InstancesPageStore.instances
+    return InstancesStore.instances
   }
 
   get totalItems () {
-    return InstancesPageStore.totalInstances
+    return InstancesStore.totalInstances
   }
 
   async loadData (search: string, offset: number, limit: number) {
     try {
       this.tableLoading = true
-      await InstancesPageStore.loadInstances({ search, offset, limit })
+      await InstancesStore.loadInstances({ search, offset, limit })
     } catch (err) {
       console.error(err)
     } finally {

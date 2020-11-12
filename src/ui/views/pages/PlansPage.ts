@@ -2,7 +2,7 @@ import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
 import { PlansRoute } from '@/router'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
-import PlansPageStore, { PlanModel } from '@/store/PlansPageStore'
+import PlansStore, { PlanModel } from '@/store/PlansStore'
 import { Component, Vue } from 'vue-property-decorator'
 import DataTable from '@/ui/components/DataTable.vue'
 
@@ -90,7 +90,7 @@ export default class PlansPage extends Vue {
   async loadData (offset: number, limit: number) {
     try {
       this.tableLoading = true
-      await PlansPageStore.loadPlans({ offset, limit })
+      await PlansStore.loadPlans({ offset, limit })
     } catch (err) {
       console.error(err)
     } finally {
@@ -112,11 +112,11 @@ export default class PlansPage extends Vue {
   }
 
   get tableItems () {
-    return PlansPageStore.plans
+    return PlansStore.plans
   }
 
   get totalItems () {
-    return PlansPageStore.totalPlans
+    return PlansStore.totalPlans
   }
 
   get isSubpage () {

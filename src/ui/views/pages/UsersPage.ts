@@ -5,7 +5,7 @@ import DataTable from '@/ui/components/DataTable.vue'
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
 import { Filtrable } from './interfaces/Filtrable'
-import UsersPageStore, { UserModel } from '@/store/UsersPageStore'
+import UsersStore, { UserModel } from '@/store/UsersStore'
 import { UserRoute, UsersRoute } from '@/router'
 
 @Component({
@@ -123,11 +123,11 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
   }
 
   get tableItems () {
-    return UsersPageStore.users
+    return UsersStore.users
   }
 
   get totalItems () {
-    return UsersPageStore.totalUsers
+    return UsersStore.totalUsers
   }
 
   onOptionsChanged (value: TableOptions) {
@@ -138,7 +138,7 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
   async loadData (search: string, isDeleted: boolean | null, offset: number, limit: number) {
     try {
       this.tableLoading = true
-      await UsersPageStore.loadUsers({ search, isDeleted, offset, limit })
+      await UsersStore.loadUsers({ search, isDeleted, offset, limit })
     } catch (err) {
       console.error(err)
     } finally {

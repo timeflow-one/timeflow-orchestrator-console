@@ -3,7 +3,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import PasswordComponent from '@/ui/components/PasswordComponent.vue'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { ruleMessageToResult, ruleMessageToRule } from '@/utils/ruleMessageToRule'
-import PlansPageStore from '@/store/PlansPageStore'
+import PlansStore from '@/store/PlansStore'
 import { emailRegex as emailRegexp } from '@/utils/EmailRegex'
 
 @Component({
@@ -107,7 +107,7 @@ export default class CreateInstancePage extends Vue {
   }
 
   mounted () {
-    PlansPageStore.loadPlans({ limit: -1, offset: 0 })
+    PlansStore.loadPlans({ limit: -1, offset: 0 })
     // устанавливает фокус на первом поле при загрузке страницы
     this.setFocusOnFirstField()
   }
@@ -207,7 +207,7 @@ export default class CreateInstancePage extends Vue {
   }
 
   get plans () {
-    return PlansPageStore.plans.filter(it => it.status)
+    return PlansStore.plans.filter(it => it.status)
   }
 
   async submit () {

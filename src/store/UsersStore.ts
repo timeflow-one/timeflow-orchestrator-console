@@ -5,9 +5,9 @@ import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider
 @Module({
   dynamic: true,
   store,
-  name: 'UsersPageStore'
+  name: 'UsersStore'
 })
-class UsersPageStore extends VuexModule {
+class UsersStore extends VuexModule {
   public _users: Array<UserModel> = []
   // общее количество элементов на сервере, для пагинации
   public _totalUsers = 0
@@ -49,4 +49,4 @@ export interface UserModel {
   status: boolean;
 }
 
-export default getModule(UsersPageStore)
+export default getModule(UsersStore)
