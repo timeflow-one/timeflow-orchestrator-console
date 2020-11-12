@@ -1,4 +1,4 @@
-import '@/config/registerServiceWorker'
+// import '@/config/registerServiceWorker'
 import '@/assets/style/main.scss'
 
 import Vue from 'vue'
