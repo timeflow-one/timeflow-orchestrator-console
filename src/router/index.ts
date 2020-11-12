@@ -8,6 +8,7 @@ import UsersPage from '@/ui/views/pages/UsersPage.vue'
 import InstancePage from '@/ui/views/pages/InstancePage.vue'
 import UserPage from '@/ui/views/pages/UserPage.vue'
 import PlansPage from '@/ui/views/pages/PlansPage.vue'
+import LicensesPage from '@/ui/views/pages/LicensesPage.vue'
 
 Vue.use(VueRouter)
 
@@ -56,7 +57,8 @@ const UsersRoute: RouteConfig = {
 
 const LicensesRoute: RouteConfig = {
   name: 'licenses',
-  path: '/licenses'
+  path: '/licenses',
+  component: LicensesPage
 }
 
 const BillsRoute: RouteConfig = {
