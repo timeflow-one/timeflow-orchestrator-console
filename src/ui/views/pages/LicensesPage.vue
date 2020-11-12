@@ -20,22 +20,40 @@
             <span>{{ item.id }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.title }}</span>
+            <span>{{ item.instance.name }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span><code>{{ item.code }}</code></span>
+            <span>{{ item.plan.name }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.employees_limit }}</span>
+            <v-chip
+              class="cursor-pointer"
+              color="grey lighten-4"
+            >{{ item.start_at.toLocaleDateString() }}</v-chip>
           </td>
           <td class="text-start user-select-none">
-            <span :title="item.monthly_fee_text">{{ item.monthly_fee_text }}</span>
+            <v-chip
+              class="cursor-pointer"
+              color="grey lighten-4"
+            >{{ item.expired_at.toLocaleDateString() }}</v-chip>
           </td>
           <td class="text-center user-select-none">
             <v-simple-checkbox
-              v-model="item.status"
+              v-model="item.is_active"
               disabled
             />
+          </td>
+          <td class="d-flex align-center">
+            <v-btn
+              color="primary"
+              text
+              disabled
+            >{{ $vuetify.lang.t('$vuetify.pages.licenses.action.prolong') }}</v-btn>
+            <v-btn
+              color="primary"
+              text
+              disabled
+            >{{ $vuetify.lang.t('$vuetify.pages.licenses.action.promised_payment') }}</v-btn>
           </td>
         </tr>
       </template>

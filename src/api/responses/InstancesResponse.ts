@@ -4,7 +4,7 @@ export interface InstancesResponse {
   instances: Array<Instance>;
 }
 
-interface Instance {
+export interface Instance {
   id: number;
   name: string;
   db_host: string;

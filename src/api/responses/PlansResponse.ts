@@ -4,7 +4,7 @@ export interface PlansResponse {
   plans: Array<Plan>;
 }
 
-interface Plan {
+export interface Plan {
   code: string;
   currency: string;
   employees_limit: number;
