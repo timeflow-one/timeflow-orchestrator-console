@@ -7,6 +7,7 @@ import NotFoundPage from '@/ui/views/NotFoundPage.vue'
 import UsersPage from '@/ui/views/pages/UsersPage.vue'
 import InstancePage from '@/ui/views/pages/InstancePage.vue'
 import UserPage from '@/ui/views/pages/UserPage.vue'
+import PlansPage from '@/ui/views/pages/PlansPage.vue'
 
 Vue.use(VueRouter)
 
@@ -65,7 +66,8 @@ const BillsRoute: RouteConfig = {
 
 const PlansRoute: RouteConfig = {
   name: 'plans',
-  path: '/plans'
+  path: '/plans',
+  component: PlansPage
 }
 
 const NotFoundRoute: RouteConfig = {
