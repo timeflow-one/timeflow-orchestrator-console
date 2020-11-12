@@ -14,12 +14,12 @@ import { emailRegex as emailRegexp } from '@/utils/EmailRegex'
 export default class CreateInstancePage extends Vue {
   expiredDatePickerDialog = false
   loading = false
-  stepper = {
+  readonly stepper = {
     step: 1,
     limit: 4
   }
 
-  form: FormItem = {
+  readonly form: FormItem = {
     instance_name: {
       value: '',
       rules: [

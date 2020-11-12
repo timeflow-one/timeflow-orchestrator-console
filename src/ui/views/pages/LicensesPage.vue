@@ -5,7 +5,7 @@
       :headers="tableHeaders"
       :items="tableItems"
       :server-items-length="totalItems"
-      :loading="tableLoading"
+      :loading="loading.table"
       @options="onOptionsChanged"
     >
       <template

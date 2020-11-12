@@ -11,7 +11,7 @@ import { InstanceResponse } from '@/api/responses/InstanceResponse'
   }
 })
 export default class InstancePage extends Vue {
-  form: FormItem = {
+  readonly form: FormItem = {
     instance_name: {
       value: '',
       rules: [
@@ -63,7 +63,7 @@ export default class InstancePage extends Vue {
     }
   }
 
-  loading = {
+  readonly loading = {
     card: false,
     submit: false,
     remove: false

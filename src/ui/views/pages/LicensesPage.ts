@@ -13,7 +13,7 @@ import DataTable from '@/ui/components/DataTable.vue'
 })
 export default class LicensesPage extends Vue {
   /// --- TABLE ---
-  protected readonly tableHeaders: Array<TableHeader> = [
+  readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
       align: 'start',
@@ -70,11 +70,14 @@ export default class LicensesPage extends Vue {
     }
   ]
 
-  protected tableLoading = false
-  protected tableOptions!: TableOptions
+  readonly loading = {
+    table: false
+  }
+
+  tableOptions!: TableOptions
   /// --- END TABLE ---
 
-  protected mounted () {
+  mounted () {
     // добавляет кнопку меню в toolbar
     AppbarMenuStore.setItems([{
       title: this.$vuetify.lang.t('$vuetify.pages.licenses.action.add'),
@@ -93,14 +96,18 @@ export default class LicensesPage extends Vue {
     })
   }
 
+  beforeDestroy () {
+    AppbarMenuStore.clean()
+  }
+
   async loadData (offset: number, limit: number) {
     try {
-      this.tableLoading = true
+      this.loading.table = true
       await LicensesStore.loadLicenses({ offset, limit })
     } catch (err) {
       console.error(err)
     } finally {
-      this.tableLoading = false
+      this.loading.table = false
     }
   }
 

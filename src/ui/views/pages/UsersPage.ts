@@ -17,7 +17,7 @@ import { UserRoute, UsersRoute } from '@/router'
 })
 export default class UsersPage extends Vue implements Filtrable<Filter> {
   /// --- TABLE ---
-  protected readonly tableHeaders: Array<TableHeader> = [
+  readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
       align: 'start',
@@ -76,11 +76,14 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
     }
   ]
 
-  protected tableLoading = false
-  protected tableOptions!: TableOptions
+  readonly loading = {
+    table: false
+  }
+
+  tableOptions!: TableOptions
   /// --- END TABLE ---
   /// --- FILTERS ---
-  protected isDeletedSelect: Array<{ title: string; value: boolean | null }> = [{
+  isDeletedSelect: Array<{ title: string; value: boolean | null }> = [{
     title: this.$vuetify.lang.t('$vuetify.pages.users.filter.active.all'),
     value: null
   }, {
@@ -137,12 +140,12 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
 
   async loadData (search: string, isDeleted: boolean | null, offset: number, limit: number) {
     try {
-      this.tableLoading = true
+      this.loading.table = true
       await UsersStore.loadUsers({ search, isDeleted, offset, limit })
     } catch (err) {
       console.error(err)
     } finally {
-      this.tableLoading = false
+      this.loading.table = false
     }
   }
 

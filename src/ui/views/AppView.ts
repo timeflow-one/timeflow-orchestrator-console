@@ -11,8 +11,8 @@ import AuthStore from '@/store/AuthStore'
   }
 })
 export default class AppView extends Vue {
-  protected isNavigationDrawerShow = false
-  protected menu: Array<MenuItem> = [
+  isNavigationDrawerShow = false
+  menu: Array<MenuItem> = [
     {
       ...InstancesRoute,
       icon: 'mdi-database'
@@ -56,11 +56,11 @@ export default class AppView extends Vue {
     })
   }
 
-  protected get isAppbarProgress () {
+  get isAppbarProgress () {
     return false
   }
 
-  protected get hasShowUi () {
+  get hasShowUi () {
     switch (this.$route.name) {
       case LoginRoute.name:
       case NotFoundRoute.name:
@@ -71,15 +71,15 @@ export default class AppView extends Vue {
     }
   }
 
-  protected get appbarMenu () {
+  get appbarMenu () {
     return AppbarMenuStore.items
   }
 
-  protected get isAppbarMenuShow () {
+  get isAppbarMenuShow () {
     return AppbarMenuStore.isShow
   }
 
-  protected get isAuth () {
+  get isAuth () {
     return AuthStore.isAuth
   }
 

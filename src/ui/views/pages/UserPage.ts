@@ -8,7 +8,7 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class UserPage extends Vue {
-  form: FormItem = {
+  readonly form: FormItem = {
     name: {
       value: '',
       rules: [
@@ -39,7 +39,7 @@ export default class UserPage extends Vue {
     }
   }
 
-  loading = {
+  readonly loading = {
     card: false,
     submit: false
   }

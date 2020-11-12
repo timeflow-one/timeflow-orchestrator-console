@@ -3,11 +3,11 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class NavigationDrawerUserCard extends Vue {
-  protected logout () {
+  logout () {
     AuthStore.logout()
   }
 
-  protected get profile () {
+  get profile () {
     return AuthStore.profile
   }
 }

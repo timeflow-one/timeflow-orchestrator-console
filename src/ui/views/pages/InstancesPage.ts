@@ -18,7 +18,7 @@ import { CreateInstanceRoute, InstanceRoute, InstancesRoute } from '@/router'
 })
 export default class InstancesPage extends Vue implements Filtrable<Filter> {
   /// --- TABLE ---
-  protected readonly tableHeaders: Array<TableHeader> = [
+  readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
       align: 'start',
@@ -77,11 +77,14 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
     }
   ]
 
-  protected tableLoading = false
-  protected tableOptions!: TableOptions
+  readonly loading = {
+    table: false
+  }
+
+  tableOptions!: TableOptions
   /// --- END TABLE ---
   /// --- FILTERS ---
-  filters = {
+  readonly filters = {
     query: ''
   }
 
@@ -100,7 +103,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
   }
   /// --- END FILTERS ---
 
-  protected mounted () {
+  mounted () {
     // добавляет кнопку меню в toolbar
     AppbarMenuStore.setItems([{
       title: this.$vuetify.lang.t('$vuetify.pages.instances.action.add'),
@@ -118,7 +121,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
     })
   }
 
-  protected beforeDestroy () {
+  beforeDestroy () {
     AppbarMenuStore.clean()
   }
 
@@ -132,12 +135,12 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
 
   async loadData (search: string, offset: number, limit: number) {
     try {
-      this.tableLoading = true
+      this.loading.table = true
       await InstancesStore.loadInstances({ search, offset, limit })
     } catch (err) {
       console.error(err)
     } finally {
-      this.tableLoading = false
+      this.loading.table = false
     }
   }
 

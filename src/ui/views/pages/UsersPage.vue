@@ -6,7 +6,7 @@
       :items="tableItems"
       :server-items-length="totalItems"
       :search="filters.query"
-      :loading="tableLoading"
+      :loading="loading.table"
       @options="onOptionsChanged"
     >
       <template slot="top">

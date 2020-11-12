@@ -5,23 +5,23 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LoginForm extends Vue {
-  protected readonly login = ''
-  protected readonly password = ''
-  protected readonly isFormValid = false
-  protected isShowPass = false
-  protected loadingState = false
-  protected readonly loginRules: Array<Rule> = [
+  readonly login = ''
+  readonly password = ''
+  readonly isFormValid = false
+  isShowPass = false
+  loadingState = false
+  readonly loginRules: Array<Rule> = [
     (value) => value.length > 0 || this.$vuetify.lang.t('$vuetify.login.error.empty_field'),
     (value) => !value.match(/\s/) || this.$vuetify.lang.t('$vuetify.login.error.no_spaces'),
     (value) => !!value.match(emailRegex) || this.$vuetify.lang.t('$vuetify.login.error.email_format_invalid')
   ]
 
-  protected readonly passwordRules: Array<Rule> = [
+  readonly passwordRules: Array<Rule> = [
     (value) => value.length > 0 || this.$vuetify.lang.t('$vuetify.login.error.empty_field'),
     (value) => !value.match(/\s/) || this.$vuetify.lang.t('$vuetify.login.error.no_spaces')
   ]
 
-  protected async submit () {
+  async submit () {
     try {
       this.loadingState = true
 

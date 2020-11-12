@@ -13,7 +13,7 @@ import DataTable from '@/ui/components/DataTable.vue'
 })
 export default class PlansPage extends Vue {
   /// --- TABLE ---
-  protected readonly tableHeaders: Array<TableHeader> = [
+  readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
       align: 'start',
@@ -64,11 +64,14 @@ export default class PlansPage extends Vue {
     }
   ]
 
-  protected tableLoading = false
-  protected tableOptions!: TableOptions
+  readonly loading = {
+    table: false
+  }
+
+  tableOptions!: TableOptions
   /// --- END TABLE ---
 
-  protected mounted () {
+  mounted () {
     // добавляет кнопку меню в toolbar
     AppbarMenuStore.setItems([{
       title: this.$vuetify.lang.t('$vuetify.pages.plans.action.add'),
@@ -87,14 +90,18 @@ export default class PlansPage extends Vue {
     })
   }
 
+  beforeDestroy () {
+    AppbarMenuStore.clean()
+  }
+
   async loadData (offset: number, limit: number) {
     try {
-      this.tableLoading = true
+      this.loading.table = true
       await PlansStore.loadPlans({ offset, limit })
     } catch (err) {
       console.error(err)
     } finally {
-      this.tableLoading = false
+      this.loading.table = false
     }
   }
 
