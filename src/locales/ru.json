@@ -15,7 +15,7 @@
       "login": "Авторизация • Оркестратор Timeflow",
       "instances": "Инстансы • Оркестратор Timeflow",
       "instance": "Инстансы • Оркестратор Timeflow",
-      "add-instance": "Добавление инстанса • Оркестратор Timeflow",
+      "create_instance": "Добавление инстанса • Оркестратор Timeflow",
       "users": "Пользователи • Оркестратор Timeflow",
       "user": "Пользователи • Оркестратор Timeflow",
       "licenses": "Лицензии • Оркестратор Timeflow",
@@ -72,7 +72,7 @@
     "menu": {
       "instances": "Инстансы",
       "instance": "Инстансы",
-      "add-instance": "Инстансы",
+      "create_instance": "Инстансы",
       "users": "Пользователи",
       "user": "Пользователи",
       "licenses": "Лицензии",

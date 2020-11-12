@@ -108,6 +108,8 @@ export default class CreateInstancePage extends Vue {
 
   mounted () {
     PlansPageStore.loadPlans({ limit: -1, offset: 0 })
+    // устанавливает фокус на первом поле при загрузке страницы
+    this.setFocusOnFirstField()
   }
 
   isStepButtonEnabled (step: number) {
@@ -187,17 +189,16 @@ export default class CreateInstancePage extends Vue {
     return `${day}.${month}.${year}`
   }
 
+  setFocusOnFirstField () {
+    this.$nextTick(() => {
+      setTimeout(() => {
+        // @ts-expect-error
+        this.$refs.focusedField.$refs.input.focus()
+      }, 0)
+    })
+  }
+
   get isSubmitButtonEnabled () {
-    try {
-      // @ts-expect-error
-      return Array.from({ length: this.stepper.limit }, (_, i) => this.$refs[`stepForm${i}`].validate())
-        .every(it => it)
-    } catch (err) {
-      console.log('catch')
-
-      return false
-    }
-
     return Object.keys(this.form)
       .map(it => this.form[it].rules)
       .reduce((prev, current) => prev.concat(current), [])

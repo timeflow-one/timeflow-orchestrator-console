@@ -16,13 +16,13 @@
 
         <v-stepper-content step="1">
           <v-form
-            ref="stepForm1"
             :disabled="stepper.step != 1"
-            @submit.prevent="null"
+            @submit.prevent=""
           >
             <v-row>
               <v-col>
                 <v-text-field
+                  ref="focusedField"
                   tabindex="1"
                   v-model="form.instance_name.value"
                   :rules="form.instance_name.rules"
@@ -51,8 +51,8 @@
 
         <v-stepper-content step="2">
           <v-form
-            ref="stepForm2"
             :disabled="stepper.step != 2"
+            @submit.prevent=""
           >
             <v-row>
               <v-col
@@ -132,8 +132,8 @@
 
         <v-stepper-content step="3">
           <v-form
-            ref="stepForm3"
             :disabled="stepper.step != 3"
+            @submit.prevent=""
           >
             <v-row>
               <v-col
@@ -161,7 +161,6 @@
                   ref="expiredDateDialog"
                   v-model="expiredDatePickerDialog"
                   :return-value.sync="form.expired_at"
-                  persistent
                   width="290px"
                 >
                   <template
@@ -177,6 +176,7 @@
                       readonly
                       v-bind="attrs"
                       v-on="on"
+                      @keypress.space="on.click"
                     />
                   </template>
 
@@ -249,8 +249,8 @@
 
         <v-stepper-content step="4">
           <v-form
-            ref="stepForm4"
             :disabled="stepper.step != 4"
+            @submit.prevent=""
           >
             <v-row>
               <v-col
