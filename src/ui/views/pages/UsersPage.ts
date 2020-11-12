@@ -154,10 +154,10 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
     this.$router.replace(UsersRoute)
   }
 
-  clickOnRow (value: UserModel) {
+  clickOnRow (item: UserModel) {
     this.$router.push({
       ...UserRoute,
-      params: { id: value.id.toString() }
+      params: { id: item.id.toString() }
     })
   }
 }

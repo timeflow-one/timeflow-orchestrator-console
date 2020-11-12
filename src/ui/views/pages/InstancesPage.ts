@@ -154,10 +154,10 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
     this.$router.replace(InstancesRoute)
   }
 
-  clickOnRow (value: InstanceModel) {
+  clickOnRow (item: InstanceModel) {
     this.$router.push({
       ...InstanceRoute,
-      params: { id: value.id.toString() }
+      params: { id: item.id.toString() }
     })
   }
 }
