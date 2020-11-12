@@ -69,9 +69,9 @@
           </td>
           <td class="text-start user-select-none">
             <v-chip
+              class="cursor-pointer ma-1"
               v-for="(role, index) in item.role.split(',')"
               :key="index"
-              class="ma-1"
               color="grey lighten-4"
             >
               {{ $vuetify.lang.t(`$vuetify.timeflow.roles.${role}`) }}

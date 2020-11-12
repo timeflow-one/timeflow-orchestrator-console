@@ -55,13 +55,20 @@
             <span>{{ item.count }}</span>
           </td>
           <td class="text-start user-select-none">
-            <v-chip color="grey lighten-4">{{ item.created_at }}</v-chip>
+            <v-chip
+              class="cursor-pointer"
+              color="grey lighten-4"
+            >{{ item.created_at }}</v-chip>
           </td>
           <td class="text-start user-select-none">
-            <v-chip color="grey lighten-4">{{ item.expires_at }}</v-chip>
+            <v-chip
+              class="cursor-pointer"
+              color="grey lighten-4"
+            >{{ item.expires_at }}</v-chip>
           </td>
           <td class="text-center user-select-none">
             <v-chip
+              class="cursor-pointer"
               v-if="item.state"
               color="error lighten-1"
             >{{ $vuetify.lang.t('$vuetify.pages.instances.table.need_update_lic') }}</v-chip>
