@@ -1,17 +1,38 @@
 <template>
   <v-card>
-    <v-card-title v-if="!loading.card">
-      {{ $vuetify.lang.t('$vuetify.pages.user.title', title) }}
+    <v-card-title>
+      <span v-if="!loading.card">{{ $vuetify.lang.t('$vuetify.pages.user.title', title) }}</span>
     </v-card-title>
-    <v-card-title
-      v-if="loading.card"
-      class="justify-center"
-    >
-      <v-progress-circular
-        color="primary"
-        indeterminate
-      />
-    </v-card-title>
+    <v-card-text v-if="loading.card">
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-skeleton-loader type="text" />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-skeleton-loader type="text" />
+        </v-col>
+      </v-row>
+      <v-row align="center">
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-skeleton-loader type="text" />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-skeleton-loader type="text" />
+        </v-col>
+      </v-row>
+    </v-card-text>
     <v-card-text v-if="!loading.card">
       <v-row>
         <v-col
