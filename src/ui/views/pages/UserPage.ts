@@ -2,6 +2,7 @@ import { UserResponse } from '@/api/responses/UserResponse'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { Role } from '@/models/Roles'
 import { UsersRoute } from '@/router'
+import { emailRegex } from '@/utils/EmailRegex'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
 import { Component, Vue } from 'vue-property-decorator'
 
@@ -20,7 +21,7 @@ export default class UserPage extends Vue {
       rules: [
         () => this.form.email.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
         () => !this.form.email.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces'),
-        () => !!this.form.email.value.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX)) || this.$vuetify.lang.t('$vuetify.common.error.email_format_invalid')
+        () => !!this.form.email.value.match(emailRegex) || this.$vuetify.lang.t('$vuetify.common.error.email_format_invalid')
       ]
     },
     roles: {

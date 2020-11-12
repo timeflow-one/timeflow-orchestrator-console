@@ -1,5 +1,6 @@
 import { InstancesRoute } from '@/router'
 import AuthStore from '@/store/AuthStore'
+import { emailRegex } from '@/utils/EmailRegex'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
@@ -12,7 +13,7 @@ export default class LoginForm extends Vue {
   protected readonly loginRules: Array<Rule> = [
     (value) => value.length > 0 || this.$vuetify.lang.t('$vuetify.login.error.empty_field'),
     (value) => !value.match(/\s/) || this.$vuetify.lang.t('$vuetify.login.error.no_spaces'),
-    (value) => !!value.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX)) || this.$vuetify.lang.t('$vuetify.login.error.email_format_invalid')
+    (value) => !!value.match(emailRegex) || this.$vuetify.lang.t('$vuetify.login.error.email_format_invalid')
   ]
 
   protected readonly passwordRules: Array<Rule> = [

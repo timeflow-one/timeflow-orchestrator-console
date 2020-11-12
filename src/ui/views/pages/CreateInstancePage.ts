@@ -4,6 +4,7 @@ import PasswordComponent from '@/ui/components/PasswordComponent.vue'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { ruleMessageToResult, ruleMessageToRule } from '@/utils/ruleMessageToRule'
 import PlansPageStore from '@/store/PlansPageStore'
+import { emailRegex as emailRegexp } from '@/utils/EmailRegex'
 
 @Component({
   components: {
@@ -14,7 +15,8 @@ export default class CreateInstancePage extends Vue {
   expiredDatePickerDialog = false
   loading = false
   stepper = {
-    step: 1
+    step: 1,
+    limit: 4
   }
 
   form: FormItem = {
@@ -92,7 +94,7 @@ export default class CreateInstancePage extends Vue {
       rules: [
         () => this.form.user_email.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
         () => !this.form.user_email.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces'),
-        () => !!this.form.user_email.value.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX)) || this.$vuetify.lang.t('$vuetify.common.error.email_format_invalid')
+        () => !!this.form.user_email.value.match(emailRegexp) || this.$vuetify.lang.t('$vuetify.common.error.email_format_invalid')
       ]
     },
     user_pass: {
@@ -186,6 +188,16 @@ export default class CreateInstancePage extends Vue {
   }
 
   get isSubmitButtonEnabled () {
+    try {
+      // @ts-expect-error
+      return Array.from({ length: this.stepper.limit }, (_, i) => this.$refs[`stepForm${i}`].validate())
+        .every(it => it)
+    } catch (err) {
+      console.log('catch')
+
+      return false
+    }
+
     return Object.keys(this.form)
       .map(it => this.form[it].rules)
       .reduce((prev, current) => prev.concat(current), [])

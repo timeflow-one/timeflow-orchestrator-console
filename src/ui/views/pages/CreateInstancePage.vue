@@ -16,6 +16,7 @@
 
         <v-stepper-content step="1">
           <v-form
+            ref="stepForm1"
             :disabled="stepper.step != 1"
             @submit.prevent="null"
           >
@@ -49,7 +50,10 @@
         </v-stepper-step>
 
         <v-stepper-content step="2">
-          <v-form :disabled="stepper.step != 2">
+          <v-form
+            ref="stepForm2"
+            :disabled="stepper.step != 2"
+          >
             <v-row>
               <v-col
                 cols="12"
@@ -127,7 +131,10 @@
         </v-stepper-step>
 
         <v-stepper-content step="3">
-          <v-form :disabled="stepper.step != 3">
+          <v-form
+            ref="stepForm3"
+            :disabled="stepper.step != 3"
+          >
             <v-row>
               <v-col
                 cols="12"
@@ -241,7 +248,10 @@
         </v-stepper-step>
 
         <v-stepper-content step="4">
-          <v-form :disabled="stepper.step != 4">
+          <v-form
+            ref="stepForm4"
+            :disabled="stepper.step != 4"
+          >
             <v-row>
               <v-col
                 cols="12"
