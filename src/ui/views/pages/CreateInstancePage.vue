@@ -310,4 +310,4 @@
   </v-card>
 </template>
 
-<script src="./AddInstancePage" lang="ts" />
+<script src="./CreateInstancePage" lang="ts" />

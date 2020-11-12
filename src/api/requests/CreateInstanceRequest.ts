@@ -1,4 +1,4 @@
-export interface AddInstanceRequest {
+export interface CreateInstanceRequest {
   instance: Instance;
   user: User;
 }

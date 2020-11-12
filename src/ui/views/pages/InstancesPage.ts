@@ -7,7 +7,7 @@ import DataTable from '@/ui/components/DataTable.vue'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import InstancesPageStore, { InstanceModel } from '@/store/InstancesPageStore'
 import { Filtrable } from './interfaces/Filtrable'
-import { AddInstanceRoute, InstanceRoute, InstancesRoute } from '@/router'
+import { CreateInstanceRoute, InstanceRoute, InstancesRoute } from '@/router'
 
 @Component({
   components: {
@@ -106,7 +106,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
       title: this.$vuetify.lang.t('$vuetify.pages.instances.action.add'),
       icon: 'mdi-database-plus',
       action: () => {
-        this.$router.push(AddInstanceRoute)
+        this.$router.push(CreateInstanceRoute)
       }
     }])
 

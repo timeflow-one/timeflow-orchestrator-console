@@ -10,7 +10,7 @@ import PlansPageStore from '@/store/PlansPageStore'
     PasswordComponent
   }
 })
-export default class AddInstancePage extends Vue {
+export default class CreateInstancePage extends Vue {
   expiredDatePickerDialog = false
   loading = false
   stepper = {
@@ -201,7 +201,7 @@ export default class AddInstancePage extends Vue {
     try {
       this.stepper.step = 5
       this.loading = true
-      await TimeflowOrchestratorProvider.getInstance().addInstance({
+      await TimeflowOrchestratorProvider.getInstance().createInstance({
         instance: {
           name: this.form.instance_name.value,
           db_host: this.form.db_host.value,

@@ -1,4 +1,4 @@
-export interface AddInstanceResponse {
+export interface CreateInstanceResponse {
   success: boolean;
   instance: Instance;
 }
