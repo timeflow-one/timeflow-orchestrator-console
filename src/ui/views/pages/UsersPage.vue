@@ -15,7 +15,7 @@
             v-model="filters.query"
             class="mr-4"
             max-width="450px"
-            :placeholder="$vuetify.lang.t('$vuetify.common.table.search_input')"
+            :placeholder="$vuetify.lang.t('$vuetify.common.table.label.search_input')"
           />
 
           <v-select
@@ -36,10 +36,10 @@
             :text="$vuetify.breakpoint.mdAndUp"
             :icon="!$vuetify.breakpoint.mdAndUp"
             :disabled="isFilteresDefault"
-            :title="$vuetify.lang.t(`$vuetify.common.actions.clear_filter`)"
+            :title="$vuetify.lang.t(`$vuetify.common.action.clear_filter`)"
             @click="clearFitlers"
           >
-            <span v-if="$vuetify.breakpoint.mdAndUp">{{ $vuetify.lang.t(`$vuetify.common.actions.clear_filter`) }}</span>
+            <span v-if="$vuetify.breakpoint.mdAndUp">{{ $vuetify.lang.t(`$vuetify.common.action.clear_filter`) }}</span>
             <v-icon v-else>mdi-filter-remove-outline</v-icon>
           </v-btn>
         </FiltersContainer>
@@ -51,7 +51,10 @@
         slot="item"
         slot-scope="{ item }"
       >
-        <tr class="cursor-pointer" @click="clickOnRow(item)">
+        <tr
+          class="cursor-pointer"
+          @click="clickOnRow(item)"
+        >
           <td class="text-start user-select-none">
             <span>{{ item.id }}</span>
           </td>
@@ -71,7 +74,7 @@
               class="ma-1"
               color="grey lighten-4"
             >
-              {{ $vuetify.lang.t(`$vuetify.pages.users.table.roles.${role}`) }}
+              {{ $vuetify.lang.t(`$vuetify.timeflow.roles.${role}`) }}
             </v-chip>
           </td>
           <td class="text-center user-select-none">
@@ -85,7 +88,7 @@
               color="primary"
               text
               disabled
-            >{{ $vuetify.lang.t('$vuetify.pages.users.actions.enter') }}</v-btn>
+            >{{ $vuetify.lang.t('$vuetify.pages.users.action.enter') }}</v-btn>
           </td>
         </tr>
       </template>

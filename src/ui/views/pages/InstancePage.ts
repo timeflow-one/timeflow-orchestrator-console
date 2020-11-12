@@ -15,50 +15,50 @@ export default class InstancePage extends Vue {
     instance_name: {
       value: '',
       rules: [
-        () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.instance_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.instance_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     db_host: {
       value: '',
       rules: [
-        () => this.form.db_host.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.db_host.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.db_host.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.db_host.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     db_name: {
       value: '',
       rules: [
-        () => this.form.db_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.db_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.db_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.db_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     db_user: {
       value: '',
       rules: [
-        () => this.form.db_user.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.db_user.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.db_user.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.db_user.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     db_pass: {
       value: '',
       rules: [
-        () => this.form.db_pass.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.db_pass.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.db_pass.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.db_pass.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     vi_key: {
       value: '',
       rules: [
-        () => this.form.vi_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.vi_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.vi_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.vi_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     geo_key: {
       value: '',
       rules: [
-        () => this.form.geo_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.geo_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.geo_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.geo_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     }
   }
@@ -93,7 +93,7 @@ export default class InstancePage extends Vue {
         // TODO (2020.11.10): Error handling
         switch (err.response.status) {
           case 400: {
-            alert(this.$vuetify.lang.t('$vuetify.pages.instance.errors.400'))
+            alert(this.$vuetify.lang.t('$vuetify.pages.instance.error.400'))
             this.$router.replace(InstancesRoute)
           }
         }
@@ -137,7 +137,7 @@ export default class InstancePage extends Vue {
   async remove () {
     try {
       this.loading.remove = true
-      const isMustBeRemoved = confirm(this.$vuetify.lang.t('$vuetify.pages.instance.titles.confirm_remove', this.title))
+      const isMustBeRemoved = confirm(this.$vuetify.lang.t('$vuetify.pages.instance.label.confirm_remove', this.title))
 
       if (isMustBeRemoved) {
         await TimeflowOrchestratorProvider

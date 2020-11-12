@@ -21,85 +21,85 @@ export default class AddInstancePage extends Vue {
     instance_name: {
       value: '',
       rules: [
-        () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.instance_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.instance_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     db_host: {
       value: '',
       rules: [
-        () => this.form.db_host.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.db_host.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.db_host.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.db_host.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     db_name: {
       value: '',
       rules: [
-        () => this.form.db_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.db_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.db_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.db_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     db_user: {
       value: '',
       rules: [
-        () => this.form.db_user.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.db_user.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.db_user.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.db_user.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     db_pass: {
       value: '',
       rules: [
-        () => this.form.db_pass.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.db_pass.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.db_pass.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.db_pass.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     plan: {
       value: -1,
       rules: [
-        () => this.form.plan.value > -1 || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+        () => this.form.plan.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     expired_at: {
       value: '',
       rules: [
-        () => this.form.expired_at.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.expired_at.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.expired_at.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.expired_at.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     vi_key: {
       value: '',
       rules: [
-        () => this.form.vi_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.vi_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.vi_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.vi_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     geo_key: {
       value: '',
       rules: [
-        () => this.form.geo_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.geo_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.geo_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.geo_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     username: {
       value: '',
       rules: [
-        () => this.form.username.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.username.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.username.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.username.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     user_email: {
       value: '',
       rules: [
-        () => this.form.user_email.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.user_email.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces'),
-        () => !!this.form.user_email.value.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX)) || this.$vuetify.lang.t('$vuetify.common.errors.email_format_invalid')
+        () => this.form.user_email.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.user_email.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces'),
+        () => !!this.form.user_email.value.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX)) || this.$vuetify.lang.t('$vuetify.common.error.email_format_invalid')
       ]
     },
     user_pass: {
       value: '',
       rules: [
-        () => this.form.user_pass.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.user_pass.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.user_pass.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.user_pass.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     }
   }
@@ -227,7 +227,7 @@ export default class AddInstancePage extends Vue {
 
       switch (err.response?.data?.exception?.message) {
         case 'Неверный ключ подключения к системе видеоидентификации': {
-          alert(this.$vuetify.lang.t('$vuetify.pages.add_instance.errors.invalid_vi_key'))
+          alert(this.$vuetify.lang.t('$vuetify.pages.add_instance.error.invalid_vi_key'))
           this.stepper.step = 3
           break
         }

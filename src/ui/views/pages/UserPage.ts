@@ -11,29 +11,29 @@ export default class UserPage extends Vue {
     name: {
       value: '',
       rules: [
-        () => this.form.name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     email: {
       value: '',
       rules: [
-        () => this.form.email.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.email.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces'),
-        () => !!this.form.email.value.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX)) || this.$vuetify.lang.t('$vuetify.common.errors.email_format_invalid')
+        () => this.form.email.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.email.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces'),
+        () => !!this.form.email.value.match(new RegExp(process.env.VUE_APP_EMAIL_REGEX)) || this.$vuetify.lang.t('$vuetify.common.error.email_format_invalid')
       ]
     },
     roles: {
       value: [],
       rules: [
-        () => this.form.roles.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field')
+        () => this.form.roles.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     instance_name: {
       value: '',
       rules: [
-        () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.errors.required_field'),
-        () => !this.form.instance_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.errors.no_spaces')
+        () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+        () => !this.form.instance_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     }
   }
@@ -64,7 +64,7 @@ export default class UserPage extends Vue {
         // TODO (2020.11.10): Error handling
         switch (err.response.status) {
           case 400: {
-            alert(this.$vuetify.lang.t('$vuetify.pages.instance.errors.400'))
+            alert(this.$vuetify.lang.t('$vuetify.pages.instance.error.400'))
             this.$router.replace(UsersRoute)
           }
         }
@@ -120,32 +120,32 @@ export default class UserPage extends Vue {
   get roles () {
     return [
       {
-        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.OWNER}`),
+        text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.OWNER}`),
         value: Role.OWNER,
         disabled: false
       },
       {
-        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.ADMIN}`),
+        text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.ADMIN}`),
         value: Role.ADMIN,
         disabled: false
       },
       {
-        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.MANAGER}`),
+        text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.MANAGER}`),
         value: Role.MANAGER,
         disabled: false
       },
       {
-        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.HR}`),
+        text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.HR}`),
         value: Role.HR,
         disabled: false
       },
       {
-        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.ANALYST}`),
+        text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.ANALYST}`),
         value: Role.ANALYST,
         disabled: false
       },
       {
-        text: this.$vuetify.lang.t(`$vuetify.pages.user.roles.${Role.ORCHESTRATOR}`),
+        text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.ORCHESTRATOR}`),
         value: Role.ORCHESTRATOR,
         disabled: true
       }

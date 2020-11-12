@@ -8,7 +8,7 @@
     :options.sync="options"
     :mobile-breakpoint="0"
     :items-per-page="20"
-    :no-data-text="$vuetify.lang.t('$vuetify.common.table.list_empty')"
+    :no-data-text="$vuetify.lang.t('$vuetify.common.table.label.list_empty')"
     :loading-text="$vuetify.lang.t('$vuetify.common.table.loading')"
     :footer-props="{'items-per-page-options': [20, 50, 100, -1]}"
   >

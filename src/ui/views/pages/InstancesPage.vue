@@ -14,7 +14,7 @@
           <SearchField
             v-model="filters.query"
             max-width="450px"
-            :placeholder="$vuetify.lang.t('$vuetify.common.table.search_input')"
+            :placeholder="$vuetify.lang.t('$vuetify.common.table.label.search_input')"
           />
 
           <v-spacer class="mx-2" />
@@ -23,10 +23,10 @@
             :text="$vuetify.breakpoint.mdAndUp"
             :icon="!$vuetify.breakpoint.mdAndUp"
             :disabled="!isFilteresDefault"
-            :title="$vuetify.lang.t(`$vuetify.common.actions.clear_filter`)"
+            :title="$vuetify.lang.t(`$vuetify.common.action.clear_filter`)"
             @click="clearFitlers"
           >
-            <span v-if="$vuetify.breakpoint.mdAndUp">{{ $vuetify.lang.t(`$vuetify.common.actions.clear_filter`) }}</span>
+            <span v-if="$vuetify.breakpoint.mdAndUp">{{ $vuetify.lang.t(`$vuetify.common.action.clear_filter`) }}</span>
             <v-icon v-else>mdi-filter-remove-outline</v-icon>
           </v-btn>
         </FiltersContainer>
@@ -38,7 +38,10 @@
         slot="item"
         slot-scope="{ item }"
       >
-        <tr class="cursor-pointer" @click="clickOnRow(item)">
+        <tr
+          class="cursor-pointer"
+          @click="clickOnRow(item)"
+        >
           <td class="text-start user-select-none">
             <span>{{ item.id }}</span>
           </td>

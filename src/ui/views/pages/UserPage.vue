@@ -21,7 +21,7 @@
           <v-text-field
             v-model="form.name.value"
             :rules="form.name.rules"
-            :label="$vuetify.lang.t('$vuetify.pages.user.form.labels.0')"
+            :label="$vuetify.lang.t('$vuetify.pages.user.form.label.0')"
           />
         </v-col>
         <v-col
@@ -31,7 +31,7 @@
           <v-text-field
             v-model="form.email.value"
             :rules="form.email.rules"
-            :label="$vuetify.lang.t('$vuetify.pages.user.form.labels.1')"
+            :label="$vuetify.lang.t('$vuetify.pages.user.form.label.1')"
           />
         </v-col>
       </v-row>
@@ -44,7 +44,7 @@
             v-model="form.instance_name.value"
             disabled
             :rules="form.instance_name.rules"
-            :label="$vuetify.lang.t('$vuetify.pages.user.form.labels.2')"
+            :label="$vuetify.lang.t('$vuetify.pages.user.form.label.2')"
           />
         </v-col>
         <v-col
@@ -57,7 +57,7 @@
             :disabled="isRolesEnabled"
             multiple
             chips
-            :label="$vuetify.lang.t('$vuetify.pages.user.form.labels.3')"
+            :label="$vuetify.lang.t('$vuetify.pages.user.form.label.3')"
           />
         </v-col>
       </v-row>
@@ -66,7 +66,7 @@
       <v-btn
         text
         @click="cancel"
-      >{{ $vuetify.lang.t('$vuetify.common.actions.cancel') }}</v-btn>
+      >{{ $vuetify.lang.t('$vuetify.common.action.cancel') }}</v-btn>
       <v-spacer />
       <v-btn
         color="primary"
@@ -74,7 +74,7 @@
         :loading="loading.submit"
         :disabled="!isSubmitButtonEnabled"
         @click="submit"
-      >{{ $vuetify.lang.t('$vuetify.common.actions.edit') }}</v-btn>
+      >{{ $vuetify.lang.t('$vuetify.common.action.edit') }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>

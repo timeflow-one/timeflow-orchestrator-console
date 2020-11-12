@@ -17,7 +17,7 @@
         <v-text-field
           color="primary lighten-1"
           v-model="login"
-          :label="$vuetify.lang.t('$vuetify.login.login')"
+          :label="$vuetify.lang.t('$vuetify.login.label.login')"
           :rules="loginRules"
         />
         <v-text-field
@@ -25,7 +25,7 @@
           color="primary lighten-1"
           v-model="password"
           :rules="passwordRules"
-          :label="$vuetify.lang.t('$vuetify.login.password')"
+          :label="$vuetify.lang.t('$vuetify.login.label.password')"
           :type="isShowPass ? 'text' : 'password'"
           :append-icon="password.length > 0 ? isShowPass ? 'mdi-eye-off' : 'mdi-eye' : ''"
           @click:append="() => isShowPass = !isShowPass"
@@ -41,7 +41,7 @@
           :loading="loadingState"
           @click="submit"
         >
-          {{ $vuetify.lang.t("$vuetify.login.actions.auth") }}
+          {{ $vuetify.lang.t("$vuetify.common.action.login") }}
         </v-btn>
       </v-card-actions>
     </v-card>

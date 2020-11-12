@@ -24,7 +24,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.0'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.0'),
       width: '6%'
     },
     {
@@ -32,7 +32,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.1'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.1'),
       width: '22%'
     },
     {
@@ -40,7 +40,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.2'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.2'),
       width: '15%'
     },
     {
@@ -48,7 +48,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.3'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.3'),
       width: '15%'
     },
     {
@@ -56,7 +56,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.4'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.4'),
       width: '15%'
     },
     {
@@ -64,7 +64,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
       align: 'start',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.5'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.5'),
       width: '18%'
     },
     {
@@ -72,7 +72,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
       align: 'center',
       sortable: false,
       divider: false,
-      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.headers.6'),
+      text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.6'),
       width: '13%'
     }
   ]
@@ -103,7 +103,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
   protected mounted () {
     // добавляет кнопку меню в toolbar
     AppbarMenuStore.setItems([{
-      title: this.$vuetify.lang.t('$vuetify.pages.instances.actions.add'),
+      title: this.$vuetify.lang.t('$vuetify.pages.instances.action.add'),
       icon: 'mdi-database-plus',
       action: () => {
         this.$router.push(AddInstanceRoute)
