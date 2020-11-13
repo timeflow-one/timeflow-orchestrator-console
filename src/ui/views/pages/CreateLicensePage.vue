@@ -7,9 +7,13 @@
           cols="12"
           sm="6"
         >
-          <v-select
+          <v-autocomplete
+            ref="focusedField"
             tabindex="1"
             v-model="form.instance.value"
+            :items="instances"
+            :disabled="instances.length <= 0"
+            :loading="instances.length <= 0"
             :rules="form.instance.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.0')"
           />
@@ -21,6 +25,9 @@
           <v-select
             tabindex="2"
             v-model="form.plan.value"
+            :items="plans"
+            :disabled="plans.length <= 0"
+            :loading="plans.length <= 0"
             :rules="form.plan.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.1')"
           />
@@ -43,6 +50,9 @@
           <v-select
             tabindex="4"
             v-model="form.duration.value"
+            :items="durations"
+            :disabled="durations.length <= 0"
+            :loading="durations.length <= 0"
             :rules="form.duration.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.3')"
           />
@@ -53,6 +63,7 @@
         >
           <v-text-field
             v-model="form.expired_at.value"
+            prepend-icon="mdi-calendar"
             :rules="form.expired_at.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.4')"
             :placeholder="$vuetify.lang.t('$vuetify.pages.create_license.form.placeholder.4')"

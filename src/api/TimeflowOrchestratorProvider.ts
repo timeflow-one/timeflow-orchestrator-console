@@ -1,9 +1,11 @@
 import { PreferenceKey } from '@/utils/PreferenceKey'
 import Axios, { AxiosResponse } from 'axios'
 import { CreateInstanceRequest } from './requests/CreateInstanceRequest'
+import { CreateLicenseRequest } from './requests/CreateLicenseRequest'
 import { UpdateInstanceRequest } from './requests/UpdateInstanceRequest'
 import { UpdateUserRequest } from './requests/UpdateUserRequest'
 import { CreateInstanceResponse } from './responses/CreateInstanceResponse'
+import { DurationsResponse } from './responses/DurationsResponse'
 import { InstanceResponse } from './responses/InstanceResponse'
 import { InstancesResponse } from './responses/InstancesResponse'
 import { LicensesResponse } from './responses/LicensesResponse'
@@ -112,6 +114,19 @@ export class TimeflowOrchestratorProvider {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
       offset,
       limit
+    })
+  }
+
+  public createLicense (request: CreateLicenseRequest): Promise<AxiosResponse<any>> {
+    return this.api.post('/app/licenses/create', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      ...request
+    })
+  }
+
+  public durations (): Promise<AxiosResponse<DurationsResponse>> {
+    return this.api.post('/app/instances/durations', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY)
     })
   }
 }
