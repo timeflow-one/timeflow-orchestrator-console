@@ -34,19 +34,19 @@ export default class DataTable extends Vue {
   private page = 1
 
   @Prop({ required: true })
-  headers: any
+  headers!: Array<any>
 
   @Prop({ required: true })
-  items: any
+  items!: Array<any>
 
   @Prop({ required: true })
-  loading: any
+  loading!: boolean
 
   @Prop({ required: true })
-  serverItemsLength: any
+  serverItemsLength!: number
 
   @Prop({ required: false })
-  search: any
+  search!: string
 
   @Watch('options', { deep: true })
   onOptionsChanged (value: TableOptions) {

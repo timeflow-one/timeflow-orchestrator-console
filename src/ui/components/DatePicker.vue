@@ -47,17 +47,17 @@ export default class DatePicker extends Vue {
   private readonly dialog = false
   private readonly date = ''
 
-  @Prop({ required: false })
-  rules: any
+  @Prop({ required: false, default: () => [] })
+  rules!: Array<string | boolean>
 
   @Prop({ required: false })
-  label: string
+  label!: string
 
   @Prop({ default: -1 })
-  tabindex: number
+  tabindex!: number
 
   @Prop({ default: () => { return (value: string) => value } })
-  parser: (value: string) => string
+  parser!: (value: string) => string
 
   get parsedDate () {
     return this.date !== '' ? this.parser(this.date) : this.date
