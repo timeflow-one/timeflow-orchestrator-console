@@ -10,7 +10,7 @@
       slot-scope="{ on, attrs }"
     >
       <v-text-field
-        v-model="localeDate"
+        v-model="parsedDate"
         :tabindex="tabindex"
         :rules="rules"
         :label="label"
@@ -56,13 +56,16 @@ export default class DatePicker extends Vue {
   @Prop({ default: -1 })
   tabindex: number
 
+  @Prop({ default: () => { return (value: string) => value } })
+  parser: (value: string) => string
+
+  get parsedDate () {
+    return this.date !== '' ? this.parser(this.date) : this.date
+  }
+
   commit () {
     // @ts-expect-error
     this.$refs.dialog.save(this.date)
-  }
-
-  get localeDate () {
-    return this.date !== '' ? new Date(this.date).toLocaleDateString() : ''
   }
 
   @Watch('date')

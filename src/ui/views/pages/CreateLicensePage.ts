@@ -63,10 +63,8 @@ export default class CreateLicensePage extends Vue {
         license: {
           instance_id: this.form.instance.value,
           plan_id: this.form.plan.value,
-          // FIXME (2020.11.13): Date format
-          effective_date: new Date(this.form.start_at.value).toISOString().substr(0, 10),
-          // FIXME (2020.11.13): Date format
-          valid_until: new Date(this.form.expired_at.value).toISOString().substr(0, 10)
+          effective_date: this.form.start_at.value,
+          valid_until: this.form.expired_at.value
         }
       })
       this.$router.replace(LicensesRoute)
@@ -122,6 +120,26 @@ export default class CreateLicensePage extends Vue {
     }))
   }
 
+  set startAtLocaleDate (value: string) {
+    this.form.start_at.value = value
+  }
+
+  get startAtLocaleDate () {
+    return this.form.start_at.value !== ''
+      ? new Date(this.form.start_at.value).toLocaleDateString()
+      : this.form.start_at.value
+  }
+
+  set expiredAtLocaleDate (value: string) {
+    this.form.expired_at.value = value
+  }
+
+  get expiredAtLocaleDate () {
+    return this.form.expired_at.value !== ''
+      ? new Date(this.form.expired_at.value).toLocaleDateString()
+      : this.form.expired_at.value
+  }
+
   get isSubmitButtonEnabled () {
     return Object.keys(this.form)
       .map(it => this.form[it].rules)
@@ -137,7 +155,7 @@ export default class CreateLicensePage extends Vue {
         const expiredAtDate = new Date(this.form.start_at.value)
         expiredAtDate.setDate(expiredAtDate.getDate() + Number(value))
 
-        this.form.expired_at.value = expiredAtDate.toLocaleDateString()
+        this.form.expired_at.value = expiredAtDate.toISOString().substr(0, 10)
       }
     } catch (err) {
       this.form.expired_at.value = ''
@@ -151,7 +169,7 @@ export default class CreateLicensePage extends Vue {
         const expiredAtDate = new Date(value)
         expiredAtDate.setDate(expiredAtDate.getDate() + Number(this.form.duration.value))
 
-        this.form.expired_at.value = expiredAtDate.toLocaleDateString()
+        this.form.expired_at.value = expiredAtDate.toISOString().substr(0, 10)
       }
     } catch (err) {
       this.form.expired_at.value = ''

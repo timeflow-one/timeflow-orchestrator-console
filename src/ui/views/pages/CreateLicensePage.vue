@@ -38,8 +38,9 @@
         >
           <DatePicker
             tabindex="3"
-            v-model="form.start_at.value"
+            v-model="startAtLocaleDate"
             :rules="form.start_at.rules"
+            :parser="(value) => new Date(value).toLocaleDateString()"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.2')"
           />
         </v-col>
@@ -62,7 +63,7 @@
           sm="6"
         >
           <v-text-field
-            v-model="form.expired_at.value"
+            v-model="expiredAtLocaleDate"
             prepend-icon="mdi-calendar"
             :rules="form.expired_at.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.4')"
