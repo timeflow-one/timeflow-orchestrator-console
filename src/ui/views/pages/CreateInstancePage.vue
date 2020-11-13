@@ -315,7 +315,7 @@
         :loading="loading"
         :disabled="!isSubmitButtonEnabled"
         @click="submit"
-      >{{ $vuetify.lang.t('$vuetify.pages.create_instance.action.create') }}</v-btn>
+      >{{ $vuetify.lang.t('$vuetify.common.action.create') }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>

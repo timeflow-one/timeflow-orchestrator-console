@@ -1,5 +1,72 @@
 <template>
-  <div>Create license</div>
+  <v-card>
+    <v-card-title>{{ $vuetify.lang.t('$vuetify.pages.create_license.label.creating') }}</v-card-title>
+    <v-card-text>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-select
+            v-model="form.instance.value"
+            :rules="form.instance.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.0')"
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-select
+            v-model="form.plan.value"
+            :rules="form.plan.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.1')"
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >date-picker</v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-select
+            v-model="form.duration.value"
+            :rules="form.duration.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.3')"
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            v-model="form.expired_at.value"
+            :rules="form.expired_at.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.4')"
+            :placeholder="$vuetify.lang.t('$vuetify.pages.create_license.form.placeholder.4')"
+            disabled
+          />
+        </v-col>
+      </v-row>
+    </v-card-text>
+    <v-card-actions>
+      <v-btn
+        text
+        @click="cancel"
+      >{{ $vuetify.lang.t('$vuetify.common.action.cancel') }}</v-btn>
+      <v-spacer />
+      <v-btn
+        color="primary"
+        tabindex="16"
+        text
+        :loading="loading.submit"
+        :disabled="!isSubmitButtonEnabled"
+        @click="submit"
+      >{{ $vuetify.lang.t('$vuetify.common.action.create') }}</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script src="./CreateLicensePage" lang="ts" />
