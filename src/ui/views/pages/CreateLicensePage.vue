@@ -8,6 +8,7 @@
           sm="6"
         >
           <v-select
+            tabindex="1"
             v-model="form.instance.value"
             :rules="form.instance.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.0')"
@@ -18,6 +19,7 @@
           sm="6"
         >
           <v-select
+            tabindex="2"
             v-model="form.plan.value"
             :rules="form.plan.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.1')"
@@ -26,12 +28,20 @@
         <v-col
           cols="12"
           sm="6"
-        >date-picker</v-col>
+        >
+          <DatePicker
+            tabindex="3"
+            v-model="form.start_at.value"
+            :rules="form.start_at.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.2')"
+          />
+        </v-col>
         <v-col
           cols="12"
           sm="6"
         >
           <v-select
+            tabindex="4"
             v-model="form.duration.value"
             :rules="form.duration.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.3')"
@@ -53,13 +63,14 @@
     </v-card-text>
     <v-card-actions>
       <v-btn
+        tabindex="6"
         text
         @click="cancel"
       >{{ $vuetify.lang.t('$vuetify.common.action.cancel') }}</v-btn>
       <v-spacer />
       <v-btn
+        tabindex="5"
         color="primary"
-        tabindex="16"
         text
         :loading="loading.submit"
         :disabled="!isSubmitButtonEnabled"

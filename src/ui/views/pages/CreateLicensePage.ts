@@ -1,8 +1,13 @@
 import { LicensesRoute } from '@/router'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
 import { Component, Vue } from 'vue-property-decorator'
+import DatePicker from '@/ui/components/DatePicker.vue'
 
-@Component
+@Component({
+  components: {
+    DatePicker
+  }
+})
 export default class CreateLicensePage extends Vue {
   form: FormItem = {
     instance: {
