@@ -1,6 +1,6 @@
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
-import { LicensesRoute } from '@/router'
+import { CreateLicenseRoute, LicensesRoute } from '@/router'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import LicensesStore, { LicenseModel } from '@/store/LicensesStore'
 import { Component, Vue } from 'vue-property-decorator'
@@ -83,8 +83,7 @@ export default class LicensesPage extends Vue {
       title: this.$vuetify.lang.t('$vuetify.pages.licenses.action.add'),
       icon: 'mdi-clipboard-plus-outline',
       action: () => {
-        // this.$router.push(CreateLicenseRoute)
-        throw new Error('Not implemented')
+        this.$router.push(CreateLicenseRoute)
       }
     }])
 

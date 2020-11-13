@@ -19,6 +19,7 @@
       "users": "Пользователи • Оркестратор Timeflow",
       "user": "Пользователи • Оркестратор Timeflow",
       "licenses": "Лицензии • Оркестратор Timeflow",
+      "create_license": "Лицензии • Оркестратор Timeflow",
       "bills": "Счета • Оркестратор Timeflow",
       "plans": "Планы • Оркестратор Timeflow"
     }
@@ -76,6 +77,7 @@
       "users": "Пользователи",
       "user": "Пользователи",
       "licenses": "Лицензии",
+      "create_license": "Лицензии",
       "bills": "Счета",
       "plans": "Планы"
     },
