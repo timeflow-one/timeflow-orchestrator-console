@@ -121,8 +121,8 @@
         "400": "Ошибка получения информации об инстансе"
       }
     },
-    "add_instance": {
-      "title": {
+    "create_instance": {
+      "label": {
         "creating": "Создание инстанса"
       },
       "action": {

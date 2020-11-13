@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>{{ $vuetify.lang.t('$vuetify.pages.add_instance.title.creating') }}</v-card-title>
+    <v-card-title>{{ $vuetify.lang.t('$vuetify.pages.create_instance.label.creating') }}</v-card-title>
     <v-card-text>
       <v-stepper
         v-model="stepper.step"
@@ -11,7 +11,7 @@
           :complete="stepper.step > 1"
           :rules="stepRules(1)"
         >
-          {{ $vuetify.lang.t('$vuetify.pages.add_instance.step.0') }}
+          {{ $vuetify.lang.t('$vuetify.pages.create_instance.step.0') }}
         </v-stepper-step>
 
         <v-stepper-content step="1">
@@ -26,7 +26,7 @@
                   tabindex="1"
                   v-model="form.instance_name.value"
                   :rules="form.instance_name.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.0')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.0')"
                 />
               </v-col>
             </v-row>
@@ -46,7 +46,7 @@
           :complete="stepper.step > 2"
           :rules="stepRules(2)"
         >
-          {{ $vuetify.lang.t('$vuetify.pages.add_instance.step.1') }}
+          {{ $vuetify.lang.t('$vuetify.pages.create_instance.step.1') }}
         </v-stepper-step>
 
         <v-stepper-content step="2">
@@ -64,7 +64,7 @@
                   tabindex="3"
                   v-model="form.db_host.value"
                   :rules="form.db_host.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.1')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.1')"
                 />
               </v-col>
               <v-col
@@ -76,7 +76,7 @@
                   tabindex="4"
                   v-model="form.db_name.value"
                   :rules="form.db_name.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.2')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.2')"
                 />
               </v-col>
               <v-col
@@ -88,7 +88,7 @@
                   tabindex="5"
                   v-model="form.db_user.value"
                   :rules="form.db_user.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.3')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.3')"
                 />
               </v-col>
               <v-col
@@ -100,7 +100,7 @@
                   tabindex="6"
                   v-model="form.db_pass.value"
                   :rules="form.db_pass.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.4')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.4')"
                 />
               </v-col>
             </v-row>
@@ -127,7 +127,7 @@
           :complete="stepper.step > 3"
           :rules="stepRules(3)"
         >
-          {{ $vuetify.lang.t('$vuetify.pages.add_instance.step.2') }}
+          {{ $vuetify.lang.t('$vuetify.pages.create_instance.step.2') }}
         </v-stepper-step>
 
         <v-stepper-content step="3">
@@ -149,7 +149,7 @@
                   :items="plans"
                   :loading="plans.length <= 0"
                   :disabled="plans.length <= 0"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.5')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.5')"
                 />
               </v-col>
               <v-col
@@ -171,7 +171,7 @@
                       tabindex="9"
                       v-model="form.expired_at.value"
                       :rules="form.expired_at.rules"
-                      :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.6')"
+                      :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.6')"
                       prepend-icon="mdi-calendar"
                       readonly
                       v-bind="attrs"
@@ -205,7 +205,7 @@
                   tabindex="10"
                   v-model="form.vi_key.value"
                   :rules="form.vi_key.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.7')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.7')"
                 />
               </v-col>
               <v-col
@@ -217,7 +217,7 @@
                   tabindex="11"
                   v-model="form.geo_key.value"
                   :rules="form.geo_key.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.8')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.8')"
                 />
               </v-col>
             </v-row>
@@ -244,7 +244,7 @@
           :complete="stepper.step > 4"
           :rules="stepRules(4)"
         >
-          {{ $vuetify.lang.t('$vuetify.pages.add_instance.step.3') }}
+          {{ $vuetify.lang.t('$vuetify.pages.create_instance.step.3') }}
         </v-stepper-step>
 
         <v-stepper-content step="4">
@@ -262,7 +262,7 @@
                   tabindex="13"
                   v-model="form.username.value"
                   :rules="form.username.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.9')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.9')"
                 />
               </v-col>
               <v-col
@@ -274,7 +274,7 @@
                   tabindex="14"
                   v-model="form.user_email.value"
                   :rules="form.user_email.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.10')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.10')"
                 />
               </v-col>
               <v-col
@@ -286,7 +286,7 @@
                   tabindex="15"
                   v-model="form.user_pass.value"
                   :rules="form.user_pass.rules"
-                  :label="$vuetify.lang.t('$vuetify.pages.add_instance.form.label.11')"
+                  :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.11')"
                 />
               </v-col>
             </v-row>
@@ -315,7 +315,7 @@
         :loading="loading"
         :disabled="!isSubmitButtonEnabled"
         @click="submit"
-      >{{ $vuetify.lang.t('$vuetify.pages.add_instance.action.create') }}</v-btn>
+      >{{ $vuetify.lang.t('$vuetify.pages.create_instance.action.create') }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>

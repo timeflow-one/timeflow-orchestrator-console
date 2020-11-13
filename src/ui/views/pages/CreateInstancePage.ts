@@ -240,7 +240,7 @@ export default class CreateInstancePage extends Vue {
 
       switch (err.response?.data?.exception?.message) {
         case 'Неверный ключ подключения к системе видеоидентификации': {
-          alert(this.$vuetify.lang.t('$vuetify.pages.add_instance.error.invalid_vi_key'))
+          alert(this.$vuetify.lang.t('$vuetify.pages.create_instance.error.invalid_vi_key'))
           this.stepper.step = 3
           break
         }
