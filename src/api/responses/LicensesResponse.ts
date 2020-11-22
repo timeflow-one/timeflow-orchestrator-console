@@ -7,7 +7,7 @@ export interface LicensesResponse {
   licenses: Array<License>;
 }
 
-interface License {
+export interface License {
   id: number;
   instance_id: number;
   plan_id: number;

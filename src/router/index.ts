@@ -10,6 +10,7 @@ import UserPage from '@/ui/views/pages/UserPage.vue'
 import PlansPage from '@/ui/views/pages/PlansPage.vue'
 import LicensesPage from '@/ui/views/pages/LicensesPage.vue'
 import CreateLicensePage from '@/ui/views/pages/CreateLicensePage.vue'
+import LicensePage from '@/ui/views/pages/LicensePage.vue'
 
 Vue.use(VueRouter)
 
@@ -62,11 +63,18 @@ const CreateLicenseRoute: RouteConfig = {
   component: CreateLicensePage
 }
 
+const LicenseRoute: RouteConfig = {
+  name: 'license',
+  path: ':id',
+  component: LicensePage
+}
+
 const LicensesRoute: RouteConfig = {
   name: 'licenses',
   path: '/licenses',
   component: LicensesPage,
   children: [
+    LicenseRoute,
     CreateLicenseRoute
   ]
 }
@@ -119,6 +127,7 @@ export {
   InstancesRoute,
   UserRoute,
   UsersRoute,
+  LicenseRoute,
   CreateLicenseRoute,
   LicensesRoute,
   BillsRoute,

@@ -1,6 +1,6 @@
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
-import { CreateLicenseRoute, LicensesRoute } from '@/router'
+import { CreateLicenseRoute, LicenseRoute, LicensesRoute } from '@/router'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import LicensesStore, { LicenseModel } from '@/store/LicensesStore'
 import { Component, Vue } from 'vue-property-decorator'
@@ -111,11 +111,10 @@ export default class LicensesPage extends Vue {
   }
 
   clickOnRow (item: LicenseModel) {
-    // this.$router.push({
-    //   ...LicensePage,
-    //   params: { id: item.id.toString() }
-    // })
-    throw new Error('Not implemented')
+    this.$router.push({
+      ...LicenseRoute,
+      params: { id: item.id.toString() }
+    })
   }
 
   onOptionsChanged (value: TableOptions) {
