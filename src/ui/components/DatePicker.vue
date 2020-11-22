@@ -44,8 +44,11 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 
 @Component
 export default class DatePicker extends Vue {
-  private readonly dialog = false
-  private readonly date = ''
+  private dialog = false
+  private date = ''
+
+  @Prop({ required: false, default: '' })
+  init!: string
 
   @Prop({ required: false, default: () => [] })
   rules!: Array<string | boolean>
@@ -63,6 +66,10 @@ export default class DatePicker extends Vue {
     return this.date !== '' ? this.parser(this.date) : this.date
   }
 
+  mounted () {
+    this.date = this.init
+  }
+
   commit () {
     // @ts-expect-error
     this.$refs.dialog.save(this.date)
@@ -71,6 +78,13 @@ export default class DatePicker extends Vue {
   @Watch('date')
   onDateChanged (value: string) {
     this.$emit('input', value)
+  }
+
+  @Watch('init')
+  onInitValueChanged (value: string) {
+    if (this.date === '') {
+      this.date = value
+    }
   }
 }
 </script>

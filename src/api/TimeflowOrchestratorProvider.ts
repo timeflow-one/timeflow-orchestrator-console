@@ -3,6 +3,7 @@ import Axios, { AxiosResponse } from 'axios'
 import { CreateInstanceRequest } from './requests/CreateInstanceRequest'
 import { CreateLicenseRequest } from './requests/CreateLicenseRequest'
 import { UpdateInstanceRequest } from './requests/UpdateInstanceRequest'
+import { UpdateLicenseRequest } from './requests/UpdateLicenseRequest'
 import { UpdateUserRequest } from './requests/UpdateUserRequest'
 import { CreateInstanceResponse } from './responses/CreateInstanceResponse'
 import { DurationsResponse } from './responses/DurationsResponse'
@@ -129,6 +130,13 @@ export class TimeflowOrchestratorProvider {
     return this.api.post('/app/licenses/get', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
       id
+    })
+  }
+
+  public updateLicense (request: UpdateLicenseRequest): Promise<AxiosResponse<LicenseResponse>> {
+    return this.api.post('/app/licenses/update', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      ...request
     })
   }
 

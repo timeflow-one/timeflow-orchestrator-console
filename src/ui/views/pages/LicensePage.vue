@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>{{ $vuetify.lang.t('$vuetify.pages.license.label.edit') }}</v-card-title>
-    <v-card-text>
+    <v-card-text v-if="loading.card">
       <v-row>
         <v-col
           cols="12"
@@ -35,7 +35,7 @@
         </v-col>
       </v-row>
     </v-card-text>
-    <v-card-text>
+    <v-card-text v-if="!loading.card">
       <v-row>
         <v-col
           cols="12"
@@ -73,6 +73,7 @@
           <DatePicker
             tabindex="3"
             v-model="startAtLocaleDate"
+            :init="form.start_at.value"
             :rules="form.start_at.rules"
             :parser="(value) => new Date(value).toLocaleDateString()"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.2')"
@@ -107,7 +108,7 @@
         </v-col>
       </v-row>
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions v-if="!loading.card">
       <v-btn
         tabindex="6"
         text

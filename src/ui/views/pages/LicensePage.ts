@@ -69,8 +69,7 @@ export default class LicensePage extends Vue {
       this.form.instance.value = response.data.license.instance_id
       this.form.plan.value = response.data.license.plan_id
       this.form.start_at.value = response.data.license.effective_date
-      this.form.duration.value = 0
-      // this.form.expired_at.value = response.data.license.valid_until
+      this.form.duration.value = Math.round(Math.abs((new Date(response.data.license.valid_until).getTime() - new Date(response.data.license.effective_date).getTime()) / (24 * 60 * 60 * 1000)))
     } catch (err) {
       // if (err.isAxiosError) {
       //   // TODO (2020.11.10): Error handling
@@ -91,31 +90,27 @@ export default class LicensePage extends Vue {
   }
 
   async submit () {
-    throw new Error('Not implemented')
-    // try {
-    //   this.loading.submit = true
+    try {
+      this.loading.submit = true
 
-    //   await TimeflowOrchestratorProvider
-    //     .getInstance()
-    //     .updateLicense({
-    //       // id: this.instance.instance.id,
-    //       // instance: {
-    //       //   name: this.form.instance_name.value,
-    //       //   // db_host: this.form.db_host.value,
-    //       //   // db_name: this.form.db_name.value,
-    //       //   // db_username: this.form.db_user.value,
-    //       //   // db_password: this.form.db_pass.value,
-    //       //   vi_api_key: this.form.vi_key.value,
-    //       //   dadata_api_key: this.form.geo_key.value
-    //       // }
-    //     })
+      await TimeflowOrchestratorProvider
+        .getInstance()
+        .updateLicense({
+          id: this.license.license.id,
+          license: {
+            instance_id: this.form.instance.value,
+            plan_id: this.form.plan.value,
+            effective_date: this.form.start_at.value,
+            valid_until: this.form.expired_at.value
+          }
+        })
 
-    //   this.$router.replace(LicensesRoute)
-    // } catch (err) {
-    //   // TODO (2020.11.10): Handling error
-    // } finally {
-    //   this.loading.submit = false
-    // }
+      this.$router.replace(LicensesRoute)
+    } catch (err) {
+      // TODO (2020.11.10): Handling error
+    } finally {
+      this.loading.submit = false
+    }
   }
 
   set startAtLocaleDate (value: string) {
