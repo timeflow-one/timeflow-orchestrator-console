@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/timeflow-orchestrator-console/precache-manifest.ce1ee7e7ca6c18949504657b423577e7.js"
+  "/timeflow-orchestrator-console/precache-manifest.1659be75ea58377e6d6a901d51a7302d.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "timeflow-orchestrator-console"});
