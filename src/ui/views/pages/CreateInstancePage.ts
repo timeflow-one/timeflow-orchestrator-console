@@ -5,19 +5,16 @@ import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider
 import { ruleMessageToResult, ruleMessageToRule } from '@/utils/ruleMessageToRule'
 import PlansStore from '@/store/PlansStore'
 import { emailRegex as emailRegexp } from '@/utils/EmailRegex'
+import DatePicker from '@/ui/components/DatePicker.vue'
 
 @Component({
   components: {
-    PasswordComponent
+    PasswordComponent,
+    DatePicker
   }
 })
 export default class CreateInstancePage extends Vue {
-  expiredDatePickerDialog = false
   loading = false
-  readonly stepper = {
-    step: 1,
-    limit: 4
-  }
 
   readonly form: FormItem = {
     instance_name: {
@@ -212,7 +209,6 @@ export default class CreateInstancePage extends Vue {
 
   async submit () {
     try {
-      this.stepper.step = 5
       this.loading = true
       await TimeflowOrchestratorProvider.getInstance().createInstance({
         instance: {
@@ -241,7 +237,6 @@ export default class CreateInstancePage extends Vue {
       switch (err.response?.data?.exception?.message) {
         case 'Неверный ключ подключения к системе видеоидентификации': {
           alert(this.$vuetify.lang.t('$vuetify.pages.create_instance.error.invalid_vi_key'))
-          this.stepper.step = 3
           break
         }
 
