@@ -1,5 +1,8 @@
 <template>
+  <!-- :append-icon="password.length > 0 ? isShow ? 'mdi-eye-off' : 'mdi-eye' : ''"
+    @click:append="() => isShow = !isShow" -->
   <v-text-field
+    style="pointer-events: auto"
     color="primary lighten-1"
     v-model="password"
     :disabled="disabled"
@@ -7,11 +10,16 @@
     :rules="rules"
     :label="label"
     :tabindex="tabindex"
-    :type="isShowPass ? 'text' : 'password'"
-    :append-icon="password.length > 0 ? isShowPass ? 'mdi-eye-off' : 'mdi-eye' : ''"
-    @click:append="() => isShowPass = !isShowPass"
-    @focus.once="isShowPass = false"
+    :type="isShow ? 'text' : 'password'"
+    @focus.once="isShow = false"
   >
+    <template
+      slot="append"
+      :value="true"
+    >
+      <v-icon @click="() => isShow = !isShow">{{ password.length > 0 ? isShow ? 'mdi-eye-off' : 'mdi-eye' : '' }}</v-icon>
+    </template>
+
     <template
       v-for="(_, slot) of $scopedSlots"
       v-slot:[slot]="scope"
@@ -50,12 +58,11 @@ export default class PasswordComponent extends Vue {
   @Prop({ default: -1 })
   tabindex!: number
 
-  @Prop({ default: true })
-  isShowPass!: boolean
+  isShow = false
 
   mounted () {
     if (this.value && this.value !== '') {
-      this.isShowPass = false
+      this.isShow = false
     }
   }
 

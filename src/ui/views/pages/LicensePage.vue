@@ -103,7 +103,7 @@
             :rules="form.expired_at.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_license.form.label.4')"
             :placeholder="$vuetify.lang.t('$vuetify.pages.create_license.form.placeholder.4')"
-            readonly
+            disabled
           />
         </v-col>
       </v-row>

@@ -9,7 +9,7 @@
           cols="12"
           sm="6"
         >
-          <v-skeleton-loader type="text"/>
+          <v-skeleton-loader type="text" />
         </v-col>
       </v-row>
       <v-form readonly>
@@ -18,25 +18,25 @@
             cols="12"
             sm="6"
           >
-            <v-skeleton-loader type="text"/>
+            <v-skeleton-loader type="text" />
           </v-col>
           <v-col
             cols="12"
             sm="6"
           >
-            <v-skeleton-loader type="text"/>
+            <v-skeleton-loader type="text" />
           </v-col>
           <v-col
             cols="12"
             sm="6"
           >
-            <v-skeleton-loader type="text"/>
+            <v-skeleton-loader type="text" />
           </v-col>
           <v-col
             cols="12"
             sm="6"
           >
-            <v-skeleton-loader type="text"/>
+            <v-skeleton-loader type="text" />
           </v-col>
         </v-row>
       </v-form>
@@ -45,13 +45,13 @@
           cols="12"
           sm="6"
         >
-          <v-skeleton-loader type="text"/>
+          <v-skeleton-loader type="text" />
         </v-col>
         <v-col
           cols="12"
           sm="6"
         >
-          <v-skeleton-loader type="text"/>
+          <v-skeleton-loader type="text" />
         </v-col>
       </v-row>
     </v-card-text>
@@ -68,50 +68,52 @@
           />
         </v-col>
       </v-row>
-      <v-form readonly>
-        <v-row>
-          <v-col
-            cols="12"
-            sm="6"
-          >
-            <v-text-field
-              v-model="form.db_host.value"
-              :rules="form.db_host.rules"
-              :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.1')"
-            />
-          </v-col>
-          <v-col
-            cols="12"
-            sm="6"
-          >
-            <v-text-field
-              v-model="form.db_name.value"
-              :rules="form.db_name.rules"
-              :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.2')"
-            />
-          </v-col>
-          <v-col
-            cols="12"
-            sm="6"
-          >
-            <v-text-field
-              v-model="form.db_user.value"
-              :rules="form.db_user.rules"
-              :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.3')"
-            />
-          </v-col>
-          <v-col
-            cols="12"
-            sm="6"
-          >
-            <PasswordComponent
-              v-model="form.db_pass.value"
-              :rules="form.db_pass.rules"
-              :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.4')"
-            />
-          </v-col>
-        </v-row>
-      </v-form>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            v-model="form.db_host.value"
+            :rules="form.db_host.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.1')"
+            disabled
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            v-model="form.db_name.value"
+            :rules="form.db_name.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.2')"
+            disabled
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            v-model="form.db_user.value"
+            :rules="form.db_user.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.3')"
+            disabled
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <PasswordComponent
+            v-model="form.db_pass.value"
+            :rules="form.db_pass.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.4')"
+            disabled
+          />
+        </v-col>
+      </v-row>
       <v-row>
         <v-col
           cols="12"
