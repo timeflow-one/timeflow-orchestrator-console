@@ -87,7 +87,7 @@
             <v-btn
               color="primary"
               text
-              disabled
+              @click.stop="loginAs(item)"
             >{{ $vuetify.lang.t('$vuetify.pages.users.action.enter') }}</v-btn>
           </td>
         </tr>

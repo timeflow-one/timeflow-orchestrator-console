@@ -7,6 +7,7 @@ import { TableOptions } from '@/models/TableOptions'
 import { Filtrable } from './interfaces/Filtrable'
 import UsersStore, { UserModel } from '@/store/UsersStore'
 import { UserRoute, UsersRoute } from '@/router'
+import AuthStore from '@/store/AuthStore'
 
 @Component({
   components: {
@@ -162,6 +163,11 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
       ...UserRoute,
       params: { id: item.id.toString() }
     })
+  }
+
+  loginAs (item: UserModel) {
+    const userConsolePage = window.open(`${process.env.VUE_APP_USER_CONSOLE_URL}/login-as?orchestrator=${AuthStore.token}&user=${item.access_token}`, '_blank')
+    return userConsolePage?.focus()
   }
 }
 

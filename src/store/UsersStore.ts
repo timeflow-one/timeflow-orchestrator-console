@@ -22,6 +22,7 @@ class UsersStore extends VuexModule {
       _totalUsers: response.data.count,
       _users: response.data.users.map((item) => ({
         id: item.id,
+        access_token: item.access_token,
         name: item.full_name,
         email: item.email,
         instance_name: item.instance?.name,
@@ -42,6 +43,7 @@ class UsersStore extends VuexModule {
 
 export interface UserModel {
   id: number;
+  access_token: string;
   name: string;
   email: string;
   instance_name: string;
