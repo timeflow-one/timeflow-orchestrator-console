@@ -23,7 +23,7 @@
             <span>{{ item.title }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span><code>{{ item.code }}</code></span>
+            <span><CodeComponent>{{ item.code }}</CodeComponent></span>
           </td>
           <td class="text-start user-select-none">
             <span>{{ item.employees_limit }}</span>

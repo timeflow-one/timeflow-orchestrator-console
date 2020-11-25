@@ -5,10 +5,12 @@ import AppbarMenuStore from '@/store/AppbarMenuStore'
 import PlansStore, { PlanModel } from '@/store/PlansStore'
 import { Component, Vue } from 'vue-property-decorator'
 import DataTable from '@/ui/components/DataTable.vue'
+import CodeComponent from '@/ui/components/CodeComponent.vue'
 
 @Component({
   components: {
-    DataTable
+    DataTable,
+    CodeComponent
   }
 })
 export default class PlansPage extends Vue {
