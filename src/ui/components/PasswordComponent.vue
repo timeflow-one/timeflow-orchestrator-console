@@ -10,6 +10,7 @@
     :type="isShowPass ? 'text' : 'password'"
     :append-icon="password.length > 0 ? isShowPass ? 'mdi-eye-off' : 'mdi-eye' : ''"
     @click:append="() => isShowPass = !isShowPass"
+    @focus.once="isShowPass = false"
   >
     <template
       v-for="(_, slot) of $scopedSlots"
@@ -49,7 +50,14 @@ export default class PasswordComponent extends Vue {
   @Prop({ default: -1 })
   tabindex!: number
 
-  isShowPass = false
+  @Prop({ default: true })
+  isShowPass!: boolean
+
+  mounted () {
+    if (this.value && this.value !== '') {
+      this.isShowPass = false
+    }
+  }
 
   get password () {
     return this.value
