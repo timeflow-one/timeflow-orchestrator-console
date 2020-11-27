@@ -18,6 +18,7 @@
         readonly
         v-bind="attrs"
         v-on="on"
+        @click:prepend="on.click"
         @keypress.space="on.click"
       />
     </template>
