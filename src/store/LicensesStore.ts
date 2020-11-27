@@ -32,7 +32,8 @@ class LicensesStore extends VuexModule {
         },
         is_active: item.is_active > 0,
         start_at: new Date(item.effective_date),
-        expired_at: new Date(item.valid_until)
+        expired_at: new Date(item.valid_until),
+        can_promise_payment: item.can_promise_payment
       }))
     }
   }
@@ -59,6 +60,7 @@ export interface LicenseModel {
   is_active: boolean;
   start_at: Date;
   expired_at: Date;
+  can_promise_payment: 0 | 1;
 }
 
 export default getModule(LicensesStore)

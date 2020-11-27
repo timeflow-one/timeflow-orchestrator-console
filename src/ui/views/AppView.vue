@@ -5,11 +5,11 @@
     <!-- expand-on-hover
       permanent -->
     <!-- temporary -->
+    <!-- :expand-on-hover="!$vuetify.breakpoint.mobile && !$vuetify.breakpoint.lgAndUp" -->
     <v-navigation-drawer
       v-if="hasShowUi"
       v-model="isNavigationDrawerShow"
       app
-      :expand-on-hover="!$vuetify.breakpoint.mobile"
       :permanent="!$vuetify.breakpoint.mobile"
       :temporary="$vuetify.breakpoint.mobile"
     >

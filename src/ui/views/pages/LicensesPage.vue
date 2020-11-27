@@ -43,8 +43,9 @@
               disabled
             />
           </td>
-          <td class="d-flex align-center">
+          <td class="text-center text-no-wrap">
             <v-btn
+              class="me-1"
               color="primary"
               text
               disabled
@@ -52,7 +53,8 @@
             <v-btn
               color="primary"
               text
-              disabled
+              :disabled="!item.can_promise_payment"
+              @click.stop="promisePayment(item)"
             >{{ $vuetify.lang.t('$vuetify.pages.licenses.action.promised_payment') }}</v-btn>
           </td>
         </tr>

@@ -225,7 +225,8 @@
       "action": {
         "add": "Создать лицензию",
         "prolong": "Продлить",
-        "promised_payment": "Обещанный платеж"
+        "promised_payment": "Обещанный платеж",
+        "give_promise_payment": "Выдать обещанный платеж для лицензии #{0}?"
       }
     },
     "create_license": {

@@ -140,6 +140,13 @@ export class TimeflowOrchestratorProvider {
     })
   }
 
+  public promisePayment (licenseId: number): Promise<AxiosResponse<any>> {
+    return this.api.post('/app/bills/promise', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      licenseId
+    })
+  }
+
   public durations (): Promise<AxiosResponse<DurationsResponse>> {
     return this.api.post('/app/instances/durations', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY)

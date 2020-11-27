@@ -5,6 +5,7 @@ import AppbarMenuStore from '@/store/AppbarMenuStore'
 import LicensesStore, { LicenseModel } from '@/store/LicensesStore'
 import { Component, Vue } from 'vue-property-decorator'
 import DataTable from '@/ui/components/DataTable.vue'
+import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 
 @Component({
   components: {
@@ -120,6 +121,22 @@ export default class LicensesPage extends Vue {
   onOptionsChanged (value: TableOptions) {
     this.tableOptions = value
     this.loadData((value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+  }
+
+  async promisePayment (item: LicenseModel) {
+    try {
+      const acceptPromisePayment = confirm(this.$vuetify.lang.t('$vuetify.pages.licenses.action.give_promise_payment', item.id))
+
+      if (acceptPromisePayment) {
+        await TimeflowOrchestratorProvider
+          .getInstance()
+          .promisePayment(item.id)
+
+        await this.loadData((this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
+      }
+    } catch (err) {
+      // TODO (2020.11.27): Catching exceptions
+    }
   }
 
   get tableItems () {
