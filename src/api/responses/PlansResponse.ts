@@ -1,6 +1,6 @@
-export interface PlansResponse {
-  success: boolean;
-  count: number;
+import { PaginableResponse, SuccesubleResponse } from './CommonResponses'
+
+export interface PlansResponse extends SuccesubleResponse, PaginableResponse {
   plans: Array<Plan>;
 }
 

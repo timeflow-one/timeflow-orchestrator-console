@@ -1,5 +1,6 @@
-export interface UserResponse {
-  success: boolean;
+import { SuccesubleResponse } from './CommonResponses'
+
+export interface UserResponse extends SuccesubleResponse {
   user: User;
 }
 

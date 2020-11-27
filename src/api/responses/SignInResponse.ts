@@ -1,5 +1,6 @@
-export interface SignInResponse {
-  success: boolean;
+import { SuccesubleResponse } from './CommonResponses'
+
+export interface SignInResponse extends SuccesubleResponse {
   user: Profile;
 }
 

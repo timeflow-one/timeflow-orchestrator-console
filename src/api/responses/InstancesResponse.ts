@@ -1,6 +1,6 @@
-export interface InstancesResponse {
-  success: boolean;
-  count: number;
+import { PaginableResponse, SuccesubleResponse } from './CommonResponses'
+
+export interface InstancesResponse extends SuccesubleResponse, PaginableResponse {
   instances: Array<Instance>;
 }
 

@@ -1,9 +1,8 @@
+import { PaginableResponse, SuccesubleResponse } from './CommonResponses'
 import { Instance } from './InstancesResponse'
 import { Plan } from './PlansResponse'
 
-export interface LicensesResponse {
-  success: boolean;
-  count: number;
+export interface LicensesResponse extends SuccesubleResponse, PaginableResponse {
   licenses: Array<License>;
 }
 
@@ -20,7 +19,7 @@ export interface License {
   monthly_fee: number;
   duration: number;
   is_active: number;
-  can_promise_payment: number;
+  can_promise_payment: 0 | 1;
   subscription_id: string;
   instance: Instance;
   plan: Plan;

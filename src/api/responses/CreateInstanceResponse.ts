@@ -1,5 +1,6 @@
-export interface CreateInstanceResponse {
-  success: boolean;
+import { SuccesubleResponse } from './CommonResponses'
+
+export interface CreateInstanceResponse extends SuccesubleResponse {
   instance: Instance;
 }
 

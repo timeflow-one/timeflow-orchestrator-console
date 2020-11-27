@@ -1,6 +1,6 @@
-export interface UsersResponse {
-  success: boolean;
-  count: number;
+import { PaginableResponse, SuccesubleResponse } from './CommonResponses'
+
+export interface UsersResponse extends SuccesubleResponse, PaginableResponse {
   users: Array<User>;
 }
 
