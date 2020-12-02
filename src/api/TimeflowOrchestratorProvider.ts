@@ -1,3 +1,4 @@
+import AuthStore from '@/store/AuthStore'
 import { PreferenceKey } from '@/utils/PreferenceKey'
 import Axios, { AxiosResponse } from 'axios'
 import { CreateInstanceRequest } from './requests/CreateInstanceRequest'
@@ -33,6 +34,23 @@ export class TimeflowOrchestratorProvider {
   private api = Axios.create({
     baseURL: process.env.VUE_APP_BASE_API
   })
+
+  constructor () {
+    this.api.interceptors.response.use((response) => {
+      return response
+    }, (err) => {
+      if (err.isAxiosError) {
+        switch (err.response.status) {
+          case 401: {
+            AuthStore.logout()
+            break
+          }
+        }
+      }
+
+      return Promise.reject(err)
+    })
+  }
 
   public signIn (email: string, password: string): Promise<AxiosResponse<SignInResponse>> {
     return this.api.post('/app/account/sign-in', {
