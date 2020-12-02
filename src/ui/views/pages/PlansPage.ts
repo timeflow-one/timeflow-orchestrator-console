@@ -1,6 +1,6 @@
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
-import { PlansRoute } from '@/router'
+import { CreatePlanRoute, PlansRoute } from '@/router'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import PlansStore, { PlanModel } from '@/store/PlansStore'
 import { Component, Vue } from 'vue-property-decorator'
@@ -79,8 +79,7 @@ export default class PlansPage extends Vue {
       title: this.$vuetify.lang.t('$vuetify.pages.plans.action.add'),
       icon: 'mdi-text-box-plus-outline',
       action: () => {
-        // this.$router.push(AddPlanRoute)
-        throw new Error('Not implemented')
+        this.$router.push(CreatePlanRoute)
       }
     }])
 
