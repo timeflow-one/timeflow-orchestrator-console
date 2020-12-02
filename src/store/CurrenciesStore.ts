@@ -8,7 +8,7 @@ import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider
   name: 'CurrenciesStore'
 })
 class CurrenciesStore extends VuexModule {
-  _currencies: Array<{ text: string; value: string }> = []
+  _currencies: Map<string, string> = new Map()
 
   @MutationAction({ mutate: ['_currencies'], rawError: true })
   async loadCurrencies () {
@@ -17,10 +17,7 @@ class CurrenciesStore extends VuexModule {
       .currencies()
 
     return {
-      _currencies: Object.entries(response.data.currencies).map(it => ({
-        value: it[0],
-        text: it[1]
-      }))
+      _currencies: Object.entries(response.data.currencies)
     }
   }
 

@@ -22,12 +22,16 @@
       "license": "Лицензии • Оркестратор Timeflow",
       "create_license": "Лицензии • Оркестратор Timeflow",
       "bills": "Счета • Оркестратор Timeflow",
-      "plans": "Планы • Оркестратор Timeflow"
+      "plans": "Планы • Оркестратор Timeflow",
+      "create_plan": "Планы • Оркестратор Timeflow"
     }
   },
   "common": {
     "label": {
-      "page_not_found": "Страница не найдена"
+      "page_not_found": "Страница не найдена",
+      "currency": {
+        "rub": "руб"
+      }
     },
     "table": {
       "label": {
@@ -82,7 +86,8 @@
       "license": "Лицензии",
       "create_license": "Лицензии",
       "bills": "Счета",
-      "plans": "Планы"
+      "plans": "Планы",
+      "create_plan": "Планы"
     },
     "action": {}
   },
@@ -208,6 +213,22 @@
       },
       "action": {
         "add": "Создать план"
+      }
+    },
+    "create_plan": {
+      "label": {
+        "creating": "Создание плана"
+      },
+      "form": {
+        "label": {
+          "0": "Название",
+          "1": "Код",
+          "2": "Лимит сотрудников",
+          "3": "Стоимость в месяц",
+          "4": "Валюта"
+        }
+      },
+      "error": {
       }
     },
     "licenses": {

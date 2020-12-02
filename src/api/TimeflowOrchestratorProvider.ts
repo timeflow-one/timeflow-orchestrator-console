@@ -2,10 +2,12 @@ import { PreferenceKey } from '@/utils/PreferenceKey'
 import Axios, { AxiosResponse } from 'axios'
 import { CreateInstanceRequest } from './requests/CreateInstanceRequest'
 import { CreateLicenseRequest } from './requests/CreateLicenseRequest'
+import { CreatePlanRequest } from './requests/CreatePlanRequest'
 import { UpdateInstanceRequest } from './requests/UpdateInstanceRequest'
 import { UpdateLicenseRequest } from './requests/UpdateLicenseRequest'
 import { UpdateUserRequest } from './requests/UpdateUserRequest'
 import { CreateInstanceResponse } from './responses/CreateInstanceResponse'
+import { CreatePlanResponse } from './responses/CreatePlanResponse'
 import { CurrenciesResponse } from './responses/CurrenciesResponse'
 import { DurationsResponse } from './responses/DurationsResponse'
 import { InstanceResponse } from './responses/InstanceResponse'
@@ -60,6 +62,13 @@ export class TimeflowOrchestratorProvider {
 
   public updateUser (request: UpdateUserRequest): Promise<AxiosResponse<any>> {
     return this.api.post('/app/users/update', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      ...request
+    })
+  }
+
+  public createPlan (request: CreatePlanRequest): Promise<AxiosResponse<CreatePlanResponse>> {
+    return this.api.post('/app/plans/create', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
       ...request
     })
@@ -155,7 +164,7 @@ export class TimeflowOrchestratorProvider {
   }
 
   public currencies (): Promise<AxiosResponse<CurrenciesResponse>> {
-    return this.api.post('/app/mics/currencies', {
+    return this.api.post('/app/misc/currencies', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY)
     })
   }

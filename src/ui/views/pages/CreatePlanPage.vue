@@ -1,5 +1,93 @@
 <template>
-  <div>plan</div>
+  <v-card>
+    <v-card-title>{{ $vuetify.lang.t('$vuetify.pages.create_plan.label.creating') }}</v-card-title>
+    <v-card-text>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            ref="focusedField"
+            tabindex="1"
+            v-model="form.title.value"
+            :rules="form.title.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.0')"
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            tabindex="2"
+            v-model="form.code.value"
+            :rules="form.code.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.1')"
+            disabled
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            tabindex="3"
+            v-model="form.employees_limit.value"
+            type="number"
+            :rules="form.employees_limit.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.2')"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            tabindex="4"
+            v-model="form.monthly_fee.value"
+            type="number"
+            :rules="form.monthly_fee.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.3')"
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-select
+            tabindex="5"
+            v-model="form.currency.value"
+            :items="currencies"
+            :disabled="currencies.length <= 0"
+            :loading="currencies.length <= 0"
+            :rules="form.currency.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.4')"
+          />
+        </v-col>
+      </v-row>
+    </v-card-text>
+    <v-card-actions>
+      <v-btn
+        tabindex="7"
+        text
+        @click="cancel"
+      >{{ $vuetify.lang.t('$vuetify.common.action.cancel') }}</v-btn>
+      <v-spacer />
+      <v-btn
+        tabindex="6"
+        color="primary"
+        text
+        :loading="loading.submit"
+        :disabled="!isSubmitButtonEnabled"
+        @click="submit"
+      >{{ $vuetify.lang.t('$vuetify.common.action.create') }}</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script src="./CreatePlanPage" lang="ts" />
