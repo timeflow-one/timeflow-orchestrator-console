@@ -18,7 +18,7 @@ export default class PlansPage extends Vue {
   readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
-      align: 'start',
+      align: 'end',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.plans.table.header.0'),
@@ -42,7 +42,7 @@ export default class PlansPage extends Vue {
     },
     {
       value: 'limit',
-      align: 'start',
+      align: 'end',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.plans.table.header.3'),
@@ -50,7 +50,7 @@ export default class PlansPage extends Vue {
     },
     {
       value: 'price',
-      align: 'start',
+      align: 'end',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.plans.table.header.4'),

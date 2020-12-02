@@ -17,7 +17,7 @@ export default class LicensesPage extends Vue {
   readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
-      align: 'start',
+      align: 'end',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.licenses.table.header.0'),

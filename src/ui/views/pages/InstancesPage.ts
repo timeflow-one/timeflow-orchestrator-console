@@ -21,7 +21,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
   readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
-      align: 'start',
+      align: 'end',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.0'),
@@ -37,7 +37,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
     },
     {
       value: 'limit',
-      align: 'start',
+      align: 'end',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.2'),
@@ -45,7 +45,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter> {
     },
     {
       value: 'count',
-      align: 'start',
+      align: 'end',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.instances.table.header.3'),

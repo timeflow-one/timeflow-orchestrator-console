@@ -16,7 +16,7 @@
           class="cursor-pointer"
           @click="clickOnRow(item)"
         >
-          <td class="text-start user-select-none">
+          <td class="text-end user-select-none">
             <span>{{ item.id }}</span>
           </td>
           <td class="text-start user-select-none">
@@ -25,10 +25,10 @@
           <td class="text-start user-select-none">
             <span><CodeComponent>{{ item.code }}</CodeComponent></span>
           </td>
-          <td class="text-start user-select-none">
+          <td class="text-end user-select-none">
             <span>{{ item.employees_limit }}</span>
           </td>
-          <td class="text-start user-select-none">
+          <td class="text-end user-select-none">
             <span :title="item.monthly_fee_text">{{ item.monthly_fee_text }}</span>
           </td>
           <td class="text-center user-select-none">

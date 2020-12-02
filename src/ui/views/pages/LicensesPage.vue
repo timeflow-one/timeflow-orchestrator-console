@@ -16,7 +16,7 @@
           class="cursor-pointer"
           @click="clickOnRow(item)"
         >
-          <td class="text-start user-select-none">
+          <td class="text-end user-select-none">
             <span>{{ item.id }}</span>
           </td>
           <td class="text-start user-select-none">

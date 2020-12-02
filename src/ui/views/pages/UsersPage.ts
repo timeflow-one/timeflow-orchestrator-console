@@ -21,7 +21,7 @@ export default class UsersPage extends Vue implements Filtrable<Filter> {
   readonly tableHeaders: Array<TableHeader> = [
     {
       value: 'id',
-      align: 'start',
+      align: 'end',
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.users.table.header.0'),
