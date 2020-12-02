@@ -4,13 +4,14 @@ import PasswordComponent from '@/ui/components/PasswordComponent.vue'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { InstanceResponse } from '@/api/responses/InstanceResponse'
+import { Formable } from './interfaces/Formable'
 
 @Component({
   components: {
     PasswordComponent
   }
 })
-export default class InstancePage extends Vue {
+export default class InstancePage extends Vue implements Formable {
   readonly form: FormItem = {
     instance_name: {
       value: '',

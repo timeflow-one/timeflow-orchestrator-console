@@ -7,13 +7,14 @@ import PlansStore from '@/store/PlansStore'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import DatePicker from '@/ui/components/DatePicker.vue'
+import { Formable } from './interfaces/Formable'
 
 @Component({
   components: {
     DatePicker
   }
 })
-export default class LicensePage extends Vue {
+export default class LicensePage extends Vue implements Formable {
   readonly form: FormItem = {
     instance: {
       value: -1,

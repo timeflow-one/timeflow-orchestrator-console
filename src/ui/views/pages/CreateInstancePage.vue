@@ -170,7 +170,7 @@
         color="primary"
         tabindex="16"
         text
-        :loading="loading"
+        :loading="loading.submit"
         :disabled="!isSubmitButtonEnabled"
         @click="submit"
       >{{ $vuetify.lang.t('$vuetify.common.action.create') }}</v-btn>

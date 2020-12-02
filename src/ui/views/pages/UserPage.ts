@@ -5,9 +5,10 @@ import { UsersRoute } from '@/router'
 import { emailRegex } from '@/utils/EmailRegex'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
 import { Component, Vue } from 'vue-property-decorator'
+import { Formable } from './interfaces/Formable'
 
 @Component
-export default class UserPage extends Vue {
+export default class UserPage extends Vue implements Formable {
   readonly form: FormItem = {
     name: {
       value: '',

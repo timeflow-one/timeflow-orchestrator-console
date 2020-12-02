@@ -6,14 +6,15 @@ import PlansStore from '@/store/PlansStore'
 import InstancesStore from '@/store/InstancesStore'
 import DurationsStore from '@/store/DurationsStore'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
+import { Formable } from './interfaces/Formable'
 
 @Component({
   components: {
     DatePicker
   }
 })
-export default class CreateLicensePage extends Vue {
-  form: FormItem = {
+export default class CreateLicensePage extends Vue implements Formable {
+  readonly form: FormItem = {
     instance: {
       value: -1,
       rules: [
@@ -44,7 +45,7 @@ export default class CreateLicensePage extends Vue {
     }
   }
 
-  loading = {
+  readonly loading = {
     submit: false
   }
 

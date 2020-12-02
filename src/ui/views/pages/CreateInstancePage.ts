@@ -6,6 +6,7 @@ import { ruleMessageToResult, ruleMessageToRule } from '@/utils/ruleMessageToRul
 import PlansStore from '@/store/PlansStore'
 import { emailRegex as emailRegexp } from '@/utils/EmailRegex'
 import DatePicker from '@/ui/components/DatePicker.vue'
+import { Formable } from './interfaces/Formable'
 
 @Component({
   components: {
@@ -13,8 +14,10 @@ import DatePicker from '@/ui/components/DatePicker.vue'
     DatePicker
   }
 })
-export default class CreateInstancePage extends Vue {
-  loading = false
+export default class CreateInstancePage extends Vue implements Formable {
+  readonly loading = {
+    submit: false
+  }
 
   readonly form: FormItem = {
     instance_name: {
@@ -209,7 +212,7 @@ export default class CreateInstancePage extends Vue {
 
   async submit () {
     try {
-      this.loading = true
+      this.loading.submit = true
       await TimeflowOrchestratorProvider.getInstance().createInstance({
         instance: {
           name: this.form.instance_name.value,
@@ -245,7 +248,7 @@ export default class CreateInstancePage extends Vue {
         }
       }
     } finally {
-      this.loading = false
+      this.loading.submit = false
     }
   }
 

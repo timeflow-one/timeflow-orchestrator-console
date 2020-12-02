@@ -3,10 +3,11 @@ import { PlansRoute } from '@/router'
 import CurrenciesStore from '@/store/CurrenciesStore'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
 import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Formable } from './interfaces/Formable'
 
 @Component
-export default class CreatePlanPage extends Vue {
-  form: FormItem = {
+export default class CreatePlanPage extends Vue implements Formable {
+  readonly form: FormItem = {
     title: {
       value: '',
       rules: [
@@ -39,7 +40,7 @@ export default class CreatePlanPage extends Vue {
     }
   }
 
-  loading = {
+  readonly loading = {
     submit: false
   }
 
