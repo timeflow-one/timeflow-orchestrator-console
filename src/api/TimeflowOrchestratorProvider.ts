@@ -6,6 +6,7 @@ import { UpdateInstanceRequest } from './requests/UpdateInstanceRequest'
 import { UpdateLicenseRequest } from './requests/UpdateLicenseRequest'
 import { UpdateUserRequest } from './requests/UpdateUserRequest'
 import { CreateInstanceResponse } from './responses/CreateInstanceResponse'
+import { CurrenciesResponse } from './responses/CurrenciesResponse'
 import { DurationsResponse } from './responses/DurationsResponse'
 import { InstanceResponse } from './responses/InstanceResponse'
 import { InstancesResponse } from './responses/InstancesResponse'
@@ -149,6 +150,12 @@ export class TimeflowOrchestratorProvider {
 
   public durations (): Promise<AxiosResponse<DurationsResponse>> {
     return this.api.post('/app/instances/durations', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY)
+    })
+  }
+
+  public currencies (): Promise<AxiosResponse<CurrenciesResponse>> {
+    return this.api.post('/app/mics/currencies', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY)
     })
   }
