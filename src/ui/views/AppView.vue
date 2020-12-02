@@ -13,9 +13,7 @@
       :permanent="!$vuetify.breakpoint.mobile"
       :temporary="$vuetify.breakpoint.mobile"
     >
-      <NavigationDrawerUserCard />
-
-      <v-divider />
+      <img class="ma-4" src="@/assets/timeflow.svg" />
 
       <v-list>
         <v-list-item
@@ -34,9 +32,11 @@
         </v-list-item>
       </v-list>
 
-      <!-- <template v-slot:append>
-        <span class="text-body-2 pa-2">ORBL {{ new Date().getFullYear() }}</span>
-      </template> -->
+      <template v-slot:append>
+        <v-divider />
+
+        <NavigationDrawerUserCard />
+      </template>
     </v-navigation-drawer>
 
     <v-app-bar
