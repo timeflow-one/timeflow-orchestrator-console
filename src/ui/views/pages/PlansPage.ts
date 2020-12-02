@@ -6,6 +6,7 @@ import PlansStore, { PlanModel } from '@/store/PlansStore'
 import { Component, Vue } from 'vue-property-decorator'
 import DataTable from '@/ui/components/DataTable.vue'
 import CodeComponent from '@/ui/components/CodeComponent.vue'
+import { Tableable } from './interfaces/Tableable'
 
 @Component({
   components: {
@@ -13,7 +14,7 @@ import CodeComponent from '@/ui/components/CodeComponent.vue'
     CodeComponent
   }
 })
-export default class PlansPage extends Vue {
+export default class PlansPage extends Vue implements Tableable<PlanModel> {
   /// --- TABLE ---
   readonly tableHeaders: Array<TableHeader> = [
     {

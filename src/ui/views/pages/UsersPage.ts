@@ -8,6 +8,7 @@ import { Filtrable } from './interfaces/Filtrable'
 import UsersStore, { UserModel } from '@/store/UsersStore'
 import { UserRoute, UsersRoute } from '@/router'
 import AuthStore from '@/store/AuthStore'
+import { Tableable } from './interfaces/Tableable'
 
 @Component({
   components: {
@@ -16,7 +17,7 @@ import AuthStore from '@/store/AuthStore'
     DataTable
   }
 })
-export default class UsersPage extends Vue implements Filtrable<Filter> {
+export default class UsersPage extends Vue implements Filtrable<Filter>, Tableable<UserModel> {
   /// --- TABLE ---
   readonly tableHeaders: Array<TableHeader> = [
     {

@@ -8,6 +8,7 @@ import AppbarMenuStore from '@/store/AppbarMenuStore'
 import InstancesStore, { InstanceModel } from '@/store/InstancesStore'
 import { Filtrable } from './interfaces/Filtrable'
 import { CreateInstanceRoute, InstanceRoute, InstancesRoute } from '@/router'
+import { Tableable } from './interfaces/Tableable'
 
 @Component({
   components: {
@@ -16,7 +17,7 @@ import { CreateInstanceRoute, InstanceRoute, InstancesRoute } from '@/router'
     DataTable
   }
 })
-export default class InstancesPage extends Vue implements Filtrable<Filter> {
+export default class InstancesPage extends Vue implements Filtrable<Filter>, Tableable<InstanceModel> {
   /// --- TABLE ---
   readonly tableHeaders: Array<TableHeader> = [
     {

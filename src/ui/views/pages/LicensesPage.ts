@@ -6,13 +6,14 @@ import LicensesStore, { LicenseModel } from '@/store/LicensesStore'
 import { Component, Vue } from 'vue-property-decorator'
 import DataTable from '@/ui/components/DataTable.vue'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
+import { Tableable } from './interfaces/Tableable'
 
 @Component({
   components: {
     DataTable
   }
 })
-export default class LicensesPage extends Vue {
+export default class LicensesPage extends Vue implements Tableable<LicenseModel> {
   /// --- TABLE ---
   readonly tableHeaders: Array<TableHeader> = [
     {
