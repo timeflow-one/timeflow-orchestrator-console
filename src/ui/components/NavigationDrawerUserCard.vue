@@ -15,15 +15,25 @@
         <v-list-item-subtitle class="mt-1">{{ profile ? $vuetify.lang.t(`$vuetify.timeflow.roles.${profile.role}`) : '—' }}</v-list-item-subtitle>
 
       </v-list-item-content>
+      <v-list-item-action>
+        <v-btn
+          icon
+          color="accent"
+          :title="$vuetify.lang.t('$vuetify.common.action.logout')"
+          @click="logout"
+        >
+          <v-icon>mdi-logout-variant</v-icon>
+        </v-btn>
+      </v-list-item-action>
     </v-list-item>
-    <v-list-item>
+    <!-- <v-list-item>
       <v-list-item-content>
         <v-btn
           color="accent"
           @click="logout"
         >{{ $vuetify.lang.t('$vuetify.common.action.logout') }}</v-btn>
       </v-list-item-content>
-    </v-list-item>
+    </v-list-item> -->
   </div>
 </template>
 
