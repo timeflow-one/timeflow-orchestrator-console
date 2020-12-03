@@ -3,6 +3,7 @@ export interface Formable {
   readonly loading: {
     [key: string]: boolean;
   };
+  isEdited: boolean;
   isSubmitButtonEnabled: boolean;
   submit (): void;
   cancel (): void;

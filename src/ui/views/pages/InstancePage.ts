@@ -14,6 +14,7 @@ import { Formable } from './interfaces/Formable'
 export default class InstancePage extends Vue implements Formable {
   readonly form: FormItem = {
     instance_name: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -21,6 +22,7 @@ export default class InstancePage extends Vue implements Formable {
       ]
     },
     db_host: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.db_host.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -28,6 +30,7 @@ export default class InstancePage extends Vue implements Formable {
       ]
     },
     db_name: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.db_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -35,6 +38,7 @@ export default class InstancePage extends Vue implements Formable {
       ]
     },
     db_user: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.db_user.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -42,6 +46,7 @@ export default class InstancePage extends Vue implements Formable {
       ]
     },
     db_pass: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.db_pass.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -49,6 +54,7 @@ export default class InstancePage extends Vue implements Formable {
       ]
     },
     vi_key: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.vi_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -56,6 +62,7 @@ export default class InstancePage extends Vue implements Formable {
       ]
     },
     geo_key: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.geo_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -83,12 +90,19 @@ export default class InstancePage extends Vue implements Formable {
       this.instance = response.data
 
       this.form.instance_name.value = response.data.instance.name
+      this.form.instance_name.initial = this.form.instance_name.value
       this.form.db_host.value = response.data.instance.db_host
+      this.form.db_host.initial = this.form.db_host.value
       this.form.db_name.value = response.data.instance.db_name
+      this.form.db_name.initial = this.form.db_name.value
       this.form.db_user.value = response.data.instance.db_username
+      this.form.db_user.initial = this.form.db_user.value
       this.form.db_pass.value = response.data.instance.db_password
+      this.form.db_pass.initial = this.form.db_pass.value
       this.form.vi_key.value = response.data.instance.vi_api_key
+      this.form.vi_key.initial = this.form.vi_key.value
       this.form.geo_key.value = response.data.instance.dadata_api_key
+      this.form.geo_key.initial = this.form.geo_key.value
     } catch (err) {
       if (err.isAxiosError) {
         // TODO (2020.11.10): Error handling
@@ -104,8 +118,20 @@ export default class InstancePage extends Vue implements Formable {
     }
   }
 
+  get isEdited (): boolean {
+    return Object.keys(this.form).some(it => {
+      return this.form[it].value !== this.form[it].initial
+    })
+  }
+
   cancel () {
-    this.$router.replace(InstancesRoute)
+    if (this.isEdited) {
+      if (confirm(this.$vuetify.lang.t('$vuetify.common.label.confirm_close_dialog'))) {
+        this.$router.replace(InstancesRoute)
+      }
+    } else {
+      this.$router.replace(InstancesRoute)
+    }
   }
 
   async submit () {

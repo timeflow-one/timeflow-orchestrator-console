@@ -16,30 +16,35 @@ import { Formable } from './interfaces/Formable'
 export default class CreateLicensePage extends Vue implements Formable {
   readonly form: FormItem = {
     instance: {
+      initial: -1,
       value: -1,
       rules: [
         () => this.form.instance.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     plan: {
+      initial: -1,
       value: -1,
       rules: [
         () => this.form.plan.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     start_at: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.start_at.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     duration: {
+      initial: -1,
       value: -1,
       rules: [
         () => this.form.duration.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     expired_at: {
+      initial: '',
       value: '',
       rules: []
     }
@@ -87,8 +92,20 @@ export default class CreateLicensePage extends Vue implements Formable {
     }
   }
 
+  get isEdited (): boolean {
+    return Object.keys(this.form).some(it => {
+      return this.form[it].value !== this.form[it].initial
+    })
+  }
+
   cancel () {
-    this.$router.replace(LicensesRoute)
+    if (this.isEdited) {
+      if (confirm(this.$vuetify.lang.t('$vuetify.common.label.confirm_close_dialog'))) {
+        this.$router.replace(LicensesRoute)
+      }
+    } else {
+      this.$router.replace(LicensesRoute)
+    }
   }
 
   setFocusOnFirstField () {

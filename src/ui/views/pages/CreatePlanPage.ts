@@ -9,30 +9,35 @@ import { Formable } from './interfaces/Formable'
 export default class CreatePlanPage extends Vue implements Formable {
   readonly form: FormItem = {
     title: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.title.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     code: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.code.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     employees_limit: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.employees_limit.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     monthly_fee: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.monthly_fee.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     currency: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.currency.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
@@ -50,8 +55,20 @@ export default class CreatePlanPage extends Vue implements Formable {
     this.setFocusOnFirstField()
   }
 
+  get isEdited (): boolean {
+    return Object.keys(this.form).some(it => {
+      return this.form[it].value !== this.form[it].initial
+    })
+  }
+
   cancel () {
-    this.$router.replace(PlansRoute)
+    if (this.isEdited) {
+      if (confirm(this.$vuetify.lang.t('$vuetify.common.label.confirm_close_dialog'))) {
+        this.$router.replace(PlansRoute)
+      }
+    } else {
+      this.$router.replace(PlansRoute)
+    }
   }
 
   setFocusOnFirstField () {

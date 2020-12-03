@@ -17,30 +17,35 @@ import { Formable } from './interfaces/Formable'
 export default class LicensePage extends Vue implements Formable {
   readonly form: FormItem = {
     instance: {
+      initial: -1,
       value: -1,
       rules: [
         () => this.form.instance.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     plan: {
+      initial: -1,
       value: -1,
       rules: [
         () => this.form.plan.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     start_at: {
+      initial: -1,
       value: '',
       rules: [
         () => this.form.start_at.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     duration: {
+      initial: -1,
       value: -1,
       rules: [
         () => this.form.duration.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     expired_at: {
+      initial: -1,
       value: '',
       rules: []
     }
@@ -68,9 +73,13 @@ export default class LicensePage extends Vue implements Formable {
       this.license = response.data
 
       this.form.instance.value = response.data.license.instance_id
+      this.form.instance.initial = this.form.instance.value
       this.form.plan.value = response.data.license.plan_id
+      this.form.plan.initial = this.form.plan.value
       this.form.start_at.value = response.data.license.effective_date
+      this.form.start_at.initial = this.form.start_at.value
       this.form.duration.value = Math.round(Math.abs((new Date(response.data.license.valid_until).getTime() - new Date(response.data.license.effective_date).getTime()) / (24 * 60 * 60 * 1000)))
+      this.form.duration.initial = this.form.duration.value
     } catch (err) {
       // if (err.isAxiosError) {
       //   // TODO (2020.11.10): Error handling
@@ -86,8 +95,20 @@ export default class LicensePage extends Vue implements Formable {
     }
   }
 
+  get isEdited (): boolean {
+    return Object.keys(this.form).some(it => {
+      return this.form[it].value !== this.form[it].initial
+    })
+  }
+
   cancel () {
-    this.$router.replace(LicensesRoute)
+    if (this.isEdited) {
+      if (confirm(this.$vuetify.lang.t('$vuetify.common.label.confirm_close_dialog'))) {
+        this.$router.replace(LicensesRoute)
+      }
+    } else {
+      this.$router.replace(LicensesRoute)
+    }
   }
 
   async submit () {

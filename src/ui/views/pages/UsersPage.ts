@@ -166,6 +166,11 @@ export default class UsersPage extends Vue implements Filtrable<Filter>, Tableab
     })
   }
 
+  clickOutsideSubpage () {
+    // @ts-expect-error
+    this.$refs.subpage.cancel()
+  }
+
   loginAs (item: UserModel) {
     const userConsolePage = window.open(`${process.env.VUE_APP_USER_CONSOLE_URL}/login-as?orchestrator=${AuthStore.token}&user=${item.access_token}`, '_blank')
     return userConsolePage?.focus()

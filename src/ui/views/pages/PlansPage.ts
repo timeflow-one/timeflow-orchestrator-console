@@ -115,6 +115,11 @@ export default class PlansPage extends Vue implements Tableable<PlanModel> {
     throw new Error('Not implemented')
   }
 
+  clickOutsideSubpage () {
+    // @ts-expect-error
+    this.$refs.subpage.cancel()
+  }
+
   onOptionsChanged (value: TableOptions) {
     this.tableOptions = value
     this.loadData((value.page - 1) * value.itemsPerPage, value.itemsPerPage)

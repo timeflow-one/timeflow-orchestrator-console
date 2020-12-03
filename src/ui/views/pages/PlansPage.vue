@@ -43,11 +43,11 @@
 
     <v-dialog
       v-model="isSubpage"
-      persistent
       scrollable
       max-width="1100px"
+      @click:outside="clickOutsideSubpage"
     >
-      <router-view :key="$route.path" />
+      <router-view ref="subpage" :key="$route.path" />
     </v-dialog>
   </v-container>
 </template>

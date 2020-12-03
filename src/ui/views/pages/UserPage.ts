@@ -11,6 +11,7 @@ import { Formable } from './interfaces/Formable'
 export default class UserPage extends Vue implements Formable {
   readonly form: FormItem = {
     name: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -18,6 +19,7 @@ export default class UserPage extends Vue implements Formable {
       ]
     },
     email: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.email.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -26,12 +28,14 @@ export default class UserPage extends Vue implements Formable {
       ]
     },
     roles: {
+      initial: [],
       value: [],
       rules: [
         () => this.form.roles.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     instance_name: {
+      initial: '',
       value: '',
       rules: [
         () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -58,9 +62,13 @@ export default class UserPage extends Vue implements Formable {
       this.user = response.data
 
       this.form.name.value = response.data.user.full_name
+      this.form.name.initial = this.form.name.value
       this.form.email.value = response.data.user.email
+      this.form.email.initial = this.form.email.value
       this.form.roles.value = response.data.user.role.split(',')
+      this.form.roles.initial = this.form.roles.value
       this.form.instance_name.value = response.data.user.instance.name
+      this.form.instance_name.initial = this.form.instance_name.value
     } catch (err) {
       if (err.isAxiosError) {
         // TODO (2020.11.10): Error handling
@@ -76,8 +84,20 @@ export default class UserPage extends Vue implements Formable {
     }
   }
 
+  get isEdited (): boolean {
+    return Object.keys(this.form).some(it => {
+      return this.form[it].value !== this.form[it].initial
+    })
+  }
+
   cancel () {
-    this.$router.replace(UsersRoute)
+    if (this.isEdited) {
+      if (confirm(this.$vuetify.lang.t('$vuetify.common.label.confirm_close_dialog'))) {
+        this.$router.replace(UsersRoute)
+      }
+    } else {
+      this.$router.replace(UsersRoute)
+    }
   }
 
   async submit () {

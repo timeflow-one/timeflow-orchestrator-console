@@ -164,6 +164,11 @@ export default class InstancesPage extends Vue implements Filtrable<Filter>, Tab
       params: { id: item.id.toString() }
     })
   }
+
+  clickOutsideSubpage () {
+    // @ts-expect-error
+    this.$refs.subpage.cancel()
+  }
 }
 
 interface Filter {
