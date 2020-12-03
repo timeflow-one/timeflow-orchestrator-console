@@ -26,7 +26,7 @@ export default class CreateInstancePage extends Vue implements Formable {
       readonly: false,
       rules: [
         () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
-        () => !this.form.instance_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
+        () => !this.form.instance_name.value.match(/^\s+$/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
     },
     db_host: {
@@ -78,8 +78,7 @@ export default class CreateInstancePage extends Vue implements Formable {
       value: '',
       readonly: false,
       rules: [
-        () => this.form.expired_at.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
-        () => !this.form.expired_at.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
+        () => this.form.expired_at.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     vi_key: {
@@ -105,8 +104,7 @@ export default class CreateInstancePage extends Vue implements Formable {
       value: '',
       readonly: false,
       rules: [
-        () => this.form.username.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
-        () => !this.form.username.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
+        () => this.form.username.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
     user_email: {
