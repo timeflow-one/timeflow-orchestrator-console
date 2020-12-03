@@ -41,6 +41,7 @@
         >
           <v-text-field
             v-model="form.name.value"
+            :disabled="form.name.readonly"
             :rules="form.name.rules"
             :label="$vuetify.lang.t('$vuetify.pages.user.form.label.0')"
           />
@@ -51,6 +52,7 @@
         >
           <v-text-field
             v-model="form.email.value"
+            :disabled="form.email.readonly"
             :rules="form.email.rules"
             :label="$vuetify.lang.t('$vuetify.pages.user.form.label.1')"
           />
@@ -63,7 +65,7 @@
         >
           <v-text-field
             v-model="form.instance_name.value"
-            disabled
+            :disabled="form.instance_name.readonly"
             :rules="form.instance_name.rules"
             :label="$vuetify.lang.t('$vuetify.pages.user.form.label.2')"
           />
@@ -75,7 +77,7 @@
           <v-select
             v-model="form.roles.value"
             :items="roles"
-            :disabled="isRolesEnabled"
+            :disabled="form.roles.readonly || isRolesEnabled"
             multiple
             chips
             :label="$vuetify.lang.t('$vuetify.pages.user.form.label.3')"

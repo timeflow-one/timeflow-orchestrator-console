@@ -11,6 +11,7 @@
             ref="focusedField"
             tabindex="1"
             v-model="form.title.value"
+            :disabled="form.title.readonly"
             :rules="form.title.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.0')"
           />
@@ -22,9 +23,9 @@
           <v-text-field
             tabindex="2"
             v-model="form.code.value"
+            :disabled="form.code.readonly"
             :rules="form.code.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.1')"
-            disabled
           />
         </v-col>
       </v-row>
@@ -36,6 +37,7 @@
           <v-text-field
             tabindex="3"
             v-model="form.employees_limit.value"
+            :disabled="form.employees_limit.readonly"
             type="number"
             :rules="form.employees_limit.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.2')"
@@ -50,6 +52,7 @@
           <v-text-field
             tabindex="4"
             v-model="form.monthly_fee.value"
+            :disabled="form.monthly_fee.readonly"
             type="number"
             :rules="form.monthly_fee.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.3')"
@@ -63,7 +66,7 @@
             tabindex="5"
             v-model="form.currency.value"
             :items="currencies"
-            :disabled="currencies.length <= 0"
+            :disabled="form.currency.readonly || currencies.length <= 0"
             :loading="currencies.length <= 0"
             :rules="form.currency.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.4')"

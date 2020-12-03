@@ -13,6 +13,7 @@ export default class UserPage extends Vue implements Formable {
     name: {
       initial: '',
       value: '',
+      readonly: false,
       rules: [
         () => this.form.name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
         () => !this.form.name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
@@ -21,6 +22,7 @@ export default class UserPage extends Vue implements Formable {
     email: {
       initial: '',
       value: '',
+      readonly: false,
       rules: [
         () => this.form.email.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
         () => !this.form.email.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces'),
@@ -30,6 +32,7 @@ export default class UserPage extends Vue implements Formable {
     roles: {
       initial: [],
       value: [],
+      readonly: false,
       rules: [
         () => this.form.roles.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -37,6 +40,7 @@ export default class UserPage extends Vue implements Formable {
     instance_name: {
       initial: '',
       value: '',
+      readonly: true,
       rules: [
         () => this.form.instance_name.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
         () => !this.form.instance_name.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
@@ -86,7 +90,7 @@ export default class UserPage extends Vue implements Formable {
 
   get isEdited (): boolean {
     return Object.keys(this.form).some(it => {
-      return this.form[it].value !== this.form[it].initial
+      return !this.form[it].readonly && this.form[it].value !== this.form[it].initial
     })
   }
 
@@ -140,31 +144,37 @@ export default class UserPage extends Vue implements Formable {
       {
         text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.OWNER}`),
         value: Role.OWNER,
+        readonly: false,
         disabled: false
       },
       {
         text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.ADMIN}`),
         value: Role.ADMIN,
+        readonly: false,
         disabled: false
       },
       {
         text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.MANAGER}`),
         value: Role.MANAGER,
+        readonly: false,
         disabled: false
       },
       {
         text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.HR}`),
         value: Role.HR,
+        readonly: false,
         disabled: false
       },
       {
         text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.ANALYST}`),
         value: Role.ANALYST,
+        readonly: false,
         disabled: false
       },
       {
         text: this.$vuetify.lang.t(`$vuetify.timeflow.roles.${Role.ORCHESTRATOR}`),
         value: Role.ORCHESTRATOR,
+        readonly: false,
         disabled: true
       }
     ]

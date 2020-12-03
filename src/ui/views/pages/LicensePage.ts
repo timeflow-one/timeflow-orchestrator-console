@@ -19,6 +19,7 @@ export default class LicensePage extends Vue implements Formable {
     instance: {
       initial: -1,
       value: -1,
+      readonly: false,
       rules: [
         () => this.form.instance.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -26,6 +27,7 @@ export default class LicensePage extends Vue implements Formable {
     plan: {
       initial: -1,
       value: -1,
+      readonly: false,
       rules: [
         () => this.form.plan.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -33,6 +35,7 @@ export default class LicensePage extends Vue implements Formable {
     start_at: {
       initial: -1,
       value: '',
+      readonly: false,
       rules: [
         () => this.form.start_at.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -40,6 +43,7 @@ export default class LicensePage extends Vue implements Formable {
     duration: {
       initial: -1,
       value: -1,
+      readonly: false,
       rules: [
         () => this.form.duration.value > -1 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -47,6 +51,7 @@ export default class LicensePage extends Vue implements Formable {
     expired_at: {
       initial: -1,
       value: '',
+      readonly: true,
       rules: []
     }
   }
@@ -97,7 +102,7 @@ export default class LicensePage extends Vue implements Formable {
 
   get isEdited (): boolean {
     return Object.keys(this.form).some(it => {
-      return this.form[it].value !== this.form[it].initial
+      return !this.form[it].readonly && this.form[it].value !== this.form[it].initial
     })
   }
 
@@ -170,6 +175,7 @@ export default class LicensePage extends Vue implements Formable {
   get instances () {
     return InstancesStore.instances.map(it => ({
       value: it.id,
+      readonly: false,
       text: it.name
     }))
   }
@@ -177,6 +183,7 @@ export default class LicensePage extends Vue implements Formable {
   get plans () {
     return PlansStore.plans.map(it => ({
       value: it.id,
+      readonly: false,
       text: it.title
     }))
   }
@@ -184,6 +191,7 @@ export default class LicensePage extends Vue implements Formable {
   get durations () {
     return DurationsStore.durations.map(it => ({
       value: it,
+      readonly: false,
       text: it
     }))
   }

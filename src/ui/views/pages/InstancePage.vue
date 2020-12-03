@@ -63,6 +63,7 @@
         >
           <v-text-field
             v-model="form.instance_name.value"
+            :disabled="form.instance_name.readonly"
             :rules="form.instance_name.rules"
             :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.0')"
           />
@@ -75,9 +76,9 @@
         >
           <v-text-field
             v-model="form.db_host.value"
+            :disabled="form.db_host.readonly"
             :rules="form.db_host.rules"
             :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.1')"
-            disabled
           />
         </v-col>
         <v-col
@@ -86,9 +87,9 @@
         >
           <v-text-field
             v-model="form.db_name.value"
+            :disabled="form.db_name.readonly"
             :rules="form.db_name.rules"
             :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.2')"
-            disabled
           />
         </v-col>
         <v-col
@@ -97,9 +98,9 @@
         >
           <v-text-field
             v-model="form.db_user.value"
+            :disabled="form.db_user.readonly"
             :rules="form.db_user.rules"
             :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.3')"
-            disabled
           />
         </v-col>
         <v-col
@@ -108,9 +109,9 @@
         >
           <PasswordComponent
             v-model="form.db_pass.value"
+            :disabled="form.db_pass.readonly"
             :rules="form.db_pass.rules"
             :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.4')"
-            disabled
           />
         </v-col>
       </v-row>
@@ -121,6 +122,7 @@
         >
           <v-text-field
             v-model="form.vi_key.value"
+            :disabled="form.vi_key.readonly"
             :rules="form.vi_key.rules"
             :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.5')"
           />
@@ -131,6 +133,7 @@
         >
           <v-text-field
             v-model="form.geo_key.value"
+            :disabled="form.geo_key.readonly"
             :rules="form.geo_key.rules"
             :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.6')"
           />

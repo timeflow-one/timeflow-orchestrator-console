@@ -11,6 +11,7 @@ export default class CreatePlanPage extends Vue implements Formable {
     title: {
       initial: '',
       value: '',
+      readonly: false,
       rules: [
         () => this.form.title.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -18,6 +19,7 @@ export default class CreatePlanPage extends Vue implements Formable {
     code: {
       initial: '',
       value: '',
+      readonly: true,
       rules: [
         () => this.form.code.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -25,6 +27,7 @@ export default class CreatePlanPage extends Vue implements Formable {
     employees_limit: {
       initial: '',
       value: '',
+      readonly: false,
       rules: [
         () => this.form.employees_limit.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -32,6 +35,7 @@ export default class CreatePlanPage extends Vue implements Formable {
     monthly_fee: {
       initial: '',
       value: '',
+      readonly: false,
       rules: [
         () => this.form.monthly_fee.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -39,6 +43,7 @@ export default class CreatePlanPage extends Vue implements Formable {
     currency: {
       initial: '',
       value: '',
+      readonly: false,
       rules: [
         () => this.form.currency.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -57,7 +62,7 @@ export default class CreatePlanPage extends Vue implements Formable {
 
   get isEdited (): boolean {
     return Object.keys(this.form).some(it => {
-      return this.form[it].value !== this.form[it].initial
+      return !this.form[it].readonly && this.form[it].value !== this.form[it].initial
     })
   }
 
@@ -103,6 +108,7 @@ export default class CreatePlanPage extends Vue implements Formable {
   get currencies () {
     return [...CurrenciesStore.currencies].map(it => ({
       value: it[0],
+      readonly: false,
       text: this.$vuetify.lang.t(`$vuetify.common.label.currency.${it[0]}`)
     }))
   }

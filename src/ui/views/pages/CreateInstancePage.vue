@@ -11,6 +11,7 @@
             ref="focusedField"
             tabindex="1"
             v-model="form.instance_name.value"
+            :disabled="form.instance_name.readonly"
             :rules="form.instance_name.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.0')"
           />
@@ -25,6 +26,7 @@
           <v-text-field
             tabindex="3"
             v-model="form.db_host.value"
+            :disabled="form.db_host.readonly"
             :rules="form.db_host.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.1')"
           />
@@ -37,6 +39,7 @@
           <v-text-field
             tabindex="4"
             v-model="form.db_name.value"
+            :disabled="form.db_name.readonly"
             :rules="form.db_name.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.2')"
           />
@@ -49,6 +52,7 @@
           <v-text-field
             tabindex="5"
             v-model="form.db_user.value"
+            :disabled="form.db_user.readonly"
             :rules="form.db_user.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.3')"
           />
@@ -61,6 +65,7 @@
           <PasswordComponent
             tabindex="6"
             v-model="form.db_pass.value"
+            :disabled="form.db_pass.readonly"
             :rules="form.db_pass.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.4')"
           />
@@ -79,7 +84,7 @@
             item-value="id"
             :items="plans"
             :loading="plans.length <= 0"
-            :disabled="plans.length <= 0"
+            :disabled="form.plan.readonly || plans.length <= 0"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.5')"
           />
         </v-col>
@@ -91,6 +96,7 @@
           <DatePicker
             tabindex="9"
             v-model="form.expired_at.value"
+            :disabled="form.expired_at.readonly"
             :rules="form.expired_at.rules"
             :parser="(value) => new Date(value).toLocaleDateString()"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.6')"
@@ -104,6 +110,7 @@
           <v-text-field
             tabindex="10"
             v-model="form.vi_key.value"
+            :disabled="form.vi_key.readonly"
             :rules="form.vi_key.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.7')"
           />
@@ -116,6 +123,7 @@
           <v-text-field
             tabindex="11"
             v-model="form.geo_key.value"
+            :disabled="form.geo_key.readonly"
             :rules="form.geo_key.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.8')"
           />
@@ -130,6 +138,7 @@
           <v-text-field
             tabindex="13"
             v-model="form.username.value"
+            :disabled="form.username.readonly"
             :rules="form.username.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.9')"
           />
@@ -142,6 +151,7 @@
           <v-text-field
             tabindex="14"
             v-model="form.user_email.value"
+            :disabled="form.user_email.readonly"
             :rules="form.user_email.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.10')"
           />
@@ -154,6 +164,7 @@
           <PasswordComponent
             tabindex="15"
             v-model="form.user_pass.value"
+            :disabled="form.user_pass.readonly"
             :rules="form.user_pass.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.11')"
           />
