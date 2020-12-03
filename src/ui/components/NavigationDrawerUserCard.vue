@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list-item>
+    <v-list-item class="user-select-none">
       <v-list-item-avatar>
         <span
           class="accent lighten-3 d-inline-flex justify-center align-center font-weight-medium"
