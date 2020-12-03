@@ -124,11 +124,7 @@ export default class UserPage extends Vue implements Formable {
   }
 
   get isValueUpdated () {
-    return this.form.name.value !== this.user.user.full_name ||
-      this.form.email.value !== this.user.user.email ||
-      this.form.roles.value.length !== this.user.user.role.split(',').length ||
-      this.form.roles.value.some((it: string, index: number) => it !== this.user.user.role.split(',')[index]) ||
-      this.form.instance_name.value !== this.user.user.instance.name
+    return this.isEdited
   }
 
   get isSubmitButtonEnabled () {

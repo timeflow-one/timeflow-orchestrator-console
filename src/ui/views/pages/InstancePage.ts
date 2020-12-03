@@ -181,13 +181,7 @@ export default class InstancePage extends Vue implements Formable {
   }
 
   get isValueUpdated () {
-    return this.form.instance_name.value !== this.instance.instance.name ||
-      this.form.db_host.value !== this.instance.instance.db_host ||
-      this.form.db_name.value !== this.instance.instance.db_name ||
-      this.form.db_user.value !== this.instance.instance.db_username ||
-      this.form.db_pass.value !== this.instance.instance.db_password ||
-      this.form.vi_key.value !== this.instance.instance.vi_api_key ||
-      this.form.geo_key.value !== this.instance.instance.dadata_api_key
+    return this.isEdited
   }
 
   get isSubmitButtonEnabled () {

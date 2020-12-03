@@ -156,10 +156,7 @@ export default class LicensePage extends Vue implements Formable {
   }
 
   get isValueUpdated () {
-    return this.form.instance.value !== this.license.license.instance_id ||
-      this.form.plan.value !== this.license.license.plan_id ||
-      this.form.start_at.value !== this.license.license.effective_date ||
-      this.form.expired_at.value !== this.license.license.valid_until
+    return this.isEdited
   }
 
   get isSubmitButtonEnabled () {
