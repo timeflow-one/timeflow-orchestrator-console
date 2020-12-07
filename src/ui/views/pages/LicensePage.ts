@@ -33,7 +33,7 @@ export default class LicensePage extends Vue implements Formable {
       ]
     },
     start_at: {
-      initial: -1,
+      initial: '',
       value: '',
       readonly: false,
       rules: [
@@ -49,7 +49,7 @@ export default class LicensePage extends Vue implements Formable {
       ]
     },
     expired_at: {
-      initial: -1,
+      initial: '',
       value: '',
       readonly: true,
       rules: []

@@ -65,7 +65,9 @@
       v-model="isSubpage"
       scrollable
       max-width="1100px"
+      persistent
       @click:outside="clickOutsideSubpage"
+      @keydown.esc="clickOutsideSubpage"
     >
       <router-view ref="subpage" :key="$route.path" />
     </v-dialog>
