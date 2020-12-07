@@ -1,6 +1,6 @@
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
-import { CreatePlanRoute, PlansRoute } from '@/router'
+import { CreatePlanRoute, PlanRoute, PlansRoute } from '@/router'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import PlansStore, { PlanModel } from '@/store/PlansStore'
 import { Component, Vue } from 'vue-property-decorator'
@@ -108,11 +108,10 @@ export default class PlansPage extends Vue implements Tableable<PlanModel> {
   }
 
   clickOnRow (item: PlanModel) {
-    // this.$router.push({
-    //   ...PlanRoute,
-    //   params: { id: item.id.toString() }
-    // })
-    throw new Error('Not implemented')
+    this.$router.push({
+      ...PlanRoute,
+      params: { id: item.id.toString() }
+    })
   }
 
   clickOutsideSubpage () {

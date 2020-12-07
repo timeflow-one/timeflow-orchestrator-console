@@ -149,6 +149,7 @@ export {
   CreateLicenseRoute,
   LicensesRoute,
   BillsRoute,
+  PlanRoute,
   CreatePlanRoute,
   PlansRoute,
   NotFoundRoute
