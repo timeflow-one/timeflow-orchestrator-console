@@ -12,6 +12,7 @@ import LicensesPage from '@/ui/views/pages/LicensesPage.vue'
 import CreateLicensePage from '@/ui/views/pages/CreateLicensePage.vue'
 import LicensePage from '@/ui/views/pages/LicensePage.vue'
 import CreatePlanPage from '@/ui/views/pages/CreatePlanPage.vue'
+import PlanPage from '@/ui/views/pages/PlanPage.vue'
 
 Vue.use(VueRouter)
 
@@ -85,6 +86,12 @@ const BillsRoute: RouteConfig = {
   path: '/bills'
 }
 
+const PlanRoute: RouteConfig = {
+  name: 'plan',
+  path: ':id',
+  component: PlanPage
+}
+
 const CreatePlanRoute: RouteConfig = {
   name: 'create_plan',
   path: 'create',
@@ -96,6 +103,7 @@ const PlansRoute: RouteConfig = {
   path: '/plans',
   component: PlansPage,
   children: [
+    PlanRoute,
     CreatePlanRoute
   ]
 }
