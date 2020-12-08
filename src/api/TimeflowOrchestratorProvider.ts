@@ -6,6 +6,7 @@ import { CreateLicenseRequest } from './requests/CreateLicenseRequest'
 import { CreatePlanRequest } from './requests/CreatePlanRequest'
 import { UpdateInstanceRequest } from './requests/UpdateInstanceRequest'
 import { UpdateLicenseRequest } from './requests/UpdateLicenseRequest'
+import { UpdatePlanRequest } from './requests/UpdatePlanRequest'
 import { UpdateUserRequest } from './requests/UpdateUserRequest'
 import { CreateInstanceResponse } from './responses/CreateInstanceResponse'
 import { CreatePlanResponse } from './responses/CreatePlanResponse'
@@ -15,6 +16,7 @@ import { InstanceResponse } from './responses/InstanceResponse'
 import { InstancesResponse } from './responses/InstancesResponse'
 import { LicenseResponse } from './responses/LicenseResponse'
 import { LicensesResponse } from './responses/LicensesResponse'
+import { PlanResponse } from './responses/PlanResponse'
 import { PlansResponse } from './responses/PlansResponse'
 import { SignInResponse } from './responses/SignInResponse'
 import { UserResponse } from './responses/UserResponse'
@@ -97,6 +99,20 @@ export class TimeflowOrchestratorProvider {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
       offset,
       limit
+    })
+  }
+
+  public updatePlan (request: UpdatePlanRequest): Promise<AxiosResponse<PlanResponse>> {
+    return this.api.post('/app/plans/update', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      ...request
+    })
+  }
+
+  public getPlan (id: number): Promise<AxiosResponse<PlanResponse>> {
+    return this.api.post('/app/plans/get', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      id
     })
   }
 
