@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>{{ $vuetify.lang.t('$vuetify.pages.license.label.edit') }}</v-card-title>
+    <v-card-title>{{ $vuetify.lang.t('$vuetify.pages.license.title') }}</v-card-title>
     <v-card-text v-if="loading.card">
       <v-row>
         <v-col

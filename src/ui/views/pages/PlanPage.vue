@@ -1,0 +1,130 @@
+<template>
+  <v-card>
+    <v-card-title>
+      <span v-if="!loading.card">{{ $vuetify.lang.t('$vuetify.pages.plan.title', title) }}</span>
+    </v-card-title>
+    <v-card-text v-if="loading.card">
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-skeleton-loader type="text" />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-skeleton-loader type="text" />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-skeleton-loader type="text" />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-skeleton-loader type="text" />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-skeleton-loader type="text" />
+        </v-col>
+      </v-row>
+    </v-card-text>
+    <v-card-text v-if="!loading.card">
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            ref="focusedField"
+            tabindex="1"
+            v-model="form.title.value"
+            :disabled="form.title.readonly"
+            :rules="form.title.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.0')"
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            tabindex="2"
+            v-model="form.code.value"
+            :disabled="form.code.readonly"
+            :rules="form.code.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.1')"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            tabindex="3"
+            v-model="form.employees_limit.value"
+            :disabled="form.employees_limit.readonly"
+            type="number"
+            :rules="form.employees_limit.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.2')"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-text-field
+            tabindex="4"
+            v-model="form.monthly_fee.value"
+            :disabled="form.monthly_fee.readonly"
+            type="number"
+            :rules="form.monthly_fee.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.3')"
+          />
+        </v-col>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <v-select
+            tabindex="5"
+            v-model="form.currency.value"
+            :items="currencies"
+            :disabled="form.currency.readonly || currencies.length <= 0"
+            :loading="currencies.length <= 0"
+            :rules="form.currency.rules"
+            :label="$vuetify.lang.t('$vuetify.pages.create_plan.form.label.4')"
+          />
+        </v-col>
+      </v-row>
+    </v-card-text>
+    <v-card-actions>
+      <v-btn
+        text
+        @click="cancel"
+      >{{ $vuetify.lang.t('$vuetify.common.action.cancel') }}</v-btn>
+      <v-spacer />
+      <v-btn
+        color="primary"
+        text
+        :loading="loading.submit"
+        :disabled="!isSubmitButtonEnabled"
+        @click="submit"
+      >{{ $vuetify.lang.t('$vuetify.common.action.edit') }}</v-btn>
+    </v-card-actions>
+  </v-card>
+</template>
+
+<script src="./PlanPage" lang="ts" />
