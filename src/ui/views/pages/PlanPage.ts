@@ -3,7 +3,7 @@ import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider
 import { PlansRoute } from '@/router'
 import CurrenciesStore from '@/store/CurrenciesStore'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Formable } from './interfaces/Formable'
 
 @Component
@@ -154,5 +154,17 @@ export default class PlanPage extends Vue implements Formable {
       .reduce((prev, current) => prev.concat(current), [])
       .map(it => ruleMessageToResult(it))
       .every(it => it) && this.isEdited
+  }
+
+  @Watch('form.title.value')
+  onTitleChanged (value: string) {
+    try {
+      this.form.code.value = value
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+    } catch (err) {
+      this.form.code.value = ''
+    }
   }
 }
