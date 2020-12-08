@@ -25,7 +25,7 @@ class PlansStore extends VuexModule {
         title: item.title,
         code: item.code,
         employees_limit: item.employees_limit,
-        monthly_fee_text: item.monthly_fee_text.replace(/,\d{1,}\s/, ''),
+        monthly_fee_text: item.monthly_fee_text.replace(/,\d{1,}/, ''),
         status: item.is_deleted < 1
       }))
     }
