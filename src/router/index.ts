@@ -13,6 +13,7 @@ import CreateLicensePage from '@/ui/views/pages/CreateLicensePage.vue'
 import LicensePage from '@/ui/views/pages/LicensePage.vue'
 import CreatePlanPage from '@/ui/views/pages/CreatePlanPage.vue'
 import PlanPage from '@/ui/views/pages/PlanPage.vue'
+import BillsPage from '@/ui/views/pages/BillsPage.vue'
 
 Vue.use(VueRouter)
 
@@ -83,7 +84,8 @@ const LicensesRoute: RouteConfig = {
 
 const BillsRoute: RouteConfig = {
   name: 'bills',
-  path: '/bills'
+  path: '/bills',
+  component: BillsPage
 }
 
 const PlanRoute: RouteConfig = {
