@@ -30,8 +30,8 @@ class InstancesStore extends VuexModule {
           name: item.name,
           limit: item.stats.employees.licensed,
           count: item.stats.employees.active,
-          created_at: createdAt.toLocaleDateString(),
-          expires_at: expiresAt.toLocaleDateString(),
+          created_at: createdAt,
+          expires_at: expiresAt,
           state: item.requires_upgrade,
           db: {
             db_host: item.db_host,

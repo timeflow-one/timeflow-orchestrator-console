@@ -26,16 +26,10 @@
             <span>{{ item.plan.name }}</span>
           </td>
           <td class="text-start user-select-none">
-            <v-chip
-              class="cursor-pointer"
-              color="grey lighten-4"
-            >{{ item.start_at.toLocaleDateString() }}</v-chip>
+            <span>{{ item.start_at.toLocaleDateString() }}</span>
           </td>
           <td class="text-start user-select-none">
-            <v-chip
-              class="cursor-pointer"
-              color="grey lighten-4"
-            >{{ item.expired_at.toLocaleDateString() }}</v-chip>
+            <span>{{ item.expired_at.toLocaleDateString() }}</span>
           </td>
           <td class="text-center user-select-none">
             <v-simple-checkbox

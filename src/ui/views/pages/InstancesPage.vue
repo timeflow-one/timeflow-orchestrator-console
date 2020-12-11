@@ -55,16 +55,10 @@
             <span>{{ item.count }}</span>
           </td>
           <td class="text-start user-select-none">
-            <v-chip
-              class="cursor-pointer"
-              color="grey lighten-4"
-            >{{ item.created_at }}</v-chip>
+            <span>{{ item.created_at.toLocaleDateString() }}</span>
           </td>
           <td class="text-start user-select-none">
-            <v-chip
-              class="cursor-pointer"
-              color="grey lighten-4"
-            >{{ item.expires_at }}</v-chip>
+            <span>{{ item.expires_at.toLocaleDateString() }}</span>
           </td>
           <td class="text-center user-select-none">
             <v-chip
@@ -86,7 +80,10 @@
       @click:outside="clickOutsideSubpage"
       @keydown.esc="clickOutsideSubpage"
     >
-      <router-view ref="subpage" :key="$route.path" />
+      <router-view
+        ref="subpage"
+        :key="$route.path"
+      />
     </v-dialog>
   </v-container>
 </template>
