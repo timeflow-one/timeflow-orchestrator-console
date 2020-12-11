@@ -20,7 +20,11 @@
             <span :title="item.id">{{ item.id }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span :title="item.transaction_no">{{ item.transaction_no }}</span>
+            <span
+              v-if="item.transaction_no"
+              :title="item.transaction_no"
+            >{{ item.transaction_no }}</span>
+            <span v-else>—</span>
           </td>
           <td class="text-start user-select-none">
             <span :title="item.to_pay_on.toLocaleDateString()">{{ item.to_pay_on.toLocaleDateString() }}</span>
@@ -29,13 +33,25 @@
             <span :title="item.created_at.toLocaleDateString()">{{ item.created_at.toLocaleDateString() }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span :title="item.customer.legal_title">{{ item.customer.legal_title }}</span>
+            <span
+              v-if="item.customer.legal_title"
+              :title="item.customer.legal_title"
+            >{{ item.customer.legal_title }}</span>
+            <span v-else>—</span>
           </td>
           <td class="text-start user-select-none">
-            <span :title="item.customer.inn">{{ item.customer.inn }}</span>
+            <span
+              v-if="item.customer.inn"
+              :title="item.customer.inn"
+            >{{ item.customer.inn }}</span>
+            <span v-else>—</span>
           </td>
           <td class="text-start user-select-none">
-            <span :title="item.customer.kpp">{{ item.customer.kpp }}</span>
+            <span
+              v-if="item.customer.kpp"
+              :title="item.customer.kpp"
+            >{{ item.customer.kpp }}</span>
+            <span v-else>—</span>
           </td>
           <td class="text-start user-select-none">
             <span :title="item.plan.title">{{ item.plan.title }}</span>
