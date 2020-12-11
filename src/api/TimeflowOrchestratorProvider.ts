@@ -8,6 +8,7 @@ import { UpdateInstanceRequest } from './requests/UpdateInstanceRequest'
 import { UpdateLicenseRequest } from './requests/UpdateLicenseRequest'
 import { UpdatePlanRequest } from './requests/UpdatePlanRequest'
 import { UpdateUserRequest } from './requests/UpdateUserRequest'
+import { BillsResponse } from './responses/BillsResponse'
 import { CreateInstanceResponse } from './responses/CreateInstanceResponse'
 import { CreatePlanResponse } from './responses/CreatePlanResponse'
 import { CurrenciesResponse } from './responses/CurrenciesResponse'
@@ -188,6 +189,14 @@ export class TimeflowOrchestratorProvider {
     return this.api.post('/app/bills/promise', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
       licenseId
+    })
+  }
+
+  public bills (offset = 0, limit = 15): Promise<AxiosResponse<BillsResponse>> {
+    return this.api.post('/app/bills/list', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      offset,
+      limit
     })
   }
 
