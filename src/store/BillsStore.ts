@@ -24,8 +24,8 @@ class BillsStore extends VuexModule {
       _bills: response.data.bills.map((item) => ({
         id: item.id,
         transaction_no: item.transaction_no,
-        to_pay_on: item.to_pay_on,
-        created_at: item.created_at,
+        to_pay_on: new Date(item.to_pay_on),
+        created_at: new Date(item.created_at),
         status: item.status,
         customer: {
           legal_title: item.legal_title,
