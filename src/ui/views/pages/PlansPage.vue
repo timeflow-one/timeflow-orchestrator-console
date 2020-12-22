@@ -13,7 +13,7 @@
         slot-scope="{ item }"
       >
         <tr
-          class="cursor-pointer"
+          :class="{'cursor-pointer': true, 'inactive-row': !item.status}"
           @click="clickOnRow(item)"
         >
           <td class="text-end user-select-none">

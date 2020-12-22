@@ -23,3 +23,7 @@ html, body {
 .flex.column {
   flex-direction: column;
 }
+
+.inactive-row {
+  background-color: var(--v-inactive-base);
+}

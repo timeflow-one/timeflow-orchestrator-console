@@ -13,7 +13,7 @@
         slot-scope="{ item }"
       >
         <tr
-          class="cursor-pointer"
+          :class="{'cursor-pointer': true, 'inactive': !item.is_active}"
           @click="clickOnRow(item)"
         >
           <td class="text-end user-select-none">
@@ -63,7 +63,10 @@
       @click:outside="clickOutsideSubpage"
       @keydown.esc="clickOutsideSubpage"
     >
-      <router-view ref="subpage" :key="$route.path" />
+      <router-view
+        ref="subpage"
+        :key="$route.path"
+      />
     </v-dialog>
   </v-container>
 </template>
