@@ -17,7 +17,7 @@ import { Tableable } from './interfaces/Tableable'
     DataTable
   }
 })
-export default class InstancesPage extends Vue implements Filtrable<Filter>, Tableable<InstanceModel> {
+export default class InstancesPage extends Vue implements Filters, Filtrable<Filters>, Tableable<InstanceModel> {
   /// --- TABLE ---
   readonly tableHeaders: Array<TableHeader> = [
     {
@@ -85,19 +85,24 @@ export default class InstancesPage extends Vue implements Filtrable<Filter>, Tab
   tableOptions!: TableOptions
   /// --- END TABLE ---
   /// --- FILTERS ---
-  readonly filters = {
-    query: ''
+
+  get search () {
+    return this.$route.query.search
+  }
+
+  set search (value: any) {
+    this.$router.push({ query: { search: value !== '' ? value : undefined } })
   }
 
   get isFilteresDefault () {
-    return this.filters.query !== ''
+    return !!this.$route.query.search
   }
 
   clearFitlers () {
-    this.filters.query = ''
+    this.search = undefined
   }
 
-  @Watch('filters', { deep: true })
+  @Watch('$route.query', { deep: true })
   async onFiltersChanged () {
     // @ts-expect-error
     this.$refs.table.setPage(1)
@@ -117,7 +122,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter>, Tab
     // обновляем данные после возвращения на страницу
     this.$router.afterEach((to) => {
       if (to.name === InstancesRoute.name) {
-        this.loadData(this.filters.query, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
+        this.loadData(this.$route.query.search, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
       }
     })
   }
@@ -134,7 +139,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter>, Tab
     return InstancesStore.totalInstances
   }
 
-  async loadData (search: string, offset: number, limit: number) {
+  async loadData (search: any, offset: number, limit: number) {
     try {
       this.loading.table = true
       await InstancesStore.loadInstances({ search, offset, limit })
@@ -147,7 +152,7 @@ export default class InstancesPage extends Vue implements Filtrable<Filter>, Tab
 
   onOptionsChanged (value: TableOptions) {
     this.tableOptions = value
-    this.loadData(this.filters.query, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+    this.loadData(this.$route.query.search, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
   }
 
   get isSubpage () {
@@ -171,6 +176,6 @@ export default class InstancesPage extends Vue implements Filtrable<Filter>, Tab
   }
 }
 
-interface Filter {
-  query: string;
+interface Filters {
+  search: any;
 }
