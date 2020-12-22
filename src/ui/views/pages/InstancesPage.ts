@@ -91,11 +91,16 @@ export default class InstancesPage extends Vue implements Filters, Filtrable<Fil
   }
 
   set search (value: any) {
-    this.$router.push({ query: { search: value !== '' ? value : undefined } })
+    this.$router.push({
+      query: {
+        ...this.$route.query,
+        search: value !== '' ? value : undefined
+      }
+    })
   }
 
   get isFilteresDefault () {
-    return !!this.$route.query.search
+    return !!this.search
   }
 
   clearFitlers () {
@@ -122,7 +127,7 @@ export default class InstancesPage extends Vue implements Filters, Filtrable<Fil
     // обновляем данные после возвращения на страницу
     this.$router.afterEach((to) => {
       if (to.name === InstancesRoute.name) {
-        this.loadData(this.$route.query.search, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
+        this.loadData(this.search, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
       }
     })
   }
@@ -152,7 +157,7 @@ export default class InstancesPage extends Vue implements Filters, Filtrable<Fil
 
   onOptionsChanged (value: TableOptions) {
     this.tableOptions = value
-    this.loadData(this.$route.query.search, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+    this.loadData(this.search, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
   }
 
   get isSubpage () {

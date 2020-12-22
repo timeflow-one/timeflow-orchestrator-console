@@ -5,21 +5,21 @@
       :headers="tableHeaders"
       :items="tableItems"
       :server-items-length="totalItems"
-      :search="filters.query"
+      :search="search"
       :loading="loading.table"
       @options="onOptionsChanged"
     >
       <template slot="top">
         <FiltersContainer class="px-4">
           <SearchField
-            v-model="filters.query"
+            v-model="search"
             class="mr-4"
             max-width="450px"
             :placeholder="$vuetify.lang.t('$vuetify.common.table.label.search_input')"
           />
 
           <v-select
-            v-model="filters.isDeleted"
+            v-model="isDeleted"
             :items="isDeletedSelect"
             item-text="title"
             item-value="value"

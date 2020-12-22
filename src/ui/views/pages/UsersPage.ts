@@ -17,7 +17,7 @@ import { Tableable } from './interfaces/Tableable'
     DataTable
   }
 })
-export default class UsersPage extends Vue implements Filtrable<Filter>, Tableable<UserModel> {
+export default class UsersPage extends Vue implements Filters, Filtrable<Filters>, Tableable<UserModel> {
   /// --- TABLE ---
   readonly tableHeaders: Array<TableHeader> = [
     {
@@ -96,22 +96,52 @@ export default class UsersPage extends Vue implements Filtrable<Filter>, Tableab
     value: true
   }]
 
-  filters: Filter = {
-    query: '',
-    isDeleted: false
+  get search () {
+    return this.$route.query.search
+  }
+
+  set search (value: any) {
+    this.$router.push({
+      query: {
+        ...this.$route.query,
+        search: value !== '' ? value : undefined
+      }
+    })
+  }
+
+  get isDeleted () {
+    switch (this.$route.query.inactive) {
+      case undefined:
+        return null
+
+      case 'false':
+        return false
+
+      case 'true':
+        return true
+    }
+  }
+
+  set isDeleted (value: any) {
+    this.$router.push({
+      query: {
+        ...this.$route.query,
+        inactive: value !== null ? value : undefined
+      }
+    })
   }
 
   get isFilteresDefault () {
-    return this.filters.query === '' &&
-      this.filters.isDeleted === false
+    return !this.search &&
+      this.isDeleted === null
   }
 
   clearFitlers () {
-    this.filters.query = ''
-    this.filters.isDeleted = false
+    this.search = undefined
+    this.isDeleted = null
   }
 
-  @Watch('filters', { deep: true })
+  @Watch('$route.query', { deep: true })
   async onFiltersChanged () {
     // @ts-expect-error
     this.$refs.table.setPage(1)
@@ -122,7 +152,7 @@ export default class UsersPage extends Vue implements Filtrable<Filter>, Tableab
     // обновляем данные после возвращения на страницу
     this.$router.afterEach((to) => {
       if (to.name === UsersRoute.name) {
-        this.loadData(this.filters.query, this.filters.isDeleted, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
+        // this.loadData(this.search, this.isDeleted, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
       }
     })
   }
@@ -137,7 +167,7 @@ export default class UsersPage extends Vue implements Filtrable<Filter>, Tableab
 
   onOptionsChanged (value: TableOptions) {
     this.tableOptions = value
-    this.loadData(this.filters.query, this.filters.isDeleted, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+    this.loadData(this.search, this.isDeleted, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
   }
 
   async loadData (search: string, isDeleted: boolean | null, offset: number, limit: number) {
@@ -177,7 +207,7 @@ export default class UsersPage extends Vue implements Filtrable<Filter>, Tableab
   }
 }
 
-interface Filter {
+interface Filters {
   isDeleted: boolean | null;
-  query: string;
+  search: string;
 }
