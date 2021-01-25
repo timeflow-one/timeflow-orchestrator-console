@@ -1,5 +1,8 @@
 <template>
-  <code :style="{ 'color': `var(--v-${color}-darken1)`, 'background-color': `var(--v-${color}-${background})` }">
+  <code
+    :style="{ 'color': `var(--v-${color}-darken1)`, 'background-color': `var(--v-${color}-${background})` }"
+    class="text-no-wrap"
+  >
     <slot />
   </code>
 </template>
