@@ -17,21 +17,19 @@
           @click="clickOnRow(item)"
         >
           <td class="text-end user-select-none">
-            <span>{{ item.id }}</span>
+            <span :title="item.id">{{ item.id }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.instance.name }}</span>
+            <span :title="item.instance.name">{{ item.instance.name }}</span>
           </td>
           <td class="text-start user-select-none">
-            <CodeComponent>
-              {{ item.plan.code }}
-            </CodeComponent>
+            <CodeComponent :title="item.plan.code">{{ item.plan.code }}</CodeComponent>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.start_at.toLocaleDateString() }}</span>
+            <span :title="item.start_at.toDateString()">{{ item.start_at.toLocaleDateString() }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.expired_at.toLocaleDateString() }}</span>
+            <span :title="item.expired_at.toDateString()">{{ item.expired_at.toLocaleDateString() }}</span>
           </td>
           <td class="text-center user-select-none">
             <CodeComponent

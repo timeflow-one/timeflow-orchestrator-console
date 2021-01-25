@@ -56,16 +56,16 @@
           @click="clickOnRow(item)"
         >
           <td class="text-end user-select-none">
-            <span>{{ item.id }}</span>
+            <span :title="item.id">{{ item.id }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.name }}</span>
+            <span :title="item.name">{{ item.name }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.email }}</span>
+            <span :title="item.email">{{ item.email }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.instance_name ? item.instance_name : '—' }}</span>
+            <span :title="item.instance_name">{{ item.instance_name ? item.instance_name : '—' }}</span>
           </td>
           <td class="text-start user-select-none">
             <v-chip
@@ -73,6 +73,7 @@
               v-for="(role, index) in item.role.split(',')"
               :key="index"
               color="grey lighten-4"
+              :title="$vuetify.lang.t(`$vuetify.timeflow.roles.${role}`)"
             >
               {{ $vuetify.lang.t(`$vuetify.timeflow.roles.${role}`) }}
             </v-chip>

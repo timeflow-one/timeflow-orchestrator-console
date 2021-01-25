@@ -27,10 +27,10 @@
             <span v-else>—</span>
           </td>
           <td class="text-start user-select-none">
-            <span :title="item.to_pay_on.toLocaleDateString()">{{ item.to_pay_on.toLocaleDateString() }}</span>
+            <span :title="item.to_pay_on.toDateString()">{{ item.to_pay_on.toLocaleDateString() }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span :title="item.created_at.toLocaleDateString()">{{ item.created_at.toLocaleDateString() }}</span>
+            <span :title="item.created_at.toDateString()">{{ item.created_at.toLocaleDateString() }}</span>
           </td>
           <td class="text-start user-select-none">
             <span

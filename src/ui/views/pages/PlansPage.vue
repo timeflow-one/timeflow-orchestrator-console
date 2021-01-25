@@ -17,16 +17,16 @@
           @click="clickOnRow(item)"
         >
           <td class="text-end user-select-none">
-            <span>{{ item.id }}</span>
+            <span :title="item.id">{{ item.id }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.title }}</span>
+            <span :title="item.title">{{ item.title }}</span>
           </td>
           <td class="text-start user-select-none">
-            <CodeComponent>{{ item.code }}</CodeComponent>
+            <CodeComponent :title="item.code">{{ item.code }}</CodeComponent>
           </td>
           <td class="text-end user-select-none">
-            <span>{{ item.employees_limit }}</span>
+            <span :title="item.employees_limit">{{ item.employees_limit }}</span>
           </td>
           <td class="text-end user-select-none">
             <span :title="item.monthly_fee_text">{{ item.monthly_fee_text }}</span>
