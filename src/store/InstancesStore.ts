@@ -13,10 +13,10 @@ class InstancesStore extends VuexModule {
   public _totalInstances = 0
 
   @MutationAction({ mutate: ['_instances', '_totalInstances'], rawError: true })
-  public async loadInstances ({ search, offset, limit }: { search: string; offset: number; limit: number }) {
+  public async loadInstances ({ search, isDeleted, offset, limit }: { search: string; isDeleted: boolean | null; offset: number; limit: number }) {
     const response = await TimeflowOrchestratorProvider
       .getInstance()
-      .instances(search, offset, limit)
+      .instances(search, isDeleted, offset, limit)
 
     return {
       _totalInstances: response.data.count,

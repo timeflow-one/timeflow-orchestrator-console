@@ -63,7 +63,7 @@ export default class CreateLicensePage extends Mixins<FocusableMixin>(FocusableM
   async mounted () {
     DurationsStore.loadDurations()
     PlansStore.loadPlans({ limit: -1, offset: 0 })
-    await InstancesStore.loadInstances({ search: '', limit: -1, offset: 0 })
+    await InstancesStore.loadInstances({ search: '', isDeleted: false, limit: -1, offset: 0 })
     // устанавливает фокус на первом поле при загрузке страницы после загрузки списка инстансов
     this.setFocusOnFirstField()
   }

@@ -85,6 +85,16 @@ export default class InstancesPage extends Vue implements Filters, Filtrable<Fil
   tableOptions!: TableOptions
   /// --- END TABLE ---
   /// --- FILTERS ---
+  isDeletedSelect: Array<{ title: string; value: boolean | null }> = [{
+    title: this.$vuetify.lang.t('$vuetify.pages.users.filter.active.all'),
+    value: null
+  }, {
+    title: this.$vuetify.lang.t('$vuetify.pages.users.filter.active.enabled'),
+    value: false
+  }, {
+    title: this.$vuetify.lang.t('$vuetify.pages.users.filter.active.disabled'),
+    value: true
+  }]
 
   get search () {
     return this.$route.query.search
@@ -95,6 +105,28 @@ export default class InstancesPage extends Vue implements Filters, Filtrable<Fil
       query: {
         ...this.$route.query,
         search: value !== '' ? value : undefined
+      }
+    })
+  }
+
+  get isDeleted () {
+    switch (this.$route.query.inactive) {
+      case undefined:
+        return null
+
+      case 'false':
+        return false
+
+      case 'true':
+        return true
+    }
+  }
+
+  set isDeleted (value: any) {
+    this.$router.push({
+      query: {
+        ...this.$route.query,
+        inactive: value !== null ? value : undefined
       }
     })
   }
@@ -127,7 +159,7 @@ export default class InstancesPage extends Vue implements Filters, Filtrable<Fil
     // обновляем данные после возвращения на страницу
     this.$router.afterEach((to) => {
       if (to.name === InstancesRoute.name) {
-        this.loadData(this.search, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
+        this.loadData(this.search, this.isDeleted, (this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
       }
     })
   }
@@ -144,10 +176,10 @@ export default class InstancesPage extends Vue implements Filters, Filtrable<Fil
     return InstancesStore.totalInstances
   }
 
-  async loadData (search: any, offset: number, limit: number) {
+  async loadData (search: string, isDeleted: boolean | null, offset: number, limit: number) {
     try {
       this.loading.table = true
-      await InstancesStore.loadInstances({ search, offset, limit })
+      await InstancesStore.loadInstances({ search, isDeleted, offset, limit })
     } catch (err) {
       console.error(err)
     } finally {
@@ -157,7 +189,7 @@ export default class InstancesPage extends Vue implements Filters, Filtrable<Fil
 
   onOptionsChanged (value: TableOptions) {
     this.tableOptions = value
-    this.loadData(this.search, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
+    this.loadData(this.search, this.isDeleted, (value.page - 1) * value.itemsPerPage, value.itemsPerPage)
   }
 
   get isSubpage () {

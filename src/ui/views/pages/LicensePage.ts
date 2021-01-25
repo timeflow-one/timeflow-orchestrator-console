@@ -69,7 +69,7 @@ export default class LicensePage extends Vue implements Formable {
 
       DurationsStore.loadDurations()
       PlansStore.loadPlans({ limit: -1, offset: 0 })
-      InstancesStore.loadInstances({ search: '', limit: -1, offset: 0 })
+      InstancesStore.loadInstances({ search: '', isDeleted: false, limit: -1, offset: 0 })
 
       const response = await TimeflowOrchestratorProvider
         .getInstance()

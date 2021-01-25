@@ -14,7 +14,22 @@
           <SearchField
             v-model="search"
             max-width="450px"
+            class="mr-4"
             :placeholder="$vuetify.lang.t('$vuetify.common.table.label.search_input')"
+          />
+
+          <!-- TODO 25.01.2021 hidden -->
+          <v-select
+            v-if="false"
+            v-model="isDeleted"
+            :items="isDeletedSelect"
+            item-text="title"
+            item-value="value"
+            solo
+            hide-details
+            flat
+            prepend-inner-icon="mdi-selection-multiple"
+            background-color="grey lighten-4"
           />
 
           <v-spacer class="mx-2" />
