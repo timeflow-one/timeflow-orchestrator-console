@@ -28,7 +28,8 @@ class LicensesStore extends VuexModule {
         },
         plan: {
           id: item.plan.id,
-          name: item.plan.title
+          name: item.plan.title,
+          code: item.plan.code
         },
         is_active: item.is_active > 0,
         start_at: new Date(item.effective_date),
@@ -56,6 +57,7 @@ export interface LicenseModel {
   plan: {
     id: number;
     name: string;
+    code: string;
   };
   is_active: boolean;
   start_at: Date;

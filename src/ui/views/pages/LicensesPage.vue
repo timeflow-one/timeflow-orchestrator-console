@@ -23,7 +23,9 @@
             <span>{{ item.instance.name }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span>{{ item.plan.name }}</span>
+            <CodeComponent>
+              {{ item.plan.code }}
+            </CodeComponent>
           </td>
           <td class="text-start user-select-none">
             <span>{{ item.start_at.toLocaleDateString() }}</span>

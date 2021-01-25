@@ -5,12 +5,14 @@ import AppbarMenuStore from '@/store/AppbarMenuStore'
 import LicensesStore, { LicenseModel } from '@/store/LicensesStore'
 import { Component, Vue } from 'vue-property-decorator'
 import DataTable from '@/ui/components/DataTable.vue'
+import CodeComponent from '@/ui/components/CodeComponent.vue'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { Tableable } from './interfaces/Tableable'
 
 @Component({
   components: {
-    DataTable
+    DataTable,
+    CodeComponent
   }
 })
 export default class LicensesPage extends Vue implements Tableable<LicenseModel> {
