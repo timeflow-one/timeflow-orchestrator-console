@@ -9,8 +9,6 @@ interface Instance {
   db_name: string;
   db_password: string;
   db_username: string;
-  dadata_api_key: string;
-  vi_api_key: string;
   licenses: License;
 }
 

@@ -115,7 +115,7 @@
           />
         </v-col>
       </v-row>
-      <v-row>
+      <!-- <v-row>
         <v-col
           cols="12"
           sm="6"
@@ -138,7 +138,7 @@
             :label="$vuetify.lang.t('$vuetify.pages.instance.form.label.6')"
           />
         </v-col>
-      </v-row>
+      </v-row> -->
     </v-card-text>
     <v-card-actions v-if="!loading.card">
       <v-btn

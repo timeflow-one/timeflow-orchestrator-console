@@ -56,25 +56,25 @@ export default class InstancePage extends Vue implements Formable {
         () => this.form.db_pass.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
         () => !this.form.db_pass.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
       ]
-    },
-    vi_key: {
-      initial: '',
-      value: '',
-      readonly: false,
-      rules: [
-        () => this.form.vi_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
-        () => !this.form.vi_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
-      ]
-    },
-    geo_key: {
-      initial: '',
-      value: '',
-      readonly: false,
-      rules: [
-        () => this.form.geo_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
-        () => !this.form.geo_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
-      ]
     }
+    // vi_key: {
+    //   initial: '',
+    //   value: '',
+    //   readonly: false,
+    //   rules: [
+    //     () => this.form.vi_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+    //     () => !this.form.vi_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
+    //   ]
+    // },
+    // geo_key: {
+    //   initial: '',
+    //   value: '',
+    //   readonly: false,
+    //   rules: [
+    //     () => this.form.geo_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+    //     () => !this.form.geo_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
+    //   ]
+    // }
   }
 
   readonly loading = {
@@ -105,10 +105,10 @@ export default class InstancePage extends Vue implements Formable {
       this.form.db_user.initial = this.form.db_user.value
       this.form.db_pass.value = response.data.instance.db_password
       this.form.db_pass.initial = this.form.db_pass.value
-      this.form.vi_key.value = response.data.instance.vi_api_key
-      this.form.vi_key.initial = this.form.vi_key.value
-      this.form.geo_key.value = response.data.instance.dadata_api_key
-      this.form.geo_key.initial = this.form.geo_key.value
+      // this.form.vi_key.value = response.data.instance.vi_api_key
+      // this.form.vi_key.initial = this.form.vi_key.value
+      // this.form.geo_key.value = response.data.instance.dadata_api_key
+      // this.form.geo_key.initial = this.form.geo_key.value
     } catch (err) {
       if (err.isAxiosError) {
         // TODO (2020.11.10): Error handling

@@ -81,24 +81,24 @@ export default class CreateInstancePage extends Vue implements Formable {
         () => this.form.expired_at.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
     },
-    vi_key: {
-      initial: '',
-      value: '',
-      readonly: false,
-      rules: [
-        () => this.form.vi_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
-        () => !this.form.vi_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
-      ]
-    },
-    geo_key: {
-      initial: '',
-      value: '',
-      readonly: false,
-      rules: [
-        () => this.form.geo_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
-        () => !this.form.geo_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
-      ]
-    },
+    // vi_key: {
+    //   initial: '',
+    //   value: '',
+    //   readonly: false,
+    //   rules: [
+    //     () => this.form.vi_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+    //     () => !this.form.vi_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
+    //   ]
+    // },
+    // geo_key: {
+    //   initial: '',
+    //   value: '',
+    //   readonly: false,
+    //   rules: [
+    //     () => this.form.geo_key.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
+    //     () => !this.form.geo_key.value.match(/\s/) || this.$vuetify.lang.t('$vuetify.common.error.no_spaces')
+    //   ]
+    // },
     username: {
       initial: '',
       value: '',
@@ -180,8 +180,8 @@ export default class CreateInstancePage extends Vue implements Formable {
           db_name: this.form.db_name.value,
           db_password: this.form.db_pass.value,
           db_username: this.form.db_user.value,
-          dadata_api_key: this.form.geo_key.value,
-          vi_api_key: this.form.vi_key.value,
+          // dadata_api_key: this.form.geo_key.value,
+          // vi_api_key: this.form.vi_key.value,
           licenses: {
             plan_id: this.form.plan.value,
             valid_until: this.form.expired_at.value

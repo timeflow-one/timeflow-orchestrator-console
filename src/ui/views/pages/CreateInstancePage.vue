@@ -102,7 +102,7 @@
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.6')"
           />
         </v-col>
-        <v-col
+        <!-- <v-col
           cols="12"
           sm="6"
           xl="3"
@@ -127,7 +127,7 @@
             :rules="form.geo_key.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.8')"
           />
-        </v-col>
+        </v-col> -->
       </v-row>
       <v-row>
         <v-col
