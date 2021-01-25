@@ -156,15 +156,15 @@ export default class PlanPage extends Vue implements Formable {
       .every(it => it) && this.isEdited
   }
 
-  @Watch('form.title.value')
-  onTitleChanged (value: string) {
-    try {
-      this.form.code.value = value
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, '-')
-    } catch (err) {
-      this.form.code.value = ''
-    }
-  }
+  // @Watch('form.title.value')
+  // onTitleChanged (value: string) {
+  //   try {
+  //     this.form.code.value = value
+  //       .trim()
+  //       .toLowerCase()
+  //       .replace(/\s+/g, '-')
+  //   } catch (err) {
+  //     this.form.code.value = ''
+  //   }
+  // }
 }

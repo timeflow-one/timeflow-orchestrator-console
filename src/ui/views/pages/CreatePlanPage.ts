@@ -19,7 +19,7 @@ export default class CreatePlanPage extends Vue implements Formable {
     code: {
       initial: '',
       value: '',
-      readonly: true,
+      readonly: false,
       rules: [
         () => this.form.code.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field')
       ]
@@ -121,15 +121,15 @@ export default class CreatePlanPage extends Vue implements Formable {
       .every(it => it)
   }
 
-  @Watch('form.title.value')
-  onTitleChanged (value: string) {
-    try {
-      this.form.code.value = value
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, '-')
-    } catch (err) {
-      this.form.code.value = ''
-    }
-  }
+  // @Watch('form.title.value')
+  // onTitleChanged (value: string) {
+  //   try {
+  //     this.form.code.value = value
+  //       .trim()
+  //       .toLowerCase()
+  //       .replace(/\s+/g, '-')
+  //   } catch (err) {
+  //     this.form.code.value = ''
+  //   }
+  // }
 }
