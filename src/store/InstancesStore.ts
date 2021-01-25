@@ -32,7 +32,7 @@ class InstancesStore extends VuexModule {
           count: item.stats.employees.active,
           created_at: createdAt,
           expires_at: expiresAt,
-          state: item.requires_upgrade,
+          is_required_upgrade: item.requires_upgrade,
           db: {
             db_host: item.db_host,
             db_name: item.db_name,

@@ -13,7 +13,8 @@
         slot-scope="{ item }"
       >
         <tr
-          :class="{'cursor-pointer': true, 'inactive': !item.is_active}"
+          class="cursor-pointer"
+          :style="{'color': !item.is_active ? 'var(--v-disabled-lighten1)' : ''}"
           @click="clickOnRow(item)"
         >
           <td class="text-end user-select-none">

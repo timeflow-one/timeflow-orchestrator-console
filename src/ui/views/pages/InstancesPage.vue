@@ -40,6 +40,7 @@
       >
         <tr
           class="cursor-pointer"
+          :style="{'color': item.is_required_upgrade ? 'var(--v-disabled-lighten1)' : ''}"
           @click="clickOnRow(item)"
         >
           <td class="text-end user-select-none">
@@ -62,8 +63,8 @@
           </td>
           <td class="text-center user-select-none">
             <v-chip
+              v-if="item.is_required_upgrade"
               class="cursor-pointer"
-              v-if="item.state"
               color="error lighten-1"
               :title="$vuetify.lang.t('$vuetify.pages.instances.table.need_update_lic')"
             >{{ $vuetify.lang.t('$vuetify.pages.instances.table.need_update_lic') }}</v-chip>

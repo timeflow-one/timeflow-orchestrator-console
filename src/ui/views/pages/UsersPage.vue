@@ -52,7 +52,8 @@
         slot-scope="{ item }"
       >
         <tr
-          :class="{'cursor-pointer': true}"
+          class="cursor-pointer"
+          :style="{'color': !item.status ? 'var(--v-disabled-lighten1)' : ''}"
           @click="clickOnRow(item)"
         >
           <td class="text-end user-select-none">
@@ -69,9 +70,9 @@
           </td>
           <td class="text-start user-select-none">
             <v-chip
-              class="cursor-pointer ma-1"
               v-for="(role, index) in item.role.split(',')"
               :key="index"
+              class="cursor-pointer ma-1"
               color="grey lighten-4"
               :title="$vuetify.lang.t(`$vuetify.timeflow.roles.${role}`)"
             >
