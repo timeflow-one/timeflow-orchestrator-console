@@ -1,5 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 import DataTable from '@/ui/components/DataTable.vue'
+import CodeComponent from '@/ui/components/CodeComponent.vue'
 import { Tableable } from './interfaces/Tableable'
 import BillsStore, { BillModel } from '@/store/BillsStore'
 import { TableHeader } from '@/models/TableHeader'
@@ -8,7 +9,8 @@ import { BillsRoute } from '@/router'
 
 @Component({
   components: {
-    DataTable
+    DataTable,
+    CodeComponent
   }
 })
 export default class BillsPage extends Vue implements Tableable<BillModel> {

@@ -23,7 +23,7 @@
             <span>{{ item.title }}</span>
           </td>
           <td class="text-start user-select-none">
-            <span><CodeComponent>{{ item.code }}</CodeComponent></span>
+            <CodeComponent>{{ item.code }}</CodeComponent>
           </td>
           <td class="text-end user-select-none">
             <span>{{ item.employees_limit }}</span>
@@ -51,7 +51,10 @@
       @click:outside="clickOutsideSubpage"
       @keydown.esc="clickOutsideSubpage"
     >
-      <router-view ref="subpage" :key="$route.path" />
+      <router-view
+        ref="subpage"
+        :key="$route.path"
+      />
     </v-dialog>
   </v-container>
 </template>

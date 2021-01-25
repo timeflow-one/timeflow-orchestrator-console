@@ -54,7 +54,7 @@
             <span v-else>—</span>
           </td>
           <td class="text-start user-select-none">
-            <span :title="item.plan.title">{{ item.plan.title }}</span>
+            <CodeComponent :title="item.plan.title">{{ item.plan.code }}</CodeComponent>
           </td>
         </tr>
       </template>
