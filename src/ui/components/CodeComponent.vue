@@ -20,9 +20,9 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 @Component
 export default class CodeComponent extends Vue {
   @Prop({ default: 'primary' })
-  color: string
+  color!: string
 
   @Prop({ default: 'lighten5' })
-  background: string
+  background!: string
 }
 </script>
