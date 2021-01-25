@@ -52,6 +52,7 @@
         slot-scope="{ item }"
       >
         <tr
+          v-if="!isOrchestrator(item)"
           class="cursor-pointer"
           :style="{'color': !item.status ? 'var(--v-disabled-lighten1)' : ''}"
           @click="clickOnRow(item)"
@@ -106,7 +107,10 @@
       @click:outside="clickOutsideSubpage"
       @keydown.esc="clickOutsideSubpage"
     >
-      <router-view ref="subpage" :key="$route.path" />
+      <router-view
+        ref="subpage"
+        :key="$route.path"
+      />
     </v-dialog>
   </v-container>
 </template>

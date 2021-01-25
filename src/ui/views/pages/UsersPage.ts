@@ -10,6 +10,7 @@ import UsersStore, { UserModel } from '@/store/UsersStore'
 import { UserRoute, UsersRoute } from '@/router'
 import AuthStore from '@/store/AuthStore'
 import { Tableable } from './interfaces/Tableable'
+import { Role } from '@/models/Roles'
 
 @Component({
   components: {
@@ -201,6 +202,12 @@ export default class UsersPage extends Vue implements Filters, Filtrable<Filters
   clickOutsideSubpage () {
     // @ts-expect-error
     this.$refs.subpage.cancel()
+  }
+
+  isOrchestrator (item: UserModel) {
+    return item.role
+      .split(',')
+      .includes(Role.ORCHESTRATOR)
   }
 
   loginAs (item: UserModel) {
