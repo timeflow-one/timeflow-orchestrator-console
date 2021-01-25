@@ -1,19 +1,20 @@
 import { LicensesRoute } from '@/router'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Mixins, Vue, Watch } from 'vue-property-decorator'
 import DatePicker from '@/ui/components/DatePicker.vue'
 import PlansStore from '@/store/PlansStore'
 import InstancesStore from '@/store/InstancesStore'
 import DurationsStore from '@/store/DurationsStore'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { Formable } from './interfaces/Formable'
+import FocusableMixin from '@/ui/mixins/FocusableMixin'
 
 @Component({
   components: {
     DatePicker
   }
 })
-export default class CreateLicensePage extends Vue implements Formable {
+export default class CreateLicensePage extends Mixins<FocusableMixin>(FocusableMixin) implements Formable {
   readonly form: FormItem = {
     instance: {
       initial: -1,
@@ -111,15 +112,6 @@ export default class CreateLicensePage extends Vue implements Formable {
     } else {
       this.$router.replace(LicensesRoute)
     }
-  }
-
-  setFocusOnFirstField () {
-    this.$nextTick(() => {
-      setTimeout(() => {
-        // @ts-expect-error
-        this.$refs.focusedField.$refs.input.focus()
-      }, 0)
-    })
   }
 
   get instances () {

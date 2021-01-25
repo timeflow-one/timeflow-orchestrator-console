@@ -1,12 +1,14 @@
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { PlansRoute } from '@/router'
 import CurrenciesStore from '@/store/CurrenciesStore'
+import FocusableMixin from '@/ui/mixins/FocusableMixin'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Mixins } from 'vue-mixin-decorator'
+import { Component } from 'vue-property-decorator'
 import { Formable } from './interfaces/Formable'
 
 @Component
-export default class CreatePlanPage extends Vue implements Formable {
+export default class CreatePlanPage extends Mixins<FocusableMixin>(FocusableMixin) implements Formable {
   readonly form: FormItem = {
     title: {
       initial: '',
@@ -74,15 +76,6 @@ export default class CreatePlanPage extends Vue implements Formable {
     } else {
       this.$router.replace(PlansRoute)
     }
-  }
-
-  setFocusOnFirstField () {
-    this.$nextTick(() => {
-      setTimeout(() => {
-        // @ts-expect-error
-        this.$refs.focusedField.$refs.input.focus()
-      }, 0)
-    })
   }
 
   async submit () {

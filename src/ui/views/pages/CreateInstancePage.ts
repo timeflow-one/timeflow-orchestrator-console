@@ -7,6 +7,8 @@ import PlansStore from '@/store/PlansStore'
 import { emailRegex as emailRegexp } from '@/utils/EmailRegex'
 import DatePicker from '@/ui/components/DatePicker.vue'
 import { Formable } from './interfaces/Formable'
+import { Mixins } from 'vue-mixin-decorator'
+import FocusableMixin from '@/ui/mixins/FocusableMixin'
 
 @Component({
   components: {
@@ -14,7 +16,7 @@ import { Formable } from './interfaces/Formable'
     DatePicker
   }
 })
-export default class CreateInstancePage extends Vue implements Formable {
+export default class CreateInstancePage extends Mixins<FocusableMixin>(FocusableMixin) implements Formable {
   readonly loading = {
     submit: false
   }
@@ -147,15 +149,6 @@ export default class CreateInstancePage extends Vue implements Formable {
 
     const [year, month, day] = date.split('-')
     return `${day}.${month}.${year}`
-  }
-
-  setFocusOnFirstField () {
-    this.$nextTick(() => {
-      setTimeout(() => {
-        // @ts-expect-error
-        this.$refs.focusedField.$refs.input.focus()
-      }, 0)
-    })
   }
 
   get isSubmitButtonEnabled () {
