@@ -24,7 +24,9 @@ export default new Vuetify({
         success: '#4CAF50',
         warning: '#FFC107',
         toolbar_border: colors.grey.lighten2,
-        inactive: '#FFEDF3'
+        inactive: '#FFEDF3',
+        enabled: colors.green.lighten1,
+        disabled: colors.grey.lighten4
       }
     }
   },

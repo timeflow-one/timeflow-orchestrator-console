@@ -34,10 +34,12 @@
             <span>{{ item.expired_at.toLocaleDateString() }}</span>
           </td>
           <td class="text-center user-select-none">
-            <v-simple-checkbox
-              v-model="item.is_active"
-              disabled
-            />
+            <CodeComponent
+              :color="item.is_active ? 'enabled' : 'disabled'"
+              background="lighten3"
+            >
+              {{ $vuetify.lang.t(`$vuetify.common.label.status.${item.is_active ? 'enabled' : 'disabled'}`) }}
+            </CodeComponent>
           </td>
           <td class="text-center text-no-wrap">
             <v-btn
