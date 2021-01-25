@@ -52,7 +52,7 @@
         slot-scope="{ item }"
       >
         <tr
-          :class="{'cursor-pointer': true, 'inactive-row': !item.status}"
+          :class="{'cursor-pointer': true}"
           @click="clickOnRow(item)"
         >
           <td class="text-end user-select-none">
@@ -78,10 +78,12 @@
             </v-chip>
           </td>
           <td class="text-center user-select-none">
-            <v-simple-checkbox
-              v-model="item.status"
-              disabled
-            />
+            <CodeComponent
+              :color="item.status ? 'enabled' : 'disabled'"
+              background="lighten3"
+            >
+              {{ $vuetify.lang.t(`$vuetify.common.label.status.${item.status ? 'enabled' : 'disabled'}`) }}
+            </CodeComponent>
           </td>
           <td class="text-center user-select-none">
             <v-btn

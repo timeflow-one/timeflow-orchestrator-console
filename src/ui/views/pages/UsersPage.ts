@@ -2,6 +2,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import SearchField from '@/ui/components/SearchField.vue'
 import FiltersContainer from '@/ui/components/FiltersContainer.vue'
 import DataTable from '@/ui/components/DataTable.vue'
+import CodeComponent from '@/ui/components/CodeComponent.vue'
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
 import { Filtrable } from './interfaces/Filtrable'
@@ -14,7 +15,8 @@ import { Tableable } from './interfaces/Tableable'
   components: {
     SearchField,
     FiltersContainer,
-    DataTable
+    DataTable,
+    CodeComponent
   }
 })
 export default class UsersPage extends Vue implements Filters, Filtrable<Filters>, Tableable<UserModel> {
