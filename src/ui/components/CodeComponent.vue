@@ -1,5 +1,5 @@
 <template>
-  <code class="color-primary">
+  <code :style="{ 'color': `var(--v-${color}-darken1)`, 'background-color': `var(--v-${color}-lighten5)` }">
     <slot />
   </code>
 </template>
@@ -10,3 +10,13 @@
   background-color: var(--v-primary-lighten5);
 }
 </style>
+
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator'
+
+@Component
+export default class CodeComponent extends Vue {
+  @Prop({ default: 'primary' })
+  color: string
+}
+</script>
