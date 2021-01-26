@@ -53,7 +53,8 @@ export default class PlanPage extends Vue implements Formable {
 
   loading = {
     card: false,
-    submit: false
+    submit: false,
+    remove: false
   }
 
   plan!: PlanResponse
@@ -117,6 +118,25 @@ export default class PlanPage extends Vue implements Formable {
 
     } finally {
       this.loading.submit = false
+    }
+  }
+
+  async remove () {
+    try {
+      this.loading.remove = true
+      const isMustBeRemoved = confirm(this.$vuetify.lang.t('$vuetify.pages.plan.label.confirm_remove', this.title))
+
+      if (isMustBeRemoved) {
+        await TimeflowOrchestratorProvider
+          .getInstance()
+          .removePlan(this.plan.plan.id)
+
+        this.$router.replace(PlansRoute)
+      }
+    } catch (err) {
+      // TODO (2020.11.10): Handling error
+    } finally {
+      this.loading.remove = false
     }
   }
 

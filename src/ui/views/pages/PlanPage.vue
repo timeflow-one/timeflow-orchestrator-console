@@ -117,6 +117,12 @@
       >{{ $vuetify.lang.t('$vuetify.common.action.cancel') }}</v-btn>
       <v-spacer />
       <v-btn
+        color="error"
+        text
+        :loading="loading.remove"
+        @click="remove"
+      >{{ $vuetify.lang.t('$vuetify.common.action.remove') }}</v-btn>
+      <v-btn
         color="primary"
         text
         :loading="loading.submit"

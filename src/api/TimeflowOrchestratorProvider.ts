@@ -117,6 +117,13 @@ export class TimeflowOrchestratorProvider {
     })
   }
 
+  public removePlan (id: number): Promise<AxiosResponse<void>> {
+    return this.api.post('/app/plans/delete', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      id
+    })
+  }
+
   public instances (search: string | null = null, isDeleted: boolean | null = null, offset = 0, limit = 15): Promise<AxiosResponse<InstancesResponse>> {
     return this.api.post('/app/instances/list', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
