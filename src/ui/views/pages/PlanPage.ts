@@ -134,6 +134,12 @@ export default class PlanPage extends Vue implements Formable {
         this.$router.replace(PlansRoute)
       }
     } catch (err) {
+      if (err.response?.data?.exception?.name === 'Integrity constraint violation') {
+        alert(this.$vuetify.lang.t('$vuetify.pages.plan.error.foreign_key_constraint'))
+      } else {
+
+      }
+
       // TODO (2020.11.10): Handling error
     } finally {
       this.loading.remove = false
