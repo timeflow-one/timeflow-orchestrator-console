@@ -186,6 +186,13 @@ export class TimeflowOrchestratorProvider {
     })
   }
 
+  public removeLicense (id: number): Promise<AxiosResponse<void>> {
+    return this.api.post('/app/licenses/delete', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      id
+    })
+  }
+
   public promisePayment (licenseId: number): Promise<AxiosResponse<any>> {
     return this.api.post('/app/bills/promise', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),

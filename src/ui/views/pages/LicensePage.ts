@@ -58,7 +58,8 @@ export default class LicensePage extends Vue implements Formable {
 
   readonly loading = {
     card: false,
-    submit: false
+    submit: false,
+    remove: false
   }
 
   license!: LicenseResponse
@@ -140,6 +141,25 @@ export default class LicensePage extends Vue implements Formable {
     }
   }
 
+  async remove () {
+    try {
+      this.loading.remove = true
+      const isMustBeRemoved = confirm(this.$vuetify.lang.t('$vuetify.pages.license.label.confirm_remove', this.title))
+
+      if (isMustBeRemoved) {
+        await TimeflowOrchestratorProvider
+          .getInstance()
+          .removeLicense(this.license.license.id)
+
+        this.$router.replace(LicensesRoute)
+      }
+    } catch (err) {
+      // TODO (2020.11.10): Handling error
+    } finally {
+      this.loading.remove = false
+    }
+  }
+
   set startAtLocaleDate (value: string) {
     this.form.start_at.value = value
   }
@@ -194,6 +214,10 @@ export default class LicensePage extends Vue implements Formable {
       readonly: false,
       text: it
     }))
+  }
+
+  get title () {
+    return this.license.license.id
   }
 
   @Watch('form.duration.value')

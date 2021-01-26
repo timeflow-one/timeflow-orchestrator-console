@@ -1,4 +1,4 @@
-import { Module, getModule, VuexModule, MutationAction } from 'vuex-module-decorators'
+import { Module, getModule, VuexModule, MutationAction, Action } from 'vuex-module-decorators'
 import store from '@/store'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 
@@ -37,6 +37,13 @@ class LicensesStore extends VuexModule {
         can_promise_payment: item.can_promise_payment
       }))
     }
+  }
+
+  @Action
+  public async removeLicense ({ id }: { id: number }) {
+    return TimeflowOrchestratorProvider
+      .getInstance()
+      .removeLicense(id)
   }
 
   get licenses () {
