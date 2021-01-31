@@ -1,5 +1,5 @@
 import { InstancesRoute } from '@/router'
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Watch } from 'vue-property-decorator'
 import PasswordComponent from '@/ui/components/PasswordComponent.vue'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { ruleMessageToResult } from '@/utils/ruleMessageToRule'
@@ -32,8 +32,8 @@ export default class CreateInstancePage extends Mixins<FocusableMixin>(Focusable
       ]
     },
     db_host: {
-      initial: '',
-      value: '',
+      initial: process.env.VUE_APP_INSTANCE_DB_HOST,
+      value: process.env.VUE_APP_INSTANCE_DB_HOST,
       readonly: false,
       rules: [
         () => this.form.db_host.value.length > 0 || this.$vuetify.lang.t('$vuetify.common.error.required_field'),
@@ -219,6 +219,20 @@ export default class CreateInstancePage extends Mixins<FocusableMixin>(Focusable
       }
     } else {
       this.$router.replace(InstancesRoute)
+    }
+  }
+
+  @Watch('form.instance_name.value')
+  onInstanceNameChanged (value: string) {
+    if (value.length > 0) {
+      this.form.db_name.value = process.env.VUE_APP_INSTANCE_DB_NAME_PREFIX + value.toLowerCase()
+      // FIXME (2021.02.01): Update create password method
+      this.form.db_user.value = value.toLowerCase()
+      this.form.db_pass.value = Math.random().toString(36).slice(-8)
+    } else {
+      this.form.db_name.value = ''
+      this.form.db_user.value = ''
+      this.form.db_pass.value = ''
     }
   }
 }

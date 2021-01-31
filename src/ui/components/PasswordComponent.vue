@@ -11,7 +11,6 @@
     :label="label"
     :tabindex="tabindex"
     :type="isShow ? 'text' : 'password'"
-    @focus.once="isShow = false"
   >
     <template
       slot="append"
