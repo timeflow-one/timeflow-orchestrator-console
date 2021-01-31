@@ -188,6 +188,7 @@ export default class CreateInstancePage extends Mixins<FocusableMixin>(Focusable
       })
       this.$router.replace(InstancesRoute)
     } catch (err) {
+      console.error(err)
       // TODO (2020.11.06): Catching errors
 
       switch (err.response?.data?.exception?.message) {

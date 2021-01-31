@@ -43,6 +43,8 @@ export default class AppView extends Vue {
         this.$router.replace({ name: LoginRoute.name })
       }
     } catch (err) {
+      console.error(err)
+
       this.$router.replace({ name: LoginRoute.name })
     }
   }

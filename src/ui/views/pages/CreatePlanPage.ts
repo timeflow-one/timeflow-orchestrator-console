@@ -92,6 +92,8 @@ export default class CreatePlanPage extends Mixins<FocusableMixin>(FocusableMixi
       })
       this.$router.replace(PlansRoute)
     } catch (err) {
+      console.error(err)
+
       // TODO (2020.11.06): Catching errors
     } finally {
       this.loading.submit = false

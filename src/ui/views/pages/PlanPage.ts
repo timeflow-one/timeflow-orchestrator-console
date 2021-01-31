@@ -82,6 +82,8 @@ export default class PlanPage extends Vue implements Formable {
       this.form.currency.value = response.data.plan.currency
       this.form.currency.initial = this.form.currency.value
     } catch (err) {
+      console.error(err)
+
       // if (err.isAxiosError) {
       //   // TODO (2020.11.10): Error handling
       //   switch (err.response.status) {
@@ -115,7 +117,7 @@ export default class PlanPage extends Vue implements Formable {
 
       this.$router.replace(PlansRoute)
     } catch (err) {
-
+      console.error(err)
     } finally {
       this.loading.submit = false
     }
@@ -134,6 +136,8 @@ export default class PlanPage extends Vue implements Formable {
         this.$router.replace(PlansRoute)
       }
     } catch (err) {
+      console.error(err)
+
       if (err.response?.data?.exception?.name === 'Integrity constraint violation') {
         alert(this.$vuetify.lang.t('$vuetify.pages.plan.error.foreign_key_constraint'))
       } else {

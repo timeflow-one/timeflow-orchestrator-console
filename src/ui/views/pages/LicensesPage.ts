@@ -143,6 +143,8 @@ export default class LicensesPage extends Vue implements Tableable<LicenseModel>
         await this.loadData((this.tableOptions.page - 1) * this.tableOptions.itemsPerPage, this.tableOptions.itemsPerPage)
       }
     } catch (err) {
+      console.error(err)
+
       // TODO (2020.11.27): Catching exceptions
     }
   }

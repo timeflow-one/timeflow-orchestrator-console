@@ -81,6 +81,7 @@ export default class CreateLicensePage extends Mixins<FocusableMixin>(FocusableM
       })
       this.$router.replace(LicensesRoute)
     } catch (err) {
+      console.error(err)
       // TODO (2020.11.06): Catching errors
 
       switch (err.response?.data?.exception?.message) {
@@ -176,6 +177,8 @@ export default class CreateLicensePage extends Mixins<FocusableMixin>(FocusableM
         this.form.expired_at.value = expiredAtDate.toISOString().substr(0, 10)
       }
     } catch (err) {
+      console.error(err)
+
       this.form.expired_at.value = ''
     }
   }
@@ -190,6 +193,8 @@ export default class CreateLicensePage extends Mixins<FocusableMixin>(FocusableM
         this.form.expired_at.value = expiredAtDate.toISOString().substr(0, 10)
       }
     } catch (err) {
+      console.error(err)
+
       this.form.expired_at.value = ''
     }
   }

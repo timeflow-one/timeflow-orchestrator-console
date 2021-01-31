@@ -42,6 +42,7 @@
           </td>
           <td class="text-center text-no-wrap">
             <v-btn
+              v-if="false"
               class="me-1"
               color="primary"
               text

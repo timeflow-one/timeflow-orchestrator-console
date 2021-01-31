@@ -87,6 +87,7 @@ export default class LicensePage extends Vue implements Formable {
       this.form.duration.value = Math.round(Math.abs((new Date(response.data.license.valid_until).getTime() - new Date(response.data.license.effective_date).getTime()) / (24 * 60 * 60 * 1000)))
       this.form.duration.initial = this.form.duration.value
     } catch (err) {
+      console.error(err)
       // if (err.isAxiosError) {
       //   // TODO (2020.11.10): Error handling
       //   switch (err.response.status) {
@@ -135,6 +136,8 @@ export default class LicensePage extends Vue implements Formable {
 
       this.$router.replace(LicensesRoute)
     } catch (err) {
+      console.error(err)
+
       // TODO (2020.11.10): Handling error
     } finally {
       this.loading.submit = false
@@ -154,6 +157,8 @@ export default class LicensePage extends Vue implements Formable {
         this.$router.replace(LicensesRoute)
       }
     } catch (err) {
+      console.error(err)
+
       // TODO (2020.11.10): Handling error
     } finally {
       this.loading.remove = false
@@ -230,6 +235,8 @@ export default class LicensePage extends Vue implements Formable {
         this.form.expired_at.value = expiredAtDate.toISOString().substr(0, 10)
       }
     } catch (err) {
+      console.error(err)
+
       this.form.expired_at.value = ''
     }
   }
@@ -244,6 +251,8 @@ export default class LicensePage extends Vue implements Formable {
         this.form.expired_at.value = expiredAtDate.toISOString().substr(0, 10)
       }
     } catch (err) {
+      console.error(err)
+
       this.form.expired_at.value = ''
     }
   }

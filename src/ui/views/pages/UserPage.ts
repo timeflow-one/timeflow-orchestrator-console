@@ -72,6 +72,8 @@ export default class UserPage extends Vue implements Formable {
       this.form.instance_name.value = response.data.user.instance.name
       this.form.instance_name.initial = this.form.instance_name.value
     } catch (err) {
+      console.error(err)
+
       if (err.isAxiosError) {
         // TODO (2020.11.10): Error handling
         switch (err.response.status) {
@@ -119,6 +121,8 @@ export default class UserPage extends Vue implements Formable {
 
       this.$router.replace(UsersRoute)
     } catch (err) {
+      console.error(err)
+
       // TODO (2020.11.10): Handling error
     } finally {
       this.loading.submit = false

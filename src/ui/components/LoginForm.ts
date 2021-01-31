@@ -28,6 +28,8 @@ export default class LoginForm extends Vue {
       await AuthStore.signIn({ login: this.login, password: this.password })
       this.$router.replace({ name: InstancesRoute.name })
     } catch (err) {
+      console.error(err)
+
       switch (err?.response?.data?.exception?.message) {
         case 'Incorrect email or password passed': {
           alert('Неверный логин или пароль, повторите ввод')
