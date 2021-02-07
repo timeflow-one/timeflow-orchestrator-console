@@ -56,6 +56,33 @@
           <td class="text-start user-select-none">
             <CodeComponent :title="item.plan_title">{{ item.plan_title }}</CodeComponent>
           </td>
+          <td class="text-center user-select-none">
+            <span v-if="item.paycheck">
+              <a
+                :href="item.paycheck"
+                target="_blank"
+              >{{ $vuetify.lang.t('$vuetify.pages.bills.action.paycheck') }}</a>
+            </span>
+            <span v-else>—</span>
+          </td>
+          <td class="text-center user-select-none">
+            <v-simple-checkbox
+              v-model="item.payment_status"
+              :title="item.payment_status ? $vuetify.lang.t('$vuetify.pages.bills.status.paid') : $vuetify.lang.t('$vuetify.pages.bills.status.wait_payment')"
+              disabled
+            />
+          </td>
+          <td class="text-center user-select-none">
+            <v-btn
+              v-if="!item.paid_at"
+              color="primary"
+              text
+              :loading="item.loading"
+              :title="$vuetify.lang.t('$vuetify.pages.bills.action.confirm_payment')"
+              @click.stop="markPaid(item)"
+            >{{ $vuetify.lang.t('$vuetify.pages.bills.action.confirm_payment') }}</v-btn>
+            <span v-else>—</span>
+          </td>
         </tr>
       </template>
     </DataTable>

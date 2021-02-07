@@ -6,6 +6,7 @@ import BillsStore, { BillModel } from '@/store/BillsStore'
 import { TableHeader } from '@/models/TableHeader'
 import { TableOptions } from '@/models/TableOptions'
 import { BillsRoute } from '@/router'
+import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 
 @Component({
   components: {
@@ -78,6 +79,30 @@ export default class BillsPage extends Vue implements Tableable<BillModel> {
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.bills.table.header.7'),
       width: '15%'
+    },
+    {
+      value: 'link',
+      align: 'start',
+      sortable: false,
+      divider: false,
+      text: this.$vuetify.lang.t('$vuetify.pages.bills.table.header.8'),
+      width: '10%'
+    },
+    {
+      value: 'status',
+      align: 'center',
+      sortable: false,
+      divider: false,
+      text: this.$vuetify.lang.t('$vuetify.pages.bills.table.header.9'),
+      width: '10%'
+    },
+    {
+      value: 'action',
+      align: 'center',
+      sortable: false,
+      divider: false,
+      text: this.$vuetify.lang.t('$vuetify.pages.bills.table.header.10'),
+      width: '10%'
     }
   ]
 
@@ -112,8 +137,29 @@ export default class BillsPage extends Vue implements Tableable<BillModel> {
     this.loadData((value.page - 1) * value.itemsPerPage, value.itemsPerPage)
   }
 
-  clickOnRow (item: BillModel) {
-    return null
+  async markPaid (item: BillModel & { loading: boolean }) {
+    try {
+      item.loading = true
+      const isMustBeRemoved = confirm(this.$vuetify.lang.t('$vuetify.pages.bills.label.confirm_payment', item.id))
+
+      if (isMustBeRemoved) {
+        await TimeflowOrchestratorProvider
+          .getInstance()
+          .confirmPaid(item.id)
+      }
+
+      this.$router.replace(BillsRoute)
+    } catch (err) {
+      console.error(err)
+
+      // TODO (2020.11.10): Handling error
+    } finally {
+      item.loading = false
+    }
+  }
+
+  async clickOnRow (item: BillModel) {
+    throw new Error('Not implemented')
   }
 
   clickOutsideSubpage () {

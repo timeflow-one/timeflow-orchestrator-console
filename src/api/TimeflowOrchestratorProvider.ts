@@ -215,6 +215,13 @@ export class TimeflowOrchestratorProvider {
     })
   }
 
+  public confirmPaid (id: number): Promise<AxiosResponse<any>> {
+    return this.api.post('/app/bills/mark-paid', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      id
+    })
+  }
+
   public durations (): Promise<AxiosResponse<DurationsResponse>> {
     return this.api.post('/app/instances/durations', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY)

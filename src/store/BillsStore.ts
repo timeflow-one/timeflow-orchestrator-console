@@ -26,13 +26,14 @@ class BillsStore extends VuexModule {
         transaction_no: item.transaction_no,
         to_pay_on: new Date(item.to_pay_on),
         created_at: new Date(item.created_at),
-        status: item.status,
+        payment_status: item.status !== 'pending',
         customer: {
           legal_title: item.legal_title,
           inn: item.inn,
           kpp: item.kpp
         },
-        plan_title: item.plan_title
+        plan_title: item.plan_title,
+        paycheck: item.link
         // plan: {
         //   id: item.license.plan.id,
         //   title: item.license.plan.title,
@@ -66,6 +67,8 @@ export interface BillModel {
     inn: string | null;
   };
   plan: PlanModel;
+  payment_status: boolean;
+  link: string;
 }
 
 export default getModule(BillsStore)
