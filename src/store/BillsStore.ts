@@ -32,14 +32,15 @@ class BillsStore extends VuexModule {
           inn: item.inn,
           kpp: item.kpp
         },
-        plan: {
-          id: item.license.plan.id,
-          title: item.license.plan.title,
-          code: item.license.plan.code,
-          employees_limit: item.license.plan.employees_limit,
-          monthly_fee_text: item.license.plan.monthly_fee_text,
-          status: item.license.plan.is_deleted < 1
-        }
+        plan_title: item.plan_title
+        // plan: {
+        //   id: item.license.plan.id,
+        //   title: item.license.plan.title,
+        //   code: item.license.plan.code,
+        //   employees_limit: item.license.plan.employees_limit,
+        //   monthly_fee_text: item.license.plan.monthly_fee_text,
+        //   status: item.license.plan.is_deleted < 1
+        // }
       }))
     }
   }

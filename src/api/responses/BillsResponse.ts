@@ -29,4 +29,5 @@ interface Bill {
   used_cc_token: null;
   instance: Instance;
   license: License;
+  plan_title: string;
 }

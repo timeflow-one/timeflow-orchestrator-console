@@ -29,7 +29,7 @@ export default class BillsPage extends Vue implements Tableable<BillModel> {
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.bills.table.header.1'),
-      width: '22%'
+      width: '15%'
     },
     {
       value: 'to_pay_on',
@@ -53,7 +53,7 @@ export default class BillsPage extends Vue implements Tableable<BillModel> {
       sortable: false,
       divider: false,
       text: this.$vuetify.lang.t('$vuetify.pages.bills.table.header.4'),
-      width: '15%'
+      width: '20%'
     },
     {
       value: 'inn',
