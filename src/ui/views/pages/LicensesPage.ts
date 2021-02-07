@@ -8,6 +8,7 @@ import DataTable from '@/ui/components/DataTable.vue'
 import CodeComponent from '@/ui/components/CodeComponent.vue'
 import { TimeflowOrchestratorProvider } from '@/api/TimeflowOrchestratorProvider'
 import { Tableable } from './interfaces/Tableable'
+import { AxiosError } from 'axios'
 
 @Component({
   components: {
@@ -109,6 +110,14 @@ export default class LicensesPage extends Vue implements Tableable<LicenseModel>
       await LicensesStore.loadLicenses({ offset, limit })
     } catch (err) {
       console.error(err)
+
+      if ((err as AxiosError).isAxiosError) {
+        switch ((err as AxiosError).code) {
+          default: {
+            alert('Ошибка получения списка подписок')
+          }
+        }
+      }
     } finally {
       this.loading.table = false
     }
