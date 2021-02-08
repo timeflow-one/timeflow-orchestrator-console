@@ -1,5 +1,5 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { BillsRoute, InstancesRoute, LicensesRoute, LoginRoute, NotFoundRoute, PlansRoute, UsersRoute } from '@/router'
+import { BillsRoute, EnrollmentsRoute, InstancesRoute, LicensesRoute, LoginRoute, NotFoundRoute, PlansRoute, UsersRoute } from '@/router'
 import NavigationDrawerUserCard from '@/ui/components/NavigationDrawerUserCard.vue'
 import { MenuItem } from '@/models/MenuItem'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
@@ -16,6 +16,10 @@ export default class AppView extends Vue {
     {
       ...InstancesRoute,
       icon: 'mdi-database'
+    },
+    {
+      ...EnrollmentsRoute,
+      icon: 'mdi-account-arrow-right'
     },
     {
       ...UsersRoute,

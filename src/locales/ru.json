@@ -24,7 +24,8 @@
       "bills": "Счета • Оркестратор Timeflow",
       "plans": "Планы • Оркестратор Timeflow",
       "plan": "Планы • Оркестратор Timeflow",
-      "create_plan": "Планы • Оркестратор Timeflow"
+      "create_plan": "Планы • Оркестратор Timeflow",
+      "enrollments": "Заявки • Оркестратор Timeflow"
     }
   },
   "common": {
@@ -95,7 +96,8 @@
       "bills": "Счета",
       "plans": "Планы",
       "plan": "Планы",
-      "create_plan": "Планы"
+      "create_plan": "Планы",
+      "enrollments": "Заявки"
     },
     "action": {}
   },

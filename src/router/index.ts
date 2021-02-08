@@ -14,6 +14,7 @@ import LicensePage from '@/ui/views/pages/LicensePage.vue'
 import CreatePlanPage from '@/ui/views/pages/CreatePlanPage.vue'
 import PlanPage from '@/ui/views/pages/PlanPage.vue'
 import BillsPage from '@/ui/views/pages/BillsPage.vue'
+import EnrollmentsPage from '@/ui/views/pages/EnrollmentsPage.vue'
 
 Vue.use(VueRouter)
 
@@ -110,6 +111,12 @@ const PlansRoute: RouteConfig = {
   ]
 }
 
+const EnrollmentsRoute: RouteConfig = {
+  name: 'enrollments',
+  path: '/enrollments',
+  component: EnrollmentsPage
+}
+
 const NotFoundRoute: RouteConfig = {
   name: '404',
   path: '*',
@@ -126,6 +133,7 @@ const router = new VueRouter({
     LicensesRoute,
     BillsRoute,
     PlansRoute,
+    EnrollmentsRoute,
     NotFoundRoute
   ]
 })
@@ -154,5 +162,6 @@ export {
   PlanRoute,
   CreatePlanRoute,
   PlansRoute,
+  EnrollmentsRoute,
   NotFoundRoute
 }
