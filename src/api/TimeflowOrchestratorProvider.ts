@@ -13,6 +13,7 @@ import { CreateInstanceResponse } from './responses/CreateInstanceResponse'
 import { CreatePlanResponse } from './responses/CreatePlanResponse'
 import { CurrenciesResponse } from './responses/CurrenciesResponse'
 import { DurationsResponse } from './responses/DurationsResponse'
+import { EnrollmentsResponse } from './responses/EnrollmentsResponse'
 import { InstanceResponse } from './responses/InstanceResponse'
 import { InstancesResponse } from './responses/InstancesResponse'
 import { LicenseResponse } from './responses/LicenseResponse'
@@ -231,6 +232,14 @@ export class TimeflowOrchestratorProvider {
   public currencies (): Promise<AxiosResponse<CurrenciesResponse>> {
     return this.api.post('/app/misc/currencies', {
       access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY)
+    })
+  }
+
+  public enrollments (offset = 0, limit = 15): Promise<AxiosResponse<EnrollmentsResponse>> {
+    return this.api.post('/app/enrollments/list', {
+      access_token: localStorage.getItem(PreferenceKey.TOKEN_KEY),
+      offset,
+      limit
     })
   }
 }

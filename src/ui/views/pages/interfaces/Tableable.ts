@@ -10,4 +10,5 @@ export interface Tableable <T> {
   tableItems: Array<T>;
   totalItems: number;
   onOptionsChanged (value: TableOptions): void;
+  clickOnRow (item: T): void;
 }
