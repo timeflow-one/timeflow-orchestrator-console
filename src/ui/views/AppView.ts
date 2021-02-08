@@ -54,6 +54,8 @@ export default class AppView extends Vue {
   }
 
   async mounted () {
+    console.log(process.env.VUE_APP_VERSION)
+
     document.title = this.$vuetify.lang.t(`$vuetify.head.title.${this.$route.name}`)
     // слушатель для смены заголовка окна при перехоже на другую страницу
     this.$router.beforeEach((to, from, next) => {
