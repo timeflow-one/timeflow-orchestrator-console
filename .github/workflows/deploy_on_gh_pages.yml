@@ -16,8 +16,17 @@ jobs:
 
       - run: pwd && ls -la
 
-      - run: npm i
-      - run: npm run build
+      - name: Install dependencies
+        run: npm i
+
+
+      - name: Build application
+        run: npm run build
+        env:
+          VUE_APP_BASE_API: ${{ secrets.VUE_APP_BASE_API }}
+          VUE_APP_USER_CONSOLE_URL: ${{ secrets.VUE_APP_USER_CONSOLE_URL }}
+          VUE_APP_INSTANCE_DB_NAME_PREFIX: ${{ secrets.VUE_APP_INSTANCE_DB_NAME_PREFIX }}
+          VUE_APP_INSTANCE_DB_HOST: ${{ secrets.VUE_APP_INSTANCE_DB_HOST }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2
