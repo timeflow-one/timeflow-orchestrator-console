@@ -13,9 +13,15 @@
       :permanent="!$vuetify.breakpoint.mobile"
       :temporary="$vuetify.breakpoint.mobile"
     >
-      <img class="ma-4" src="@/assets/timeflow.svg" />
+      <img
+        class="ma-4"
+        src="@/assets/timeflow.svg"
+      />
 
-      <v-list>
+      <v-list
+        v-for="(menu, index) in menus"
+        :key="index"
+      >
         <v-list-item
           color="primary lighten-1"
           v-for="(item, index) in menu"

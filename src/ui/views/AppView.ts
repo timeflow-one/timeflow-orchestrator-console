@@ -12,31 +12,35 @@ import AuthStore from '@/store/AuthStore'
 })
 export default class AppView extends Vue {
   isNavigationDrawerShow = false
-  menu: Array<MenuItem> = [
-    {
-      ...InstancesRoute,
-      icon: 'mdi-database'
-    },
-    {
-      ...EnrollmentsRoute,
-      icon: 'mdi-account-arrow-right'
-    },
-    {
-      ...UsersRoute,
-      icon: 'mdi-account-multiple'
-    },
-    {
-      ...LicensesRoute,
-      icon: 'mdi-clipboard-text-outline'
-    },
-    {
-      ...BillsRoute,
-      icon: 'mdi-file-document-edit-outline'
-    },
-    {
-      ...PlansRoute,
-      icon: 'mdi-text-box-outline'
-    }
+  menus: Array<Array<MenuItem>> = [
+    [
+      {
+        ...EnrollmentsRoute,
+        icon: 'mdi-account-multiple-plus'
+      }
+    ],
+    [
+      {
+        ...InstancesRoute,
+        icon: 'mdi-database'
+      },
+      {
+        ...UsersRoute,
+        icon: 'mdi-account-multiple'
+      },
+      {
+        ...LicensesRoute,
+        icon: 'mdi-clipboard-text-outline'
+      },
+      {
+        ...BillsRoute,
+        icon: 'mdi-file-document-edit-outline'
+      },
+      {
+        ...PlansRoute,
+        icon: 'mdi-text-box-outline'
+      }
+    ]
   ]
 
   async created () {
