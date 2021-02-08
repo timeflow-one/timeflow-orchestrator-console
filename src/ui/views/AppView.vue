@@ -35,6 +35,10 @@
           <v-list-item-content>
             <v-list-item-title>{{ $vuetify.lang.t(`$vuetify.navigation.menu.${item.name}`) }}</v-list-item-title>
           </v-list-item-content>
+
+          <v-list-item-action-text v-if="Number(item.badge) >= 0">
+            {{ item.badge }}
+          </v-list-item-action-text>
         </v-list-item>
       </v-list>
 

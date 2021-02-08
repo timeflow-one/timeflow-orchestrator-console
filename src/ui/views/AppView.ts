@@ -4,6 +4,7 @@ import NavigationDrawerUserCard from '@/ui/components/NavigationDrawerUserCard.v
 import { MenuItem } from '@/models/MenuItem'
 import AppbarMenuStore from '@/store/AppbarMenuStore'
 import AuthStore from '@/store/AuthStore'
+import EnrollmentsStore from '@/store/EnrollmentsStore'
 
 @Component({
   components: {
@@ -16,7 +17,10 @@ export default class AppView extends Vue {
     [
       {
         ...EnrollmentsRoute,
-        icon: 'mdi-account-multiple-plus'
+        icon: 'mdi-account-multiple-plus',
+        get badge () {
+          return EnrollmentsStore.totalEnrollments
+        }
       }
     ],
     [
@@ -66,6 +70,8 @@ export default class AppView extends Vue {
       document.title = this.$vuetify.lang.t(`$vuetify.head.title.${to.name}`)
       next()
     })
+    // загрузка списка заявок на создание аккаунта, для получения количества в меню навигации
+    EnrollmentsStore.loadEnrollments({ offset: 0, limit: 0 })
   }
 
   get isAppbarProgress () {
