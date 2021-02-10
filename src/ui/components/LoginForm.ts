@@ -1,5 +1,6 @@
 import { InstancesRoute } from '@/router'
 import AuthStore from '@/store/AuthStore'
+import EnrollmentsStore from '@/store/EnrollmentsStore'
 import { emailRegex } from '@/utils/EmailRegex'
 import { Component, Vue } from 'vue-property-decorator'
 
@@ -27,6 +28,8 @@ export default class LoginForm extends Vue {
 
       await AuthStore.signIn({ login: this.login, password: this.password })
       this.$router.replace({ name: InstancesRoute.name })
+      // загрузка количества заявок на создание аккаунта для меню навигации
+      EnrollmentsStore.loadEnrollments({ offset: 0, limit: 0 })
     } catch (err) {
       console.error(err)
 

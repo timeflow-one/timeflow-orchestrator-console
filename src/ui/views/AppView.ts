@@ -70,8 +70,6 @@ export default class AppView extends Vue {
       document.title = this.$vuetify.lang.t(`$vuetify.head.title.${to.name}`)
       next()
     })
-    // загрузка списка заявок на создание аккаунта, для получения количества в меню навигации
-    EnrollmentsStore.loadEnrollments({ offset: 0, limit: 0 })
   }
 
   get isAppbarProgress () {
