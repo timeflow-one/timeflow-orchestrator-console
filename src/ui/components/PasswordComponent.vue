@@ -5,6 +5,7 @@
     style="pointer-events: auto"
     color="primary lighten-1"
     v-model="password"
+    :autocomplete="autocomplete"
     :disabled="disabled"
     :readonly="readonly"
     :rules="rules"
@@ -56,6 +57,9 @@ export default class PasswordComponent extends Vue {
 
   @Prop({ default: -1 })
   tabindex!: number
+
+  @Prop({ default: null })
+  autocomplete!: string
 
   isShow = false
 

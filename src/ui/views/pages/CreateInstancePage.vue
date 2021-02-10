@@ -52,6 +52,7 @@
           <v-text-field
             tabindex="5"
             v-model="form.db_user.value"
+            :name="Math.random()"
             :disabled="form.db_user.readonly"
             :rules="form.db_user.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.3')"
@@ -65,6 +66,7 @@
           <PasswordComponent
             tabindex="6"
             v-model="form.db_pass.value"
+            autocomplete="new-password"
             :disabled="form.db_pass.readonly"
             :rules="form.db_pass.rules"
             :label="$vuetify.lang.t('$vuetify.pages.create_instance.form.label.4')"
